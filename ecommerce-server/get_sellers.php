@@ -14,3 +14,5 @@ while ($a = $array->fetch_assoc()) {
 
 $json = json_encode($response);
 echo $json;
+
+?>
