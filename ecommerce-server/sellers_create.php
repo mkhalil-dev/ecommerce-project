@@ -18,6 +18,21 @@ else{
 
 $users_types_id =3;
 
+//Check sellers Email
+$checkemail = $mysqli->prepare("SELECT email FROM users WHERE email=?");
+$checkemail->bind_param('s', $email);
+$checkemail->execute();
+$result = $checkemail->get_result()->fetch_assoc()['email'];
+
+if($result){
+    $response = [];
+    $response["success"] = false;
+    $response["message"] = "user already exists";
+    echo json_encode($response);
+    exit();
+}
+
+//Create a new seller
 $query = $mysqli->prepare("INSERT INTO users(fname, lname, email, password, users_types_id) VALUE (?, ?, ?, ?, ?)");
 $query->bind_param("ssssi", $fname, $lname, $email, $password, $users_types_id);
 $query->execute();
