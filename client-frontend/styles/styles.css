@@ -15,12 +15,17 @@ button:hover{
     color: white;
     
 }
+ul{
+    text-decoration: none;
+    list-style: none;
+}
 
 /* header section */
 .flex-display{
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
 }
 .flex-display-column{
     display: flex;
@@ -68,6 +73,68 @@ button:hover{
     margin-left: 10px;
 }
 
+/* nav bar */
+.navbar {
+    overflow: hidden;
+    padding: 10px;
+  }
+.navbar a {
+    float: left;
+    font-size: 16px;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+.dropdown .dropbtn {
+    font-size: 16px;  
+    border: none;
+    outline: none;
+    color: rgb(0, 0, 0);
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+.navbar a:hover, .dropdown:hover .dropbtn  {
+    background-color: rgb(212, 212, 212);
+    border-radius: 20px;
+}
+.dropdown-content a:hover{
+    background-color: rgb(232, 232, 232);
+    border-radius: 0;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    z-index: 1;
+  
+}
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.nav-anchor{
+    margin-right: 100px;
+    margin-left: 100px;
+}
+
+/* hero section */
+
 
 
 
@@ -94,3 +161,12 @@ button{
     background-color: white;
     color: #67ACB4;
 }
+
+
+
+
+
+
+
+
+/* media query */
