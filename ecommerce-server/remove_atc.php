@@ -42,27 +42,21 @@ $userverf->bind_param('ss', $productid, $userid);
 $userverf->execute();
 $result = $userverf->get_result()->fetch_assoc();
 
-//IF ALREADY added to cart only increase the amount by 1
+//IF FOUND DELETE THE ATC
 if(isset($result['amount'])){
-    $amount = $result['amount'];
-    $amount += 1;
-    $query = $mysqli->prepare("UPDATE add_to_cart SET amount=? WHERE users_id=? AND products_id=?");
-    $query->bind_param("iss", $amount, $userid, $productid);
-    $query->execute();
-    $response = [
-        "success" => true,
-        "message" => "item added to cart"
-    ];
-    echo json_encode($response);
-}
-else{
-    echo "hi";
-    $query = $mysqli->prepare("INSERT INTO `add_to_cart`(`users_id`, `products_id`) VALUES (?, ?);");
+    $query = $mysqli->prepare("DELETE FROM add_to_cart WHERE users_id=? AND products_id=?");
     $query->bind_param("ss", $userid, $productid);
     $query->execute();
     $response = [
         "success" => true,
-        "message" => "item added to cart"
+        "message" => "item deleted from cart"
+    ];
+    echo json_encode($response);
+}
+else{
+    $response = [
+        "success" => true,
+        "message" => "item not found in cart"
     ];
     echo json_encode($response);
 }
