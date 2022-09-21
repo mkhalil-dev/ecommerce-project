@@ -256,8 +256,11 @@ ul{
     margin-bottom: 20px;
 }
 .product img{
-    border: 2px solid lightgray;
+    border: 8px solid lightgray;
     width: 100%;
+}
+.product img:hover{
+    transform: scale(1.05);
 }
 .product-actions{
     padding: 2%;
@@ -289,7 +292,7 @@ button{
 .wider-btn{
     width: 150px;
     font-weight: 700;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 .white-btn{
     border: 1px solid #67ACB4;
