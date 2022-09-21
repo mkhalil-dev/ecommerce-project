@@ -21,15 +21,9 @@ $users_types_id = 1;
 $checkemail = $mysqli->prepare("SELECT email FROM users WHERE email=?");
 $checkemail->bind_param('s', $email);
 $checkemail->execute();
-<<<<<<< HEAD:ecommerce-server/create_sellers.php
 $result = $checkemail->get_result()->fetch_assoc();
 
 if (isset($result['email'])) {
-=======
-$result = $checkemail->get_result()->fetch_assoc()['email'];
-
-if($result){
->>>>>>> d32e418fde0208860b78f0762aedf00478fc7ebe:ecommerce-server/sellers_create.php
     $response = [];
     $response["success"] = false;
     $response["message"] = "user already exists";
