@@ -10,6 +10,11 @@ a {
     text-decoration: none;
     cursor: pointer;
 }
+button:hover{
+    background-color: black;
+    color: white;
+    
+}
 
 /* header section */
 .flex-display{
@@ -20,8 +25,6 @@ a {
 .flex-display-column{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }
 .main-pre-hero{
     width: 100%;
@@ -37,7 +40,57 @@ a {
     width: 100%;
     background-color: #EEEEEE;
 }
-.pre-hero-elements{
-    margin-left: 20px;
-    margin-right: 20px;
+
+
+.logo{
+    margin-right: 20%
+}
+.logo h3{
+    font-size: 24px;
+    font-weight: 700;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.logo img{
+    width: 40px;
+    height: 40px;
+}
+.mid-elements{
+   margin-right: 20%
+}
+.mid-elements input,select{
+    border-radius: 5px;
+    border: 1px solid grey;
+    margin: 5px;
+    height: 30px;
+}
+.action-icon-btns > a{
+    margin-left: 10px;
+}
+
+
+
+
+
+/* utilities */
+button{
+    transition-duration: 0.4s;
+    display: inline-block;
+    text-align: center;
+}
+.header-btn{
+    width: 50px;
+    height: 30px;
+    border-radius: 5px;
+    font-weight: 500;
+    color: white;
+    background-color: #67ACB4;
+    border: 1px solid gray;
+    outline: none;
+    cursor: pointer;
+}
+.white-btn{
+    border: 1px solid #67ACB4;
+    background-color: white;
+    color: #67ACB4;
 }
