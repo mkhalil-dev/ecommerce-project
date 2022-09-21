@@ -8,6 +8,7 @@ body{
     margin:0;
 }
 a {
+    color: inherit;
     text-decoration: none;
     cursor: pointer;
 }
@@ -257,6 +258,7 @@ ul{
 }
 .product img{
     border: 8px solid lightgray;
+    border-radius: 5px;
     width: 100%;
 }
 .product img:hover{
