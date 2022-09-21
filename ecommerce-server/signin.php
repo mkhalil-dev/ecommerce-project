@@ -27,6 +27,7 @@ if($truepass == $pass ){
     $response["message"] = "login succesfull";
     echo json_encode($response);
 }
+
 //if login failed
 else{
     $response = [];

@@ -23,7 +23,7 @@ $query->execute();
 $reply = $query->get_result()->fetch_assoc()['email'];
 
 //If user or email exists, exit the script and return an error
-if($reply){
+if(isset($reply)){
     $response = [];
     $response["success"] = false;
     $response["message"] = "email already exists";
