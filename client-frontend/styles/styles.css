@@ -145,7 +145,7 @@ ul{
     padding:0
 }
 .hero-content{
-    width: 99vw;
+    width: 97.8vw;
 }
 .hero-display-container{
     position:relative;
@@ -216,8 +216,28 @@ ul{
     background-color:#fff!important;
 }
 
+/* products section */
+.products{
+    align-items: center;
+    justify-content: center;
+}
+.products-section-desc{
+    text-align: center;
+}
+.products-section-desc h1{
+    font-size: 36px;
+    font-weight:900;
+    line-height: 30px;
+}
+.products-section-desc p{
+    color: grey;
 
-
+}
+.products-grid{
+    display: grid;
+    grid-template-columns: 150px 150px 150px;
+    grid-template-rows: auto auto auto;
+}
 
 
 
@@ -247,6 +267,9 @@ button{
     border: 1px solid #67ACB4;
     background-color: white;
     color: #67ACB4;
+}
+.white-btn-wider{
+    width: auto;
 }
 
 
