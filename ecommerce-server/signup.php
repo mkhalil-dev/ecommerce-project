@@ -20,10 +20,10 @@ if(isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['password'])
 $query = $mysqli->prepare("SELECT email FROM users WHERE email=?");
 $query->bind_param('s', $email);
 $query->execute();
-$reply = $query->get_result()->fetch_assoc()['email'];
+$reply = $query->get_result()->fetch_assoc();
 
 //If user or email exists, exit the script and return an error
-if(isset($reply)){
+if(isset($reply['email'])){
     $response = [];
     $response["success"] = false;
     $response["message"] = "email already exists";
