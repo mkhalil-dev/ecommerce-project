@@ -11,5 +11,3 @@ while($product = $result->fetch_assoc()){
 }
 
 echo json_encode($response);
-
-?>
