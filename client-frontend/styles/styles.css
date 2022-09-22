@@ -290,6 +290,10 @@ form{
 .form-part{
     margin: 20px;
     width: 100%;
+    text-transform: capitalize;
+}
+.form-part-editted{
+    margin: 11px;
 }
 .form-borders{
     border: 1.5px solid grey;
@@ -309,7 +313,7 @@ form{
     border: 1px solid gray;
     background-color: rgb(243, 242, 242);
 }
-#forgot-pass{
+#forgot-pass, p{
     color: rgb(15, 171, 223);
     font-size: 10px;
     font-weight: 900;
@@ -340,7 +344,7 @@ button{
 }
 .wider-btn-plus{
     width: 90%;
-    height: 35px;
+    height: 38px;
 }
 .white-btn{
     border: 1px solid #67ACB4;

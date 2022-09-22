@@ -44,9 +44,19 @@
 
     <!--Start sign in form section -->
     <section class="form-container flex-display-column">
-        <h1>Sign In</h1>
+        <h1>Sign Up</h1>
         <div class="form-borders">
             <form id="sign-in-form">
+                <div class=" form-part form-part-editted flex-display">
+                    <div class=" flex-display-column">
+                        <label for="fname">First name:</label>
+                        <input type="text" name="fname" id="fname" placeholder="first name">
+                    </div>
+                    <div class="flex-display-column">
+                        <label for="lname">Last name:</label>
+                        <input type="text" name="lname" id="lname" placeholder="last name">
+                    </div>
+                </div>
                 <div class="form-part flex-display-column">
                     <label for="email-address">Your E-mail Address</label>
                     <input type="text" name="email-address" id="email" placeholder="Your E-mail">
@@ -54,10 +64,14 @@
                 <div class="form-part flex-display-column">
                     <label for="password">Your Password</label>
                     <input type="text" name="password" id="password" placeholder="Your Password">
-                    <a href="#resetpass" id="forgot-pass">Forgot password ?</a>
+                    <p>Password must be 8-30 characters</p>
                 </div>
                 <div class="form-part flex-display-column">
-                    <button class="header-btn wider-btn wider-btn-plus  "><a href="index.html">Sign In</a></button>
+                    <label for="confirm-password">Confirm password</label>
+                    <input type="text" name="confirm-password" id="confirm-password" placeholder="repeat password">
+                </div>
+                <div class="form-part flex-display-column">
+                    <button class="header-btn wider-btn wider-btn-plus  "><a href="index.html">REGISTER NOW</a></button>
                 </div>
             </form>
         </div>
