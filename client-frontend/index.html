@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SE e-commerce</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="icon" href="./assets/logo.png.crdownload"type="image/icon type">
     <link rel="stylesheet" href="styles/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -82,57 +83,7 @@
             <h1>Our Products</h1>
             <p>To get more info about each item, just click on the attached picture.</p>
         </div>
-        <div class="products-grid">
-            <div class="product">
-                <a href=""><img src="./assets/product-ex.jfif"></a>
-                <div class="product-actions flex-display">
-                    <button class="header-btn white-btn add-to-favorites white-btn-wider" ><i class="fa fa-heart"></i></button>
-                    <button class="header-btn white-btn add-to-wishlist white-btn-wider" ><i class="fa fa-plus-square" aria-hidden="true"></i></button>
-                    <button class="header-btn white-btn add-to-wishlist white-btn-wider" ><i class="fa fa-cart-plus" aria-hidden="true"></i>Add to cart</button>
-                </div>
-                <h4>product name</h4>
-                <h5>price</h5>
-            </div>
-            <div class="product">
-                <a href=""><img src="./assets/product-ex.jfif"></a>
-                <div class="product-actions flex-display">
-                    <button class="header-btn white-btn add-to-favorites white-btn-wider" ><i class="fa fa-heart"></i></button>
-                    <button class="header-btn white-btn add-to-wishlist white-btn-wider" ><i class="fa fa-plus-square" aria-hidden="true"></i></button>
-                    <button class="header-btn white-btn add-to-wishlist white-btn-wider" ><i class="fa fa-cart-plus" aria-hidden="true"></i>Add to cart</button>
-                </div>
-                <h4>product name</h4>
-                <h5>price</h5>
-            </div>
-            <div class="product">
-                <a href=""><img src="./assets/product-ex.jfif"></a>
-                <div class="product-actions flex-display">
-                    <button class="header-btn white-btn add-to-favorites white-btn-wider" ><i class="fa fa-heart"></i></button>
-                    <button class="header-btn white-btn add-to-wishlist white-btn-wider" ><i class="fa fa-plus-square" aria-hidden="true"></i></button>
-                    <button class="header-btn white-btn add-to-wishlist white-btn-wider" ><i class="fa fa-cart-plus" aria-hidden="true"></i>Add to cart</button>
-                </div>
-                <h4>product name</h4>
-                <h5>price</h5>
-            </div>
-            <div class="product">
-                <a href=""><img src="./assets/product-ex.jfif"></a>
-                <div class="product-actions flex-display">
-                    <button class="header-btn white-btn add-to-favorites white-btn-wider" ><i class="fa fa-heart"></i></button>
-                    <button class="header-btn white-btn add-to-wishlist white-btn-wider" ><i class="fa fa-plus-square" aria-hidden="true"></i></button>
-                    <button class="header-btn white-btn add-to-wishlist white-btn-wider" ><i class="fa fa-cart-plus" aria-hidden="true"></i>Add to cart</button>
-                </div>
-                <h4>product name</h4>
-                <h5>price</h5>
-            </div>
-            <div class="product">
-                <a href=""><img src="./assets/product-ex.jfif"></a>
-                <div class="product-actions flex-display">
-                    <button class="header-btn white-btn add-to-favorites white-btn-wider" ><i class="fa fa-heart"></i></button>
-                    <button class="header-btn white-btn add-to-wishlist white-btn-wider" ><i class="fa fa-plus-square" aria-hidden="true"></i></button>
-                    <button class="header-btn white-btn add-to-wishlist white-btn-wider" ><i class="fa fa-cart-plus" aria-hidden="true"></i>Add to cart</button>
-                </div>
-                <h4>product name</h4>
-                <h5>price</h5>
-            </div>
+        <div id="products-box" class="products-grid">
         </div>
         <button class="header-btn wider-btn">Load more</button>
     </section>
