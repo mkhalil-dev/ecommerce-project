@@ -313,12 +313,33 @@ form{
     border: 1px solid gray;
     background-color: rgb(243, 242, 242);
 }
-#forgot-pass, p{
+.password-instruction{
     color: rgb(15, 171, 223);
     font-size: 10px;
     font-weight: 900;
     margin-top: 4px;
 }
+
+/* product description page */
+.product-details{
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 8%;
+    height: auto;
+    width: 80%;
+}
+.product-details > div{
+    width: 26%;
+    margin: 20px;
+}
+.qty-btns{
+    padding: 10px;
+    padding-left: 0;
+}
+.product-img img{
+    width: 100%;
+}
+
 
 /* utilities */
 button{
@@ -389,6 +410,27 @@ button{
     }
     .form-borders{
         width: 60%;
+    } 
+}
+
+@media screen and (max-width: 800px) {
+    .product-details{
+        flex-direction: column;
+        margin: 10px;
+    }
+    .product-details > div{
+        width: 100%;
+        margin: 10px;
+    }
+    .product-action{
+        margin-left: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .qty-btns{
+        width: 50%;
+        margin-left: 10px;
     }
 }
 @media screen and (max-width: 700px) {
@@ -404,4 +446,5 @@ button{
     .form-borders{
         width: 90%;
     }
+    
 }
