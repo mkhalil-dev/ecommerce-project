@@ -324,9 +324,12 @@ form{
 .product-details{
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 8%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    padding: 5%;
     height: auto;
     width: 80%;
+    border: 1px solid gray;
 }
 .product-details > div{
     width: 26%;
@@ -416,7 +419,7 @@ button{
 @media screen and (max-width: 800px) {
     .product-details{
         flex-direction: column;
-        margin: 10px;
+
     }
     .product-details > div{
         width: 100%;
@@ -429,7 +432,7 @@ button{
         align-items: center;
     }
     .qty-btns{
-        width: 50%;
+        width: 60%;
         margin-left: 10px;
     }
 }
