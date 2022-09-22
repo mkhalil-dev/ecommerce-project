@@ -67,7 +67,9 @@ function mainpage(){
       });
     }
   }
-  loadmore.addEventListener('click', getproducts)
-  getproducts();
+  loadmore.addEventListener('click', getproducts)  
 
+
+  
+  getproducts();
 }
