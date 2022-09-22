@@ -25,7 +25,10 @@ function showDivs(n) {
   dots[slideIndex-1].className += " hero-white";
 }
 
-mainpage()
+if(window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1) == "index.html"){
+  mainpage()
+}
+
 function mainpage(){
   let seen;
   let count = 0;
