@@ -208,7 +208,7 @@ function signup(){
     axios.post('http://localhost/ecommerce-project/ecommerce-server/signup.php', signupbody)
     .then((response) => {
       if(response.data.success){
-        textbox.innerText = "Sign up!"
+        textbox.innerText = "Signed up!"
         this.removeEventListener('click', arguments.callee);
         localStorage.setItem('userid', response.data.userid)
         setTimeout(()=>{
@@ -216,8 +216,10 @@ function signup(){
         },500)
       }
       else{
-        textbox.innerText = "User and password combination are incorrect"
-        return;       
+        if(response.data.message == "email already exists"){
+          textbox.innerText = "Email already exists!"
+          return;
+        }
       }
     })
   })

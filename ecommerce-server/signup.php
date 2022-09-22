@@ -37,9 +37,17 @@ $query = $mysqli->prepare("INSERT INTO `users` (`id`, `fname`, `lname`, `email`,
 $query->bind_param("ssssi", $fname, $lname, $email, $pass, $usertype);
 $query->execute();
 
+//Getting the new user ID
+$query = $mysqli->prepare("SELECT id FROM users WHERE email=?");
+$query->bind_param('s', $email);
+$query->execute();
+$userid = $query->get_result()->fetch_assoc()['id'];
+
+
 $response = [];
 $response["success"] = true;
 $response["message"] = "user created succesfully";
+$response["userid"] = $userid;
 
 echo json_encode($response);
 
