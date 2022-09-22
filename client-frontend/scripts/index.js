@@ -1,5 +1,4 @@
 let pPath = window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1);
-console.log(pPath)
 if(pPath == "index.html"){
   mainpage()
 }
@@ -12,7 +11,9 @@ else if(pPath == "signup.html"){
 else if(pPath == "resetreq.html"){
   resetreq()
 }
-
+else if(pPath == "resetpass.html"){
+  resetpass()
+}
 
 function checksignin(){
   if(!localStorage.getItem('userid')){
@@ -246,17 +247,15 @@ function resetreq(){
 }
 
 function resetpass(){
+  let token = window.location.search.substring(1);
   document.getElementById("submit").addEventListener('click', function (){
-    axios.post('http://localhost/ecommerce-project/ecommerce-server/reset_request.php', signupbody)
+    let password = document.getElementById("password").value;
+    let resetpassbody = new FormData();
+    resetpassbody.set('password', password)
+    resetpassbody.set('token', token)
+    axios.post('http://localhost/ecommerce-project/ecommerce-server/reset_password.php?', resetpassbody)
     .then((response) => {
-      if(response.data.success){
-        textbox.innerText = "Signed up!"
-        this.removeEventListener('click', arguments.callee);
-        localStorage.setItem('userid', response.data.userid)
-        setTimeout(()=>{
-          window.location.href = "./index.html";
-        },500)
-      }
+        console.log(response)
     })
   })
 }
