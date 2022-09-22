@@ -9,6 +9,10 @@ else if(pPath == "signin.html"){
 else if(pPath == "signup.html"){
   signup()
 }
+else if(pPath == "resetreq.html"){
+  resetreq()
+}
+
 
 function checksignin(){
   if(!localStorage.getItem('userid')){
@@ -220,6 +224,22 @@ function signup(){
           textbox.innerText = "Email already exists!"
           return;
         }
+      }
+    })
+  })
+}
+
+function resetreq(){
+  document.getElementById("submit").addEventListener('click', function (){
+    axios.post('http://localhost/ecommerce-project/ecommerce-server/reset_request.php', signupbody)
+    .then((response) => {
+      if(response.data.success){
+        textbox.innerText = "Signed up!"
+        this.removeEventListener('click', arguments.callee);
+        localStorage.setItem('userid', response.data.userid)
+        setTimeout(()=>{
+          window.location.href = "./index.html";
+        },500)
       }
     })
   })
