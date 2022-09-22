@@ -16,20 +16,20 @@
             <img src="assets/logo.png" alt="logo se commerce" style="width:210px; height:75px;">
         </div>
         <ul>
-            <li><button value="dashboard" name="dashboard" id ="Home">Home</button></li>
-            <li><button value="products" name="products" id ="Products">Products</button></li>
-            <li><button value="coupons" name="coupons" id ="Coupons">Coupons</button></li>
-            <li><button value="ads" name="ads" id ="Ads">Ads</button></li>
-            <li><button value="chat" name="chat" id ="Chat">Chat</button></li>
+            <li><button value="dashboard" name="dashboard" id="Home">Home</button></li>
+            <li><button value="products" name="products" id="Products">Products</button></li>
+            <li><button value="coupons" name="coupons" id="Coupons">Coupons</button></li>
+            <li><button value="ads" name="ads" id="Ads">Ads</button></li>
+            <li><button value="chat" name="chat" id="Chat">Chat</button></li>
         </ul>
     </div>
     <div class="container">
         <div class="header">
             <div class="nav">
-<h1>Seller's Dashboard</h1>
+                <h1>Seller's Dashboard</h1>
             </div>
         </div>
-        <div class="content">
+        <div class="content" id="homeDiv">
             <div class="cards">
                 <div class="card">
                     <div class="box">
@@ -60,32 +60,8 @@
                 </div>
 
                 <div>
-                    
-<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
 
-<script>
-var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
-var yValues = [35, 49, 44, 24, 15];
-var barColors = ["red", "green","blue","orange","brown"];
-
-new Chart("myChart", {
-  type: "bar",
-  data: {
-    labels: xValues,
-    datasets: [{
-      backgroundColor: barColors,
-      data: yValues
-    }]
-  },
-  options: {
-    legend: {display: false},
-    title: {
-      display: true,
-      text: "World Wine Production 2018"
-    }
-  }
-});
-</script>
+                    <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
 
                 </div>
 
@@ -93,34 +69,6 @@ new Chart("myChart", {
 
                     <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
 
-<script>
-var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
-var yValues = [55, 49, 44, 24, 15];
-var barColors = [
-  "#b91d47",
-  "#00aba9",
-  "#2b5797",
-  "#e8c3b9",
-  "#1e7145"
-];
-
-new Chart("myChart", {
-  type: "pie",
-  data: {
-    labels: xValues,
-    datasets: [{
-      backgroundColor: barColors,
-      data: yValues
-    }]
-  },
-  options: {
-    title: {
-      display: true,
-      text: "World Wide Wine Production 2018"
-    }
-  }
-});
-</script>
                 </div>
 
             </div>
@@ -177,13 +125,34 @@ new Chart("myChart", {
                             <td>Product 2</td>
                             <td><img src="#" alt=""></td>
                         </tr>
-         
+
 
                     </table>
                 </div>
             </div>
         </div>
+        <div class="content" id="productsDiv">
+            products
+            <div><img src="#" alt=""></div>
+            <div><img src="#" alt=""></div>
+        </div>
+        <div class="content" id="couponsDiv">
+            coupons
+            <div><img src="#" alt=""></div>
+            <div><img src="#" alt=""></div>
+        </div>
+        <div class="content" id="adsDiv">
+            ads
+            <div><img src="#" alt=""></div>
+            <div><img src="#" alt=""></div>
+        </div>
+        <div class="content" id="chatDiv">
+            chat
+            <div><img src="#" alt=""></div>
+            <div><img src="#" alt=""></div>
+        </div>
     </div>
+<script src="/scripts/index.js"></script>
 </body>
 
 </html>
