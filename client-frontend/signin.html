@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>SE e-commerce</title>
     <link rel="icon" href="./assets/logo.png.crdownload"type="image/icon type">
     <link rel="stylesheet" href="styles/styles.css">
@@ -51,26 +52,19 @@
     <section class="form-container flex-display-column">
         <h1>Sign In</h1>
         <div class="form-borders">
-            <form id="sign-in-form">
+            <div id="resp" style="text-align: center;"></div>
                 <div class="form-part flex-display-column">
                     <label for="email-address">Email address</label>
                     <input type="text" name="email-address" id="email" placeholder="Email Address">
                 </div>
                 <div class="form-part flex-display-column">
-<<<<<<< Updated upstream
-                    <label for="password">Your Password</label>
-                    <input type="text" name="password" id="password" placeholder="Your Password">
-                    <a href="#resetpass" class="password-instruction">Forgot password ?</a>
-=======
                     <label for="password">Password</label>
                     <input type="password" name="password" id="password" placeholder="Password">
                     <a href="#resetpass" id="forgot-pass">Forgot password ?</a>
->>>>>>> Stashed changes
                 </div>
                 <div class="form-part flex-display-column">
-                    <button class="header-btn wider-btn wider-btn-plus  "><a href="index.html">Sign In</a></button>
+                    <button id="signin" class="header-btn wider-btn wider-btn-plus">Sign In</button>
                 </div>
-            </form>
         </div>
     </section>
     <!--End sign in form section-->
