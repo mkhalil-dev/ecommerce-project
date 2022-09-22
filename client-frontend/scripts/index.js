@@ -6,6 +6,9 @@ if(pPath == "index.html"){
 else if(pPath == "signin.html"){
   login()
 }
+else if(pPath == "signup.html"){
+  signup()
+}
 
 function checksignin(){
   if(!localStorage.getItem('userid')){
@@ -147,6 +150,65 @@ function login(){
     .then((response) => {
       if(response.data.success){
         textbox.innerText = "Logged In!"
+        this.removeEventListener('click', arguments.callee);
+        localStorage.setItem('userid', response.data.userid)
+        setTimeout(()=>{
+          window.location.href = "./index.html";
+        },500)
+      }
+      else{
+        textbox.innerText = "User and password combination are incorrect"
+        return;
+      }
+    })
+  })
+}
+
+function signup(){
+  document.getElementById("signup").addEventListener('click', function (){
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    let fname = document.getElementById("fname").value;
+    let lname = document.getElementById("lname").value;
+    let cpassword = document.getElementById("confirm-password").value;
+    let signupbody = new FormData();
+    let textbox = document.getElementById("resp");
+    if(!email && !password){
+      textbox.innerText = "Email and password cannot be empty"
+      return;
+    }
+    else if(!email){
+      textbox.innerText = "Email cannot be empty"
+      return;
+    }
+    else if(!password){
+      textbox.innerText = "Password cannot be empty"
+      return;
+    }
+    else if(!cpassword){
+      textbox.innerText = "Please confirm your password"
+      return;
+    }
+    else if(!fname){
+      textbox.innerText = "Your first name is missing"
+      return;
+    }
+    else if(!lname){
+      textbox.innerText = "Your last name is missing"
+      return;
+    }
+    else if(password != cpassword){
+      textbox.innerText = "Your passwords do not match"
+      return;
+    }
+    signupbody.set('email', email);
+    signupbody.set('password', password);
+    signupbody.set('fname', fname);
+    signupbody.set('lname', lname);
+    axios.post('http://localhost/ecommerce-project/ecommerce-server/signup.php', signupbody)
+    .then((response) => {
+      if(response.data.success){
+        textbox.innerText = "Sign up!"
         this.removeEventListener('click', arguments.callee);
         localStorage.setItem('userid', response.data.userid)
         setTimeout(()=>{
