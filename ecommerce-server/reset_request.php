@@ -43,7 +43,7 @@ $query->bind_param('ss', $resettoken, $userid);
 $query->execute();
 ini_set('display_errors', 1);
 
-$msg = "host.com/".$resettoken;
+$msg = "./".$resettoken;
 
 mail("ecommerceteam4@gmail.com", "Reset your Password", $msg);
 
