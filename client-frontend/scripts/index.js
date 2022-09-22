@@ -29,6 +29,14 @@ if(window.location.pathname.substring(window.location.pathname.lastIndexOf('/') 
   mainpage()
 }
 
+function checksignin(){
+  if(!localStorage.getItem('userid')){
+    alert("Sign in first!")
+    return false;
+  }
+  return true;
+}
+
 function mainpage(){
   let seen;
   let count = 0;
@@ -92,6 +100,7 @@ function mainpage(){
   getproducts();
 
   function favwish(productid, op){
+    if(!checksignin()) return;
     let user = localStorage.getItem('userid');
     let favbody = new FormData();
     favbody.set('user', user);
@@ -101,11 +110,15 @@ function mainpage(){
   }
 
   function atc(productid){
+    if(!checksignin()) return;
     let user = localStorage.getItem('userid');
     let atcbody = new FormData();
     atcbody.set('user', user);
     atcbody.set('product', productid);
     axios.post('http://localhost/ecommerce-project/ecommerce-server/add_to_cart.php', atcbody)
   }
+}
+
+function login(){
 
 }
