@@ -25,7 +25,18 @@ function showDivs(n) {
   dots[slideIndex-1].className += " hero-white";
 }
 
-mainpage()
+if(window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1) == "index.html"){
+  mainpage()
+}
+
+function checksignin(){
+  if(!localStorage.getItem('userid')){
+    alert("Sign in first!")
+    return false;
+  }
+  return true;
+}
+
 function mainpage(){
   let seen;
   let count = 0;
@@ -44,11 +55,29 @@ function mainpage(){
         else{
           seen += ", "+item.id;
         }
-        productsbox.insertAdjacentHTML('beforeend', '<div class="product"><a href=""><img src="data:image/png;base64,'+item.image+'"></a><div class="product-actions flex-display"><button class="header-btn white-btn add-to-favorites white-btn-wider" ><i class="fa fa-heart"></i></button><button class="header-btn white-btn add-to-wishlist white-btn-wider" ><i class="fa fa-plus-square" aria-hidden="true"></i></button><button class="header-btn white-btn add-to-wishlist white-btn-wider" ><i class="fa fa-cart-plus" aria-hidden="true"></i>Add to cart</button></div><h4>'+item.name+'</h4><h5>'+item.price+'$</h5></div>')
+        productsbox.insertAdjacentHTML('beforeend', '<div id="p-'+ item.id +'" class="product"><a href=""><img src="data:image/png;base64,'+item.image+'"></a><div class="product-actions flex-display"><button class="header-btn white-btn add-to-favorites white-btn-wider" ><i class="fa fa-heart"></i></button><button class="header-btn white-btn add-to-wishlist white-btn-wider" ><i class="fa fa-plus-square" aria-hidden="true"></i></button><button class="header-btn white-btn add-to-cart white-btn-wider" ><i class="fa fa-cart-plus" aria-hidden="true"></i>Add to cart</button></div><h4>'+item.name+'</h4><h5>'+item.price+'$</h5></div>')
       }
       if(count >= data[0].product_count){
         loadmore.remove();
       }
+      document.querySelectorAll(".add-to-favorites").forEach(button => {
+        let productid = button.parentElement.parentElement.id.split("-")[1];
+        button.addEventListener('click', function(){
+          favwish(productid, 'favorite')
+        });
+      });
+      document.querySelectorAll(".add-to-wishlist").forEach(button => {
+        let productid = button.parentElement.parentElement.id.split("-")[1];
+        button.addEventListener('click', function(){
+          favwish(productid, 'wish')
+        });
+      });
+      document.querySelectorAll(".add-to-cart").forEach(button => {
+        let productid = button.parentElement.parentElement.id.split("-")[1];
+        button.addEventListener('click', function(){
+          atc(productid)
+        });
+      });
     }
     if(!seen){
       axios.post('http://localhost/ecommerce-project/ecommerce-server/get_products.php')
@@ -67,7 +96,29 @@ function mainpage(){
       });
     }
   }
-  loadmore.addEventListener('click', getproducts)
+  loadmore.addEventListener('click', getproducts)  
   getproducts();
+
+  function favwish(productid, op){
+    if(!checksignin()) return;
+    let user = localStorage.getItem('userid');
+    let favbody = new FormData();
+    favbody.set('user', user);
+    favbody.set('product', productid);
+    favbody.set('op', op);
+    axios.post('http://localhost/ecommerce-project/ecommerce-server/fav_wish_products.php', favbody)
+  }
+
+  function atc(productid){
+    if(!checksignin()) return;
+    let user = localStorage.getItem('userid');
+    let atcbody = new FormData();
+    atcbody.set('user', user);
+    atcbody.set('product', productid);
+    axios.post('http://localhost/ecommerce-project/ecommerce-server/add_to_cart.php', atcbody)
+  }
+}
+
+function login(){
 
 }

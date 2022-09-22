@@ -31,8 +31,8 @@ else{
 }
 
 //Get Email and Product
-if(isset($_POST['email']) && isset($_POST['product'])){
-    $email = $_POST['email'];
+if(isset($_POST['user']) && isset($_POST['product'])){
+    $userid = $_POST['user'];
     $product = $_POST['product'];
 }
 else{
@@ -43,23 +43,17 @@ else{
     exit();
 }
 
-//Getting user ID
-$getuser = $mysqli->prepare("SELECT id FROM users WHERE email=?");
-$getuser->bind_param('s', $email);
-$getuser->execute();
-$userid = $getuser->get_result()->fetch_assoc()['id'];
-
 //Validating product ID
 $getproduct = $mysqli->prepare("SELECT id FROM products WHERE id=?");
 $getproduct->bind_param('s', $product);
 $getproduct->execute();
 $productid = $getproduct->get_result()->fetch_assoc()['id'];
 
-//Checking if user and product exists
-if(!$userid || !$productid){
+//Checking if product exists
+if(!$productid){
     $response = [
         "success" => false,
-        "message" => "user or product not found"
+        "message" => "product not found"
     ];
     echo json_encode($response);
     exit();
