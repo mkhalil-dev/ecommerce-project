@@ -27,25 +27,33 @@ function showDivs(n) {
 
 mainpage()
 function mainpage(){
-
   let seen;
+  let count = 0;
+  const loadmore = document.getElementById("loadmore");
   const getproducts = () => {
     const productsbox = document.getElementById("products-box");
     let productsbody = new FormData();
     productsbody.set('seen', seen);
+    let newdata = (response) => {
+      const data = response.data;
+      count += data.length;
+      for (item of data){
+        if(!seen){
+          seen = item.id;
+        }
+        else{
+          seen += ", "+item.id;
+        }
+        productsbox.insertAdjacentHTML('beforeend', '<div class="product"><a href=""><img src="data:image/png;base64,'+item.image+'"></a><div class="product-actions flex-display"><button class="header-btn white-btn add-to-favorites white-btn-wider" ><i class="fa fa-heart"></i></button><button class="header-btn white-btn add-to-wishlist white-btn-wider" ><i class="fa fa-plus-square" aria-hidden="true"></i></button><button class="header-btn white-btn add-to-wishlist white-btn-wider" ><i class="fa fa-cart-plus" aria-hidden="true"></i>Add to cart</button></div><h4>'+item.name+'</h4><h5>'+item.price+'$</h5></div>')
+      }
+      if(count >= data[0].product_count){
+        loadmore.remove();
+      }
+    }
     if(!seen){
       axios.post('http://localhost/ecommerce-project/ecommerce-server/get_products.php')
       .then((response) => {
-        const data = response.data;
-        for (item of data){
-          if(!seen){
-            seen = item.id;
-          }
-          else{
-            seen += ", "+item.id;
-          }
-          productsbox.insertAdjacentHTML('beforeend', '<div class="product"><a href=""><img src="./assets/product-ex.jfif"></a><div class="product-actions flex-display"><button class="header-btn white-btn add-to-favorites white-btn-wider" ><i class="fa fa-heart"></i></button><button class="header-btn white-btn add-to-wishlist white-btn-wider" ><i class="fa fa-plus-square" aria-hidden="true"></i></button><button class="header-btn white-btn add-to-wishlist white-btn-wider" ><i class="fa fa-cart-plus" aria-hidden="true"></i>Add to cart</button></div><h4>'+item.name+'</h4><h5>'+item.price+'$</h5></div>')
-        }
+        newdata(response)
       }, (error) => {
         console.log(error);
       });
@@ -53,14 +61,13 @@ function mainpage(){
     else{
       axios.post('http://localhost/ecommerce-project/ecommerce-server/get_products.php', productsbody)
       .then((response) => {
-        const data = response.data;
-        for (item of data){
-            seen += ", "+item.id;
-        }
+        newdata(response)
       }, (error) => {
         console.log(error);
       });
     }
   }
+  loadmore.addEventListener('click', getproducts)
   getproducts();
+
 }
