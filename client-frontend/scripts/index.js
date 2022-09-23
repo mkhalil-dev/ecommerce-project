@@ -1,10 +1,18 @@
 let pPath = window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1);
-console.log(pPath)
 if(pPath == "index.html"){
   mainpage()
 }
 else if(pPath == "signin.html"){
   login()
+}
+else if(pPath == "signup.html"){
+  signup()
+}
+else if(pPath == "resetreq.html"){
+  resetreq()
+}
+else if(pPath == "resetpass.html"){
+  resetpass()
 }
 
 function checksignin(){
@@ -124,6 +132,130 @@ function mainpage(){
 }
 
 function login(){
+  document.getElementById("signin").addEventListener('click', function (){
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    let loginbody = new FormData();
+    let textbox = document.getElementById("resp");
+    if(!email && !password){
+      textbox.innerText = "Email and password cannot be empty"
+      return;
+    }
+    else if(!email){
+      textbox.innerText = "Email cannot be empty"
+      return;
+    }
+    else if(!password){
+      textbox.innerText = "Password cannot be empty"
+      return;
+    }
+    loginbody.set('email', email);
+    loginbody.set('password', password);
+    axios.post('http://localhost/ecommerce-project/ecommerce-server/signin.php', loginbody)
+    .then((response) => {
+      if(response.data.success){
+        textbox.innerText = "Logged In!"
+        this.removeEventListener('click', arguments.callee);
+        localStorage.setItem('userid', response.data.userid)
+        setTimeout(()=>{
+          window.location.href = "./index.html";
+        },500)
+      }
+      else{
+        textbox.innerText = "User and password combination are incorrect"
+        return;
+      }
+    })
+  })
+}
 
+function signup(){
+  document.getElementById("signup").addEventListener('click', function (){
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    let fname = document.getElementById("fname").value;
+    let lname = document.getElementById("lname").value;
+    let cpassword = document.getElementById("confirm-password").value;
+    let signupbody = new FormData();
+    let textbox = document.getElementById("resp");
+    if(!email && !password){
+      textbox.innerText = "Email and password cannot be empty"
+      return;
+    }
+    else if(!email){
+      textbox.innerText = "Email cannot be empty"
+      return;
+    }
+    else if(!password){
+      textbox.innerText = "Password cannot be empty"
+      return;
+    }
+    else if(!cpassword){
+      textbox.innerText = "Please confirm your password"
+      return;
+    }
+    else if(!fname){
+      textbox.innerText = "Your first name is missing"
+      return;
+    }
+    else if(!lname){
+      textbox.innerText = "Your last name is missing"
+      return;
+    }
+    else if(password != cpassword){
+      textbox.innerText = "Your passwords do not match"
+      return;
+    }
+    signupbody.set('email', email);
+    signupbody.set('password', password);
+    signupbody.set('fname', fname);
+    signupbody.set('lname', lname);
+    axios.post('http://localhost/ecommerce-project/ecommerce-server/signup.php', signupbody)
+    .then((response) => {
+      if(response.data.success){
+        textbox.innerText = "Signed up!"
+        this.removeEventListener('click', arguments.callee);
+        localStorage.setItem('userid', response.data.userid)
+        setTimeout(()=>{
+          window.location.href = "./index.html";
+        },500)
+      }
+      else{
+        if(response.data.message == "email already exists"){
+          textbox.innerText = "Email already exists!"
+          return;
+        }
+      }
+    })
+  })
+}
 
+function resetreq(){
+  document.getElementById("submit").addEventListener('click', function (){
+    axios.post('http://localhost/ecommerce-project/ecommerce-server/reset_request.php', signupbody)
+    .then((response) => {
+      if(response.data.success){
+        textbox.innerText = "Signed up!"
+        this.removeEventListener('click', arguments.callee);
+        localStorage.setItem('userid', response.data.userid)
+        setTimeout(()=>{
+          window.location.href = "./index.html";
+        },500)
+      }
+    })
+  })
+}
+
+function resetpass(){
+  let token = window.location.search.substring(1);
+  document.getElementById("submit").addEventListener('click', function (){
+    let password = document.getElementById("password").value;
+    let resetpassbody = new FormData();
+    resetpassbody.set('password', password)
+    resetpassbody.set('token', token)
+    axios.post('http://localhost/ecommerce-project/ecommerce-server/reset_password.php?', resetpassbody)
+    .then((response) => {
+        console.log(response)
+    })
+  })
 }

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>SE e-commerce</title>
     <link rel="icon" href="./assets/logo.png.crdownload"type="image/icon type">
     <link rel="stylesheet" href="styles/styles.css">
@@ -14,6 +15,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- <script>
+        if(localStorage.getItem('userid')){
+            window.location.href = "./index.html";
+        }
+    </script> -->
     <!--Start header section-->
     <section class="only-nav-header">
         <div class="pre-hero-elements flex-display-column">
@@ -33,7 +39,7 @@
                         </div>
                     </div> 
                     <div class="nav-anchor"><a href="#home">Contact us</a></div>
-                    <div class="nav-anchor"><a href="#home"><button class="header-btn wider-btn only-nav-header-btn">Sign in</button></a></div>
+                    <div class="nav-anchor"><a href="./signin.html"><button class="header-btn wider-btn only-nav-header-btn">Sign in</button></a></div>
                 </div>
             </div>
         </div>
@@ -46,34 +52,33 @@
     <section class="form-container flex-display-column">
         <h1>Sign Up</h1>
         <div class="form-borders">
-            <form id="sign-in-form">
-                <div class=" form-part form-part-editted flex-display">
-                    <div class=" flex-display-column">
-                        <label for="fname">First name:</label>
-                        <input type="text" name="fname" id="fname" placeholder="first name">
-                    </div>
-                    <div class="flex-display-column">
-                        <label for="lname">Last name:</label>
-                        <input type="text" name="lname" id="lname" placeholder="last name">
-                    </div>
+            <div id="resp" style="text-align: center;"></div>
+            <div class=" form-part form-part-editted flex-display">
+                <div class=" flex-display-column">
+                    <label for="fname">First name</label>
+                    <input type="text" name="fname" id="fname" placeholder="First name">
                 </div>
-                <div class="form-part flex-display-column">
-                    <label for="email-address">Your E-mail Address</label>
-                    <input type="text" name="email-address" id="email" placeholder="Your E-mail">
+                <div class="flex-display-column">
+                    <label for="lname">Last name</label>
+                    <input type="text" name="lname" id="lname" placeholder="Last name">
                 </div>
-                <div class="form-part flex-display-column">
-                    <label for="password">Your Password</label>
-                    <input type="text" name="password" id="password" placeholder="Your Password">
-                    <p class="password-instruction">Password must be 8-30 characters</p>
-                </div>
-                <div class="form-part flex-display-column">
-                    <label for="confirm-password">Confirm password</label>
-                    <input type="text" name="confirm-password" id="confirm-password" placeholder="repeat password">
-                </div>
-                <div class="form-part flex-display-column">
-                    <button class="header-btn wider-btn wider-btn-plus  "><a href="index.html">REGISTER NOW</a></button>
-                </div>
-            </form>
+            </div>
+            <div class="form-part flex-display-column">
+                <label for="email-address">Email adress</label>
+                <input type="text" name="email-address" id="email" placeholder="Your E-mail">
+            </div>
+            <div class="form-part flex-display-column">
+                <label for="password">Your Password</label>
+                <input type="password" name="password" id="password" placeholder="Your Password">
+                <p class="password-instruction">Password must be 8-30 characters</p>
+            </div>
+            <div class="form-part flex-display-column">
+                <label for="confirm-password">Confirm password</label>
+                <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm your password">
+            </div>
+            <div class="form-part flex-display-column">
+                <button id="signup" class="header-btn wider-btn wider-btn-plus">REGISTER NOW</button>
+            </div>
         </div>
     </section>
     <!--End sign in form section-->
@@ -97,6 +102,6 @@
     </section>
     <!--End footer section-->
 
-    <script src=""></script>
+    <script src="scripts/index.js"></script>
 </body>
 </html>
