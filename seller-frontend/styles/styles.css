@@ -172,4 +172,11 @@
     flex-direction: column;
   }
 
+  .container .content .content-2 .new-products .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: auto 1rem;
+  }
+  
   
