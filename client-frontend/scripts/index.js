@@ -232,15 +232,17 @@ function signup(){
 
 function resetreq(){
   document.getElementById("submit").addEventListener('click', function (){
-    axios.post('http://localhost/ecommerce-project/ecommerce-server/reset_request.php', signupbody)
+    let email = document.getElementById("email").value;
+    let textbox = document.getElementById("req");
+    let resetpassbody = new FormData();
+    resetpassbody.set('email', email)
+    axios.post('https://ecommerce-team4.000webhostapp.com/ecommerce-project/ecommerce-server/reset_request.php', resetpassbody)
     .then((response) => {
+      console.log(response)
       if(response.data.success){
         textbox.innerText = "Signed up!"
         this.removeEventListener('click', arguments.callee);
         localStorage.setItem('userid', response.data.userid)
-        setTimeout(()=>{
-          window.location.href = "./index.html";
-        },500)
       }
     })
   })
@@ -253,7 +255,7 @@ function resetpass(){
     let resetpassbody = new FormData();
     resetpassbody.set('password', password)
     resetpassbody.set('token', token)
-    axios.post('http://localhost/ecommerce-project/ecommerce-server/reset_password.php?', resetpassbody)
+    axios.post('https://ecommerce-team4.000webhostapp.com/ecommerce-project/ecommerce-server/reset_password.php?', resetpassbody)
     .then((response) => {
         console.log(response)
     })
