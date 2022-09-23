@@ -23,6 +23,7 @@ if(!$userid){
     $response = [];
     $response["success"] = false;
     $response["message"] = "Invalid Token";
+    $response["token"] = $token;
     echo json_encode($response);
     exit();
 }

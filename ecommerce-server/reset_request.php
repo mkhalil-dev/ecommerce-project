@@ -38,13 +38,20 @@ function guidv4($data = null) {
 
 $resettoken = guidv4();
 
-$query = $mysqli->prepare("UPDATE `users` SET `reset_token`=? WHERE id = ?");
+$query = $mysqli->prepare("UPDATE users SET reset_token=? WHERE users.id = ?");
 $query->bind_param('ss', $resettoken, $userid);
 $query->execute();
-ini_set('display_errors', 1);
 
-$msg = "./".$resettoken;
+$msg = "https://ecommerce-team4.000webhostapp.com/resetpass.html?".$resettoken;
 
-mail("ecommerceteam4@gmail.com", "Reset your Password", $msg);
+mail("alexandrekemera@gmail.com", "Reset your Password", $msg);
+
+$response = [];
+$response["success"] = true;
+$response["user"] = $userid;
+$response["token"] = $resettoken;
+echo json_encode($response);
+exit();
+
 
 ?>
