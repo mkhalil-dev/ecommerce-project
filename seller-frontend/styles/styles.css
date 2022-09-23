@@ -18,3 +18,10 @@
     flex-direction: column;
   }
   
+  .side-menu .brand-name {
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
