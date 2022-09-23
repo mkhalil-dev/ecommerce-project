@@ -112,3 +112,9 @@ navBtn.addEventListener("click", () => {
     nav.style.display = "block";
   }
 })
+const mainContainer = document.getElementById("main-container")
+mainContainer.addEventListener("click", () => {
+  if (nav.style.display === "block") {
+    nav.style.display = "none";
+  }
+})
