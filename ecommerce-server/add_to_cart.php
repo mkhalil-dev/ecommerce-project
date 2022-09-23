@@ -1,5 +1,6 @@
 <?php
 include('connection.php');
+ini_set('display_errors', 1);
 
 //Get Email and Product
 if(isset($_POST['id']) && isset($_POST['product'])){
@@ -55,15 +56,16 @@ if(isset($result['amount'])){
     $query->execute();
     $response = [
         "success" => true,
-        "message" => "item addeded to cart"
+        "message" => "item added to cart"
     ];
     echo json_encode($response);
 }
 else{
-    $query = $mysqli->prepare("INSERT INTO `add_to_cart`(`users_id`, `products_id`, `amount`) VALUES (?, ?, ?);");
     if(!isset($_POST['amount'])){
-        $query->bind_param("ssi", $userid, $productid, 1);
+        $query = $mysqli->prepare("INSERT INTO `add_to_cart`(`users_id`, `products_id`) VALUES (?, ?);");
+        $query->bind_param("ss", $userid, $productid);
     }else{
+        $query = $mysqli->prepare("INSERT INTO `add_to_cart`(`users_id`, `products_id`, `amount`) VALUES (?, ?, ?);");
         $query->bind_param("ssi", $userid, $productid, $_POST['amount']);
     }
     $query->execute();

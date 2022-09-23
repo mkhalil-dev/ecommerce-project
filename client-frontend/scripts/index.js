@@ -129,7 +129,7 @@ function mainpage(){
     if(!checksignin()) return;
     let user = localStorage.getItem('userid');
     let atcbody = new FormData();
-    atcbody.set('user', user);
+    atcbody.set('id', user);
     atcbody.set('product', productid);
     axios.post('http://localhost/ecommerce-project/ecommerce-server/add_to_cart.php', atcbody)
   }
@@ -305,6 +305,15 @@ function productpage(){
     }else{
       document.getElementById('productdiv').innerHTML = "PRODUCT NOT FOUND";
     }
+  })
+  document.getElementById("atc").addEventListener('click', function(){
+    let atc = new FormData();
+    atc.set('id', localStorage.getItem('userid'))
+    atc.set('product', id)
+    atc.set('amount', qty)
+    axios.post('http://localhost/ecommerce-project/ecommerce-server/add_to_cart.php', atc).then((response) => {
+      console.log(response)
+    })
   })
 }
 
