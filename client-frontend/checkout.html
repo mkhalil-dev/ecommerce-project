@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +16,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!--Start header-->
     <!--Start pre-hero section-->
     <section class="main-pre-hero flex-display-column">
         <div class="thick-green-div"></div>
@@ -52,35 +52,27 @@
         </div>
     </section>
     <!--End pre-hero section-->
-    <!--Start hero section-->
-    <div class="hero-content hero-display-container">
-        <img class="mySlides" src="./assets/ads-1.jpg" >
-        <img class="mySlides" src="./assets/ads-2.jpg" >
-        <img class="mySlides" src="./assets/ads-3.jpg" >
-        <div class="hero-center hero-container hero-section hero-large hero-text-white hero-display-bottommiddle" style="width:100%">
-          <div class="hero-left hero-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
-          <div class="hero-right hero-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
-          <span class="hero-badge demo hero-border hero-transparent hero-hover-white" onclick="currentDiv(1)"></span>
-          <span class="hero-badge demo hero-border hero-transparent hero-hover-white" onclick="currentDiv(2)"></span>
-          <span class="hero-badge demo hero-border hero-transparent hero-hover-white" onclick="currentDiv(3)"></span>
-        </div>
-    </div>
-    <!--End hero section-->
-    <!--End header-->
 
     <div class="black-line-div"></div>
 
-    <!--Start products section-->
-    <section class="products flex-display-column">
-        <div class="products-section-desc">
-            <h1>Our Products</h1>
-            <p>To get more info about each item, just click on the attached picture.</p>
-        </div>
-        <div id="products-box" class="products-grid">
-        </div>
-        <button id="loadmore" class="header-btn wider-btn">Load more</button>
+    <!--Start checkout section-->
+    <section class="checkout flex-display-column">
+        <h2>Checking Out</h2>
+        <div class="checkout-content flex-display-column">
+            <div class="promotion flex-display-column">
+                <h4>Enter promotion code</h4>
+                <input type="text" name="code" id="code" placeholder="place code here">
+                <button class="header-btn wider-btn">Apply</button>
+            </div>
+            <div class="reciept-info flex-display-column">
+                <p>Total price: <span>$price</span></p>
+                <p>Discount: <span class="discount">-$0</span></p>
+                <p>Total: <span>$t</span></p>
+            </div>
+        </div>            
+        <button class="header-btn white-btn wider-btn">Buy Now</button>
     </section>
-    <!--End products section-->
+    <!--End checkout section-->
 
     <div class="black-line-div"></div>
 

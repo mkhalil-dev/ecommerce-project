@@ -15,7 +15,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!--Start header-->
     <!--Start pre-hero section-->
     <section class="main-pre-hero flex-display-column">
         <div class="thick-green-div"></div>
@@ -52,35 +51,50 @@
         </div>
     </section>
     <!--End pre-hero section-->
-    <!--Start hero section-->
-    <div class="hero-content hero-display-container">
-        <img class="mySlides" src="./assets/ads-1.jpg" >
-        <img class="mySlides" src="./assets/ads-2.jpg" >
-        <img class="mySlides" src="./assets/ads-3.jpg" >
-        <div class="hero-center hero-container hero-section hero-large hero-text-white hero-display-bottommiddle" style="width:100%">
-          <div class="hero-left hero-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
-          <div class="hero-right hero-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
-          <span class="hero-badge demo hero-border hero-transparent hero-hover-white" onclick="currentDiv(1)"></span>
-          <span class="hero-badge demo hero-border hero-transparent hero-hover-white" onclick="currentDiv(2)"></span>
-          <span class="hero-badge demo hero-border hero-transparent hero-hover-white" onclick="currentDiv(3)"></span>
-        </div>
-    </div>
-    <!--End hero section-->
-    <!--End header-->
 
     <div class="black-line-div"></div>
 
-    <!--Start products section-->
-    <section class="products flex-display-column">
-        <div class="products-section-desc">
-            <h1>Our Products</h1>
-            <p>To get more info about each item, just click on the attached picture.</p>
+    <!--Start shopping cart details section-->
+    <section class="cart-details flex-display-column">
+        <h2>Shopping Cart</h2>
+        <div class="items flex-display-column">
+            <div class="item flex-display">
+                <div class="item-img-name flex-display">
+                    <img src="./assets/product-ex.jfif" alt="">
+                    <h3>Product name</h3>
+                </div>
+                <div class="item-qty-price flex-display">
+                    <h3>qty</h3>
+                    <h3>$price</h3>
+                    <button><i class="fa fa-trash" aria-hidden="true"></i></button>
+                </div>
+            </div>
+            <div class="item flex-display">
+                <div class="item-img-name flex-display">
+                    <img src="./assets/product-ex2.jfif" alt="">
+                    <h3>Product name</h3>
+                </div>
+                <div class="item-qty-price flex-display">
+                    <h3>qty</h3>
+                    <h3>$price</h3>
+                    <button><i class="fa fa-trash" aria-hidden="true"></i></button>
+                </div>
+            </div>
+            <div class="item flex-display">
+                <div class="item-img-name flex-display">
+                    <img src="./assets/product-ex3.jfif" alt="">
+                    <h3>Product name</h3>
+                </div>
+                <div class="item-qty-price flex-display">
+                    <h3>qty</h3>
+                    <h3>$price</h3>
+                    <button><i class="fa fa-trash" aria-hidden="true"></i></button>
+                </div>
+            </div>
         </div>
-        <div id="products-box" class="products-grid">
-        </div>
-        <button id="loadmore" class="header-btn wider-btn">Load more</button>
+        <button class="header-btn wider-btn">proceed to checkout</button>
     </section>
-    <!--End products section-->
+    <!--End shopping cart details section-->
 
     <div class="black-line-div"></div>
 

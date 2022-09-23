@@ -21,6 +21,7 @@ ul{
     text-decoration: none;
     list-style: none;
 }
+
 form{
     display: flex;
     flex-direction: column;
@@ -87,7 +88,6 @@ form{
 /* nav bar */
 .navbar {
     overflow: hidden;
-    padding: 10px;
   }
 .navbar a {
     float: left;
@@ -228,7 +228,10 @@ form{
     color:#000!important;
     background-color:#fff!important;
 }
-
+/* footer */
+.footer-ul-socialmedia > ul >li{
+    display: inline;
+}
 /* products section */
 .products{
     align-items: center;
@@ -324,9 +327,12 @@ form{
 .product-details{
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 8%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    padding: 5%;
     height: auto;
     width: 80%;
+    border: 1px solid gray;
 }
 .product-details > div{
     width: 26%;
@@ -340,6 +346,104 @@ form{
     width: 100%;
 }
 
+/* shopping cart page */
+.cart-details{
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 10px;
+}
+.cart-details h2{
+    font-size: 28px;
+    margin: 30px;
+    text-shadow: 2px 2px 10px #67ACB4;
+}
+.items{
+    padding: 2%;
+    border: 1px solid rgb(188, 188, 188);
+}
+.item{
+    margin-bottom: 2%;
+    justify-content: space-between;
+    height: 150px;
+    border: 1px solid rgb(188, 188, 188);
+}
+.item > div {
+    width: 40%;
+    height: 100%;
+}
+.item-img-name h3{
+    text-align: center;
+    width: 50%;
+}
+.item-img-name img{
+    width: 50%;
+    height: 100%;
+    border: 1px solid rgb(188, 188, 188);
+}
+.item-qty-price h3{
+    margin: 0;
+    margin-right: 10%;
+}
+.item-qty-price button{
+    width: auto;
+}
+.cart-details > button{
+    margin-left: 40%;
+    margin-top: 20px;
+    height: 50px;
+}
+/* checkout page */
+.checkout{
+    align-items: center;
+    justify-content: center;
+}
+.checkout h2{
+    font-size: 28px;
+    margin: 30px;
+    text-shadow: 2px 2px 10px #67ACB4;
+}
+.checkout-content{
+    border: 1px solid rgb(188, 188, 188);
+    padding: 2%;
+}
+.reciept-info p{
+    margin: 0;
+    color: rgb(130, 130, 130);
+    font-weight: 900;
+}
+.discount{
+    color: red;
+}
+.promotion{
+    align-items: center;
+    justify-content: center;
+}
+.promotion input{
+    width: 100%;
+    background-color: rgb(248, 243, 243);
+    border: 1px solid grey;
+    height: 30px;
+    margin-bottom:5px;
+}
+.promotion button{
+    width: max-content;
+}
+.promotion h4{
+    font-size: 16px;
+    margin: 0;
+    margin-bottom: 5px;
+}
+/* thankyou */
+.thankyou{
+    margin: 9%;
+}
+.thankyou h1{
+    color: #224f55;
+    font-weight: 900;
+    font-size: 40px;
+    text-transform: capitalize;
+    text-shadow: 2px 2px 8px rgb(57, 57, 57);
+}
 
 /* utilities */
 button{
@@ -379,7 +483,7 @@ button{
 .black-line-div{
     height: 2px;
     width: 100%;
-    margin-top: 40px;
+    margin-top: 35px;
     background-color: gray;
 }
 .black-line-div-editted{
@@ -411,12 +515,16 @@ button{
     .form-borders{
         width: 60%;
     } 
+    .form-part > div{
+        width: 48%;
+    }
+
 }
 
 @media screen and (max-width: 800px) {
     .product-details{
         flex-direction: column;
-        margin: 10px;
+
     }
     .product-details > div{
         width: 100%;
@@ -429,9 +537,21 @@ button{
         align-items: center;
     }
     .qty-btns{
-        width: 50%;
+        width: 60%;
         margin-left: 10px;
     }
+    .form-part > div{
+        width: 95%;
+    }
+    .form-part-editted{
+        margin: 15px;
+    }
+    .black-line-div{
+        margin-top: auto;
+    }
+  
+
+    
 }
 @media screen and (max-width: 700px) {
     .products-grid{
@@ -446,5 +566,41 @@ button{
     .form-borders{
         width: 90%;
     }
-    
+    .footer{
+        flex-direction: column;
+    }
+    .logo{
+        margin: auto;
+    }
+    .footer-ul-socialmedia{
+        flex-wrap: nowrap;
+        width: 100%;
+    }
+    .item{
+        flex-direction: column;
+        flex-wrap: nowrap;
+        padding: 0;
+        height: auto;
+    }
+    .item > div {
+        width: 100%;
+        margin-bottom: 1%;
+    }
+    .item-img-name img{
+        border: none;
+    }
+    .item-img-name h3{
+        font-size: smaller;
+    }
+    .item-qty-price h3{
+        font-size: smaller;
+        margin-bottom: 10px;
+    }
+    .cart-details > button{
+        margin-left: 22%;
+        height: 40px;
+    }
+    .thankyou h1{
+        font-size: 28px;
+    }
 }

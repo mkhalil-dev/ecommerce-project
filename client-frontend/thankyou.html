@@ -15,51 +15,52 @@
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!--Start header section-->
-    <section class="only-nav-header">
+    <!--Start pre-hero section-->
+    <section class="main-pre-hero flex-display-column">
+        <div class="thick-green-div"></div>
+        <div class="thick-grey-div"></div>
         <div class="pre-hero-elements flex-display-column">
             <div class="header-content flex-display">
                 <div class="logo flex-display">
                     <img src="./assets/logo.png.crdownload">
                     <h3>SE e-commerce</h3>
                 </div>
-                <div class="navbar flex-display">
-                    <div class="nav-anchor"><a href="#home">Home</a></div>
-                    <div class="dropdown">
-                        <button class="dropbtn">Categories<i class="fa fa-caret-down"></i></button>
-                        <div class="dropdown-content">
-                            <a href="#">Link 1</a>
-                            <a href="#">Link 2</a>
-                            <a href="#">Link 3</a>
-                        </div>
-                    </div> 
-                    <div class="nav-anchor"><a href="#home">Contact us</a></div>
-                    <div class="nav-anchor"><a href="#home"><button class="header-btn wider-btn only-nav-header-btn">Sign up</button></a></div>
+                <div class="mid-elements flex-display">
+                    <input type="text" name="header-search" id="header-search" placeholder="search">
+                    <a href=""><button class="header-btn" id="search-btn"><i class="fa fa-search"></i></button></a>
+                </div>
+                <div class="action-icon-btns flex-display">
+                   <a href=""><button class="header-btn white-btn "><i class="fa fa-heart"></i></button></a>
+                   <a href=""><button class="header-btn white-btn "><i class="fa fa-plus-square "></i></button></a>
+                   <a href=""><button class="header-btn white-btn "><i class="fa fa-cart-plus"></i></button></a>
+                   <a href=""><button class="header-btn white-btn "><i class="fa  fa-user"></i></button></a>
                 </div>
             </div>
-        </div>
-    </section>
-    <!--End header section-->
-
-    <div class="black-line-div  black-line-div-editted"></div>
-
-    <!--Start reset form section -->
-    <section class="form-container flex-display-column">
-        <h1>password reset</h1>
-        <div class="form-borders">
-            <div class="form-part flex-display-column">
-                <label for="password">New password</label>
-                <input type="password" name="password" id="password" placeholder="Enter a new password">
-                <p class="password-instruction">Password must be 8-30 characters</p>
-            </div>
-            <div class="form-part flex-display-column">
-                <button id="submit" class="header-btn wider-btn wider-btn-plus">Submit</button>
+            <div class="navbar flex-display">
+                <div class="nav-anchor"><a href="#home">Home</a></div>
+                <div class="dropdown">
+                    <button class="dropbtn">Categories<i class="fa fa-caret-down"></i></button>
+                    <div class="dropdown-content">
+                        <a href="#">Link 1</a>
+                        <a href="#">Link 2</a>
+                        <a href="#">Link 3</a>
+                    </div>
+                </div> 
+                <div class="nav-anchor"><a href="#home">Contact us</a></div>
             </div>
         </div>
     </section>
-    <!--End reset form section-->
+    <!--End pre-hero section-->
 
-    <div class="black-line-div  black-line-div-editted"></div>
+    <div class="black-line-div"></div>
+
+    <!--Start Thank you section-->
+    <section class="thankyou flex-display">
+        <h1>Congratulations, payment succeeded!</h1>
+    </section>
+    <!--End Thank you section-->
+
+    <div class="black-line-div"></div>
 
     <!--Start footer section-->
     <section class="footer flex-display">
