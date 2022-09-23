@@ -223,8 +223,10 @@
   }
   
   .container .content .content-2 .recent-payments {
-    min-height: 50vh;
+    min-height: 30vh;
     background: white;
+    min-width:fit-content;
+
     margin: 0 25px 25px 25px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     display: flex;
@@ -242,8 +244,9 @@
   
   .container .content .content-2 .new-products {
     background: white;
-    min-height: 50vh;
-    margin: 0 25px;
+    min-height: 30vh;
+    min-width: 60%;
+    margin: 0 25px 25px 25px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     display: flex;
     flex-direction: column;
@@ -288,6 +291,17 @@
   }
   
   @media screen and (max-width: 536px) {
+
+    .btn {
+        color: #67acb4;
+        border: 2px solid #67acb4;
+        background: #67acb4;
+        color: white;
+        padding: 5px 5px;
+        margin-bottom: 15px;
+        text-align: center;
+        font-size: 25px;
+    }
     .brand-name h1 {
       font-size: 16px;
       justify-content: center;
@@ -305,10 +319,6 @@
     }
   }
   
-
-
-
-
   .container .content .cards-ch {
     padding: 10px 10px;
     margin: 45px;
