@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SE e-commerce</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="icon" href="./assets/logo.png.crdownload"type="image/icon type">
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!--Start pre-hero section-->
+    <section class="main-pre-hero flex-display-column">
+        <div class="thick-green-div"></div>
+        <div class="thick-grey-div"></div>
+        <div class="pre-hero-elements flex-display-column">
+            <div class="header-content flex-display">
+                <div class="logo flex-display">
+                    <img src="./assets/logo.png.crdownload">
+                    <h3>SE e-commerce</h3>
+                </div>
+                <div class="mid-elements flex-display">
+                    <input type="text" name="header-search" id="header-search" placeholder="search">
+                    <a href=""><button class="header-btn" id="search-btn"><i class="fa fa-search"></i></button></a>
+                </div>
+                <div class="action-icon-btns flex-display">
+                   <a href=""><button class="header-btn white-btn "><i class="fa fa-heart"></i></button></a>
+                   <a href=""><button class="header-btn white-btn "><i class="fa fa-plus-square "></i></button></a>
+                   <a href=""><button class="header-btn white-btn "><i class="fa fa-cart-plus"></i></button></a>
+                   <a href=""><button class="header-btn white-btn "><i class="fa  fa-user"></i></button></a>
+                </div>
+            </div>
+            <div class="navbar flex-display">
+                <div class="nav-anchor"><a href="#home">Home</a></div>
+                <div class="dropdown">
+                    <button class="dropbtn">Categories<i class="fa fa-caret-down"></i></button>
+                    <div class="dropdown-content">
+                        <a href="#">Link 1</a>
+                        <a href="#">Link 2</a>
+                        <a href="#">Link 3</a>
+                    </div>
+                </div> 
+                <div class="nav-anchor"><a href="#home">Contact us</a></div>
+            </div>
+        </div>
+    </section>
+    <!--End pre-hero section-->
+
+    <div class="black-line-div  black-line-div-editted"></div>
+
+    <!--Start edit profile form section -->
+    <section class="form-container flex-display-column">
+        <h1>Edit Profile</h1>
+        <div class="form-borders">
+            <div id="resp" style="text-align: center;"></div>
+            <div class="form-part flex-display-column">
+                <label for="email-address">Email adress</label>
+                <input type="text" name="email-address" id="email" placeholder="Your E-mail">
+            </div>
+            <div class="form-part flex-display-column">
+                <label for="password">Your Password</label>
+                <input type="password" name="password" id="password" placeholder="Your Password">
+                <p class="password-instruction">Password must be 8-30 characters</p>
+            </div>
+            <div class="form-part flex-display-column">
+                <label for="confirm-password">Confirm password</label>
+                <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm your password">
+            </div>
+            <div class="form-part flex-display-column">
+                <button id="signup" class="header-btn wider-btn wider-btn-plus">UPDATE</button>
+            </div>
+        </div>
+    </section>
+    <!--End edit profile form section-->
+
+    <div class="black-line-div  black-line-div-editted"></div>
+
+    <!--Start footer section-->
+    <section class="footer flex-display">
+        <div class="logo flex-display">
+            <img src="./assets/logo.png.crdownload">
+            <h3>SE e-commerce</h3>
+        </div>
+        <div class="footer-ul-socialmedia flex-display">
+            Social media:
+            <ul>
+                <li><a href=""><i class="fa fa-facebook-square" aria-hidden="true"></i></a></li>
+                <li><a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                <li><a href=""><i class="fa fa-twitter-square" aria-hidden="true"></i></a></li>
+            </ul>
+        </div>
+    </section>
+    <!--End footer section-->
+
+    <script src="scripts/index.js"></script>
+</body>
+</html>
