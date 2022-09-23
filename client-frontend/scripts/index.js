@@ -289,6 +289,7 @@ function productpage(){
       document.getElementById('name').innerText = data.name;
       document.getElementById('desc').innerText = data.desc;
       document.getElementById("price").innerText = data.price+"$";
+      axios.post('http://localhost/ecommerce-project/ecommerce-server/add_view.php', productid)
     }else{
       document.getElementById('productdiv').innerHTML = "PRODUCT NOT FOUND";
     }
