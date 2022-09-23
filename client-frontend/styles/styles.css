@@ -499,7 +499,9 @@ button{
     .form-borders{
         width: 60%;
     } 
-    
+    .form-part > div{
+        width: 48%;
+    }
 }
 
 @media screen and (max-width: 800px) {
@@ -520,6 +522,12 @@ button{
     .qty-btns{
         width: 60%;
         margin-left: 10px;
+    }
+    .form-part > div{
+        width: 95%;
+    }
+    .form-part-editted{
+        margin: 15px;
     }
     
 }
