@@ -93,3 +93,12 @@ adsBtn.addEventListener("click", () => {
     productsDiv.style.display = 'none'
     chatDiv.style.display = 'none'
 })
+chatBtn.addEventListener("click", () => {
+    chatDiv.style.display = 'block'
+
+    homeDiv.style.display = 'none'
+    couponsDiv.style.display = 'none'
+    adsDiv.style.display = 'none'
+    productsDiv.style.display = 'none'
+})
+
