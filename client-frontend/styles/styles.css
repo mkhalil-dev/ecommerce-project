@@ -84,6 +84,9 @@ form{
 .action-icon-btns > a{
     margin-left: 10px;
 }
+.action-icon-btns{
+    margin-right: 60px;
+}
 
 /* nav bar */
 .navbar {
@@ -467,6 +470,11 @@ button{
     font-weight: 700;
     margin-bottom: 20px;
 }
+.wider-btn-editted{
+    margin: 0;
+    margin-left: 10px;
+    width: auto;
+}
 .wider-btn-plus{
     width: 90%;
     height: 38px;
@@ -548,6 +556,12 @@ button{
     }
     .black-line-div{
         margin-top: auto;
+    }
+    .header-content{
+        flex-direction: column;
+    }
+    .header-content > div {
+        margin: 0;
     }
   
 
