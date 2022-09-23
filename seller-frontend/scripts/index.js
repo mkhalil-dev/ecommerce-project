@@ -48,4 +48,15 @@ new Chart("myChart", {
     }
 });
 
-/
+// show hide
+const homeBtn = document.getElementById("Home")
+const productsBtn = document.getElementById("Products")
+const couponsBtn = document.getElementById("Coupons")
+const adsBtn = document.getElementById("Ads")
+const chatBtn = document.getElementById("Chat")
+
+const homeDiv = document.getElementById("homeDiv")
+const productsDiv = document.getElementById("productsDiv")
+const couponsDiv = document.getElementById("couponsDiv")
+const adsDiv = document.getElementById("adsDiv")
+const chatDiv = document.getElementById("chatDiv")
