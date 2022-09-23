@@ -280,6 +280,18 @@ function productpage(){
   displaycatg()
   let id = window.location.search.substring(1).split("=")[1];
   let productid = new FormData();
+  let qty = document.getElementById('qty').innerText;
+  qty = parseInt(qty)
+  document.getElementById("minus").addEventListener('click', function(){
+    if(qty>1){
+      qty -= 1;
+      document.getElementById('qty').innerText = qty
+    }
+  })
+  document.getElementById("plus").addEventListener('click', function(){
+      qty += 1;
+      document.getElementById('qty').innerText = qty
+  })
   productid.set('id', id)
   axios.post('http://localhost/ecommerce-project/ecommerce-server/get_product.php', productid).then((response) => {
     if(response.data.success){
