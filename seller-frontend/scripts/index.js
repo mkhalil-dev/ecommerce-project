@@ -60,3 +60,20 @@ const productsDiv = document.getElementById("productsDiv")
 const couponsDiv = document.getElementById("couponsDiv")
 const adsDiv = document.getElementById("adsDiv")
 const chatDiv = document.getElementById("chatDiv")
+
+homeBtn.addEventListener("click", () => {
+    homeDiv.style.display = 'block'
+
+    productsDiv.style.display = 'none'
+    couponsDiv.style.display = 'none'
+    adsDiv.style.display = 'none'
+    chatDiv.style.display = 'none'
+})
+productsBtn.addEventListener("click", () => {
+    productsDiv.style.display = 'block'
+
+    homeDiv.style.display = 'none'
+    couponsDiv.style.display = 'none'
+    adsDiv.style.display = 'none'
+    chatDiv.style.display = 'none'
+})
