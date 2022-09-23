@@ -14,6 +14,9 @@ else if(pPath == "resetreq.html"){
 else if(pPath == "resetpass.html"){
   resetpass()
 }
+else if(pPath == "product.html"){
+  productpage()
+}
 
 function checksignin(){
   if(!localStorage.getItem('userid')){
@@ -24,6 +27,7 @@ function checksignin(){
 }
 
 function mainpage(){
+  displaycatg()
   let slideIndex = 1;
   showDivs(slideIndex);
 
@@ -262,7 +266,6 @@ function resetpass(){
   })
 }
 
-displaycatg()
 function displaycatg(){
   axios.post('http://localhost/ecommerce-project/ecommerce-server/get_categories.php')
   .then((response) => {
@@ -272,3 +275,14 @@ function displaycatg(){
     })
   })
 }
+
+function productpage(){
+  let id = window.location.search.substring(1).split("=")[1];
+  console.log(id)
+  let productid = new FormData();
+  productid.set('id', id)
+  axios.post('http://localhost/ecommerce-project/ecommerce-server/get_product.php', productid).then((response) => {
+    console.log(response)
+  })
+}
+
