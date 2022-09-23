@@ -1,4 +1,6 @@
 // Bar Chart
+
+
 var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
 var yValues = [55, 49, 44, 24, 15];
 var barColors = ["red", "green","blue","orange","brown"];
@@ -22,8 +24,8 @@ new Chart("myChart", {
 });
 
 
-
 // sidebar buttons show - hide
+
 var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
 var yValues = [35, 49, 44, 24, 15];
 var barColors = ["red", "green", "blue", "orange", "brown"];
@@ -45,8 +47,6 @@ new Chart("myChart", {
         }
     }
 });
-
-
 // show hide
 const homeBtn = document.getElementById("Home")
 const productsBtn = document.getElementById("Products")
