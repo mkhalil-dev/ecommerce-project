@@ -11,7 +11,7 @@ else{
 
 $seen = "(".$seen.")";
 
-$query = $mysqli->prepare("SELECT P.*,subquery.* FROM products P, (SELECT COUNT(C.id) as product_count FROM products C) AS subquery WHERE P.id NOT IN $seen LIMIT 1");
+$query = $mysqli->prepare("SELECT P.*,subquery.* FROM products P, (SELECT COUNT(C.id) as product_count FROM products C) AS subquery WHERE P.id NOT IN $seen LIMIT 8");
 $query->execute();
 $result = $query->get_result();
 

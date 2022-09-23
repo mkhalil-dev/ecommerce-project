@@ -67,7 +67,7 @@ function mainpage(){
         else{
           seen += ", "+item.id;
         }
-        productsbox.insertAdjacentHTML('beforeend', '<div id="p-'+ item.id +'" class="product"><a href=""><img src="data:image/png;base64,'+item.image+'"></a><div class="product-actions flex-display"><button class="header-btn white-btn add-to-favorites white-btn-wider" ><i class="fa fa-heart"></i></button><button class="header-btn white-btn add-to-wishlist white-btn-wider" ><i class="fa fa-plus-square" aria-hidden="true"></i></button><button class="header-btn white-btn add-to-cart white-btn-wider" ><i class="fa fa-cart-plus" aria-hidden="true"></i>Add to cart</button></div><h4>'+item.name+'</h4><h5>'+item.price+'$</h5></div>')
+        productsbox.insertAdjacentHTML('beforeend', '<div id="p-'+ item.id +'" class="product"><a href=./product.html?='+item.id+'><img src="data:image/png;base64,'+item.image+'"></a><div class="product-actions flex-display"><button class="header-btn white-btn add-to-favorites white-btn-wider" ><i class="fa fa-heart"></i></button><button class="header-btn white-btn add-to-wishlist white-btn-wider" ><i class="fa fa-plus-square" aria-hidden="true"></i></button><button class="header-btn white-btn add-to-cart white-btn-wider" ><i class="fa fa-cart-plus" aria-hidden="true"></i>Add to cart</button></div><h4>'+item.name+'</h4><h5>'+item.price+'$</h5></div>')
       }
       if(count >= data[0].product_count){
         loadmore.remove();
@@ -236,7 +236,7 @@ function resetreq(){
     let textbox = document.getElementById("req");
     let resetpassbody = new FormData();
     resetpassbody.set('email', email)
-    axios.post('https://ecommerce-team4.000webhostapp.com/ecommerce-project/ecommerce-server/reset_request.php', resetpassbody)
+    axios.post('http://localhost/ecommerce-project/ecommerce-server/reset_request.php', resetpassbody)
     .then((response) => {
       console.log(response)
       if(response.data.success){
@@ -255,9 +255,13 @@ function resetpass(){
     let resetpassbody = new FormData();
     resetpassbody.set('password', password)
     resetpassbody.set('token', token)
-    axios.post('https://ecommerce-team4.000webhostapp.com/ecommerce-project/ecommerce-server/reset_password.php?', resetpassbody)
+    axios.post('http://localhost/ecommerce-project/ecommerce-server/reset_password.php?', resetpassbody)
     .then((response) => {
         console.log(response)
     })
   })
+}
+
+function displaycatg(){
+  
 }
