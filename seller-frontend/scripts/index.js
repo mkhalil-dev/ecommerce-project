@@ -77,3 +77,19 @@ productsBtn.addEventListener("click", () => {
     adsDiv.style.display = 'none'
     chatDiv.style.display = 'none'
 })
+couponsBtn.addEventListener("click", () => {
+    couponsDiv.style.display = 'block'
+
+    homeDiv.style.display = 'none'
+    adsDiv.style.display = 'none'
+    productsDiv.style.display = 'none'
+    chatDiv.style.display = 'none'
+})
+adsBtn.addEventListener("click", () => {
+    adsDiv.style.display = 'block'
+
+    homeDiv.style.display = 'none'
+    couponsDiv.style.display = 'none'
+    productsDiv.style.display = 'none'
+    chatDiv.style.display = 'none'
+})
