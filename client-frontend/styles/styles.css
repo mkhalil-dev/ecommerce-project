@@ -427,7 +427,17 @@ form{
     margin: 0;
     margin-bottom: 5px;
 }
-
+/* thankyou */
+.thankyou{
+    margin: 9%;
+}
+.thankyou h1{
+    color: #224f55;
+    font-weight: 900;
+    font-size: 40px;
+    text-transform: capitalize;
+    text-shadow: 2px 2px 8px rgb(57, 57, 57);
+}
 
 /* utilities */
 button{
