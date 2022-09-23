@@ -21,8 +21,8 @@ $view = 0;
 $discounts_id = null;
 
 //Check Product Name
-$checkname = $mysqli->prepare("SELECT name FROM products WHERE name=?");
-$checkname->bind_param('s', $name);
+$checkname = $mysqli->prepare("SELECT name FROM products WHERE name=? and seller_id=?");
+$checkname->bind_param('si', $name, $seller_id);
 $checkname->execute();
 $result = $checkname->get_result()->fetch_assoc();
 
