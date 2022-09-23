@@ -14,14 +14,12 @@ else{
     exit();
 }
 
-$query = $mysqli->prepare("UPDATE `users` SET ban=true where `id`=?;");
-$query->bind_param("i", $id);
+$query = $mysqli->prepare("UPDATE products SET view=view+1 WHERE id=?");
+$query->bind_param('s', $id);
 $query->execute();
 
-$response = [];
-$response["success"] = true;
-$response["message"] = "client banned succesfully";
-
+$response = [
+    "success" => true,
+];
 echo json_encode($response);
 
-?>
