@@ -262,6 +262,13 @@ function resetpass(){
   })
 }
 
+displaycatg()
 function displaycatg(){
-  
+  axios.post('http://localhost/ecommerce-project/ecommerce-server/get_categories.php')
+  .then((response) => {
+    let data = response.data
+    data.forEach((element) => {
+      document.getElementById('catg').insertAdjacentHTML('beforeend', '<a href="#">'+element.name+'</a>')
+    })
+  })
 }
