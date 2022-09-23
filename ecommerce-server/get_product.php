@@ -25,6 +25,7 @@ while($product = $result->fetch_assoc()){
 }
 
 if($response){
+    $response["success"] = true;
     echo json_encode($response);
 }
 else{

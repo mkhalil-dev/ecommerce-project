@@ -277,16 +277,21 @@ function displaycatg(){
 }
 
 function productpage(){
+  displaycatg()
   let id = window.location.search.substring(1).split("=")[1];
   let productid = new FormData();
   productid.set('id', id)
   axios.post('http://localhost/ecommerce-project/ecommerce-server/get_product.php', productid).then((response) => {
-    const data = response.data[0];
-    image = "data:image/png;base64,"+data.image;
-    document.getElementById('productimg').src= image;
-    document.getElementById('name').innerText = data.name;
-    document.getElementById('desc').innerText = data.desc;
-    document.getElementById("price").innerText = data.price+"$";
+    if(response.data.success){
+      const data = response.data[0];
+      image = "data:image/png;base64,"+data.image;
+      document.getElementById('productimg').src= image;
+      document.getElementById('name').innerText = data.name;
+      document.getElementById('desc').innerText = data.desc;
+      document.getElementById("price").innerText = data.price+"$";
+    }else{
+      document.getElementById('productdiv').innerHTML = "PRODUCT NOT FOUND";
+    }
   })
 }
 
