@@ -35,8 +35,8 @@ if (isset($result['name'])) {
 }
 
 //Create a new product
-$query = $mysqli->prepare("INSERT INTO products(seller_id, name, price, desc, view, categories_id, image, discounts_id) VALUE (?, ?, ?, ?, ?, ?, ?, ?)");
-$query->bind_param("isisiisi", $seller_id, $name, $price, $desc, $view, $categories_id, $image, $discounts_id);
+$query = $mysqli->prepare("INSERT INTO products(seller_id, name, price, desc, categories_id, image) VALUE (?, ?, ?, ?, ?, ?)");
+$query->bind_param("isisis", $seller_id, $name, $price, $desc, $categories_id, $image);
 $query->execute();
 
 $response = [];
