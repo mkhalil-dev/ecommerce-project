@@ -100,3 +100,20 @@ chatBtn.addEventListener("click", () => {
     adsDiv.style.display = 'none'
     productsDiv.style.display = 'none'
 })
+
+
+const nav = document.getElementById("myLinks");
+const navBtn = document.getElementById("openNav")
+navBtn.addEventListener("click", () => {
+  if (nav.style.display === "block") {
+    nav.style.display = "none";
+  } else {
+    nav.style.display = "block";
+  }
+})
+const mainContainer = document.getElementById("main-container")
+mainContainer.addEventListener("click", () => {
+  if (nav.style.display === "block") {
+    nav.style.display = "none";
+  }
+})
