@@ -13,7 +13,7 @@ if (isset($_POST["name"])) {
 }
 
 
-//Check categorie name
+//Check category name
 $checkname = $mysqli->prepare("SELECT name FROM categories WHERE name=?");
 $checkname->bind_param('s', $name);
 $checkname->execute();
@@ -22,12 +22,12 @@ $result = $checkname->get_result()->fetch_assoc();
 if (isset($result['name'])) {
     $response = [];
     $response["success"] = false;
-    $response["message"] = "categorie already exists";
+    $response["message"] = "category already exists";
     echo json_encode($response);
     exit();
 }
 
-//Create a new seller
+//Create a new category
 $query = $mysqli->prepare("INSERT INTO categories(name) VALUE (?)");
 $query->bind_param("s", $name);
 $query->execute();
