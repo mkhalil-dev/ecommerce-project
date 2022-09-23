@@ -57,3 +57,15 @@
     background: white;
   }
   
+  .container {
+    position: absolute;
+    right: 0;
+    width: 80vw;
+    height: 100vh;
+    background: #f1f1f1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+  }
+  
