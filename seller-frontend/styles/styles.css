@@ -165,7 +165,7 @@ th, td {
   padding: 30px 25px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content:center;
   flex-wrap: wrap;
 }
 
@@ -173,7 +173,7 @@ th, td {
   width: 230px;
   height: 150px;
   background: white;
-  margin: 10px 15px;
+  margin: 10px 5px;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -318,9 +318,9 @@ th, td {
 
 .container .content .cards-ch {
 display: flex;
-flex-wrap: wrap;
-padding: 10px 10px;
-margin: 45px;
+/* flex-wrap: wrap; */
+padding: 5px 5px;
+margin: 15px;
 min-height: 10%;    
 align-items: center;
 justify-content: center;
@@ -481,6 +481,30 @@ color: black;
 background-color: #04AA6D;
 color: white;
 }
+
+.container .content .new-products .title h2 {
+  margin-left: 10px;
+}
+
+.container .content .new-products .title .btn {
+  max-width: 90px;
+}
+
+.container .content .new-products .title div {
+  display: flex;
+  /* flex-wrap: wrap; */
+  padding: 5px 5px;
+  margin: 15px;
+  min-height: 10%;    
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  /* background: white; */
+  background-size: 95%;
+  justify-content: space-around;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 3px;
+  }
 
 @media screen and (max-width: 940px){
   .navbtn{
