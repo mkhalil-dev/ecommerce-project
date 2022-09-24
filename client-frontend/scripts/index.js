@@ -55,6 +55,9 @@ else if(pPath == "wishlist.html"){
 else if(pPath == "editprofile.html"){
   editprofile()
 }
+else if(pPath == "cart.html"){
+  cart()
+}
 
 function checksignin(){
   if(!localStorage.getItem('userid')){
@@ -321,11 +324,45 @@ function productpage(){
       document.getElementById('desc').innerText = data.desc;
       document.getElementById("price").innerText = data.price+"$";
       axios.post('http://localhost/ecommerce-project/ecommerce-server/add_view.php', productid)
+      let msgreq = new FormData();
+      let seller = data.seller_id
+      msgreq.set('user', localStorage.getItem('userid'));
+      msgreq.set('seller', seller);
+      this.removeEventListener('click', arguments.callee);
+      axios.post('http://localhost/ecommerce-project/ecommerce-server/get_messages.php', msgreq).then((response) => {
+        const data = response.data;
+        data.forEach((element) => {
+          let time = element.created_at.split(" ")[1].split(":")
+          time.pop()
+          time = time.join(":")
+          if(element.users_sent == localStorage.getItem('userid')){
+            document.querySelector(".form-container").insertAdjacentHTML('beforebegin', '<div class="container client"><p>'+element.content+'</p><span class="time-right">'+time+'</span></div>')
+          }else{
+            document.querySelector(".form-container").insertAdjacentHTML('beforebegin', '<div class="container darker seller"><p>'+element.content+'</p><span class="time-left">'+time+'</span></div>')
+          }
+        })
+      })
+      document.getElementById("schat").addEventListener('click', function(){
+        let content = document.getElementById("content").value;
+        if(!content){
+          console.log("empty msg")
+          return;
+        }
+        let msgbody = new FormData()
+        msgbody.set('ruser', seller)
+        msgbody.set('suser', localStorage.getItem('userid'))
+        msgbody.set('content', content)
+        let today = new Date();
+        let time = today.getHours() + ":" + today.getMinutes();
+        document.querySelector(".form-container").insertAdjacentHTML('beforebegin', '<div class="container client"><p>'+content+'</p><span class="time-right">'+time+'</span></div>')
+        axios.post('http://localhost/ecommerce-project/ecommerce-server/message.php', msgbody).then((response) => {
+          console.log(response)
+        })
+      })
     }else{
       document.getElementById('productdiv').innerHTML = "PRODUCT NOT FOUND";
     }
   })
-
   document.getElementById("atc").addEventListener('click', function(){
     if(checksignin()){
       let atc = new FormData();
@@ -479,4 +516,9 @@ function editprofile(){
       console.log(response)
     })
   })
+}
+
+function cart(){
+  displaycatg()
+  displayname()
 }

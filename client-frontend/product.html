@@ -97,35 +97,14 @@
             <button id="atc" class="header-btn wider-btn"><i class="fa fa-cart-plus" aria-hidden="true"></i>Add to cart</button>
             <div class="chat-popup" id="myForm">
                 <h1>Chat</h1>
-                <div class="container client">
-                    <p>Hello. How are you today?</p>
-                    <span class="time-right">11:00</span>
-                    </div>
-                    
-                    <div class="container darker seller">
-                    <p>Hey! I'm fine. Thanks for asking!</p>
-                    <span class="time-left">11:01</span>
-                    </div>
-                    
-                    <div class="container client">
-                    <p>Sweet! So, what do you wanna do today?</p>
-                    <span class="time-right">11:02</span>
-                    </div>
-                    
-                    <div class="container darker seller">
-                    <p>Nah, I dunno. Play soccer.. or learn more coding perhaps?</p>
-                    <span class="time-left">11:05</span>
-                </div>
-                <form action="/action_page.php" class="form-container">
-                    
+                <div class="form-container">
                     <label for="msg"><b>Message</b></label>
-                    <textarea placeholder="Type message.." name="msg" required></textarea>
-                
-                    <button type="submit" class="btn">Send</button>
+                    <textarea id="content" placeholder="Type message.." name="msg" required></textarea>
+                    <button id="schat" type="submit" class="btn">Send</button>
                     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-                </form>
+                </div>
             </div>
-            <button class="header-btn wider-btn open-button" onclick="openForm()">Chat with seller</button>
+            <button id="ochat" class="header-btn wider-btn open-button" onclick="openForm()">Chat with seller</button>
             
         </div>
     </section>
