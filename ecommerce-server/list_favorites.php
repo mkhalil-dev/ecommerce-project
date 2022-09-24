@@ -16,16 +16,18 @@ if (isset($_GET['users_id'])) {
 $query = $mysqli->prepare("SELECT * FROM favorites WHERE users_id=?");
 $query->bind_param('i', $users_id);
 $query->execute();
-$result = $query->get_result()->fetch_assoc();
+$result = $query->get_result();
 
+while($a = $result->fetch_assoc()){
+    $response[] = $a;
+}
 
-
-if (isset($result)) {
-    echo json_encode($result);
+if (isset($response)) {
+    echo json_encode($response);
 } else {
     $response = [
         "success" => false,
-        "message" => "user not found"
+        "message" => "no favorites"
     ];
     echo json_encode($response);
 }
