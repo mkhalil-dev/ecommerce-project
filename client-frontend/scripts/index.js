@@ -46,10 +46,12 @@ else if(pPath == "product.html"){
 else if(pPath == "vouchers.html"){
   vouchers()
 }
+else if(pPath == "favorites.html"){
+  favorites()
+}
 
 function checksignin(){
   if(!localStorage.getItem('userid')){
-    alert("Sign in first!")
     return false;
   }
   return true;
@@ -368,18 +370,28 @@ function sendvoucher(){
 
 function favorites(){
   displaycatg()
-  axios.get('http://localhost/ecommerce-project/ecommerce-server/get_vouchers.php?id='+localStorage.getItem('userid'))
+  displayname()
+  if(!checksignin()){
+    document.getElementById('favorites').innerHTML = 'Sign in to view your favorites.'
+    return;
+  }
+  axios.get('http://localhost/ecommerce-project/ecommerce-server/list_favorites.php?users_id='+localStorage.getItem('userid'))
   .then((response) => {
     let data = response.data
+    console.log(data)
     if(data[0]){
       data.forEach((element) => {
-        document.getElementById('favorites').insertAdjacentHTML('beforeend', '<div id="'+element.id+'" class="item flex-display"><div class="item-img-name flex-display"><img src="data:image/png;base64,'+element.image+'" alt=""><h3>'+element.name+'</h3></div><div class="item-qty-price flex-display"><h3>'+element.price+'$</h3><button class="header-btn remove-fav"><i class="fa fa-trash" aria-hidden="true"> &nbsp Remove</i></button></div></div>')
+        document.getElementById('favorites').insertAdjacentHTML('beforeend', '<div id="'+element.id+'" class="item flex-display"><div class="item-img-name flex-display"><img style="border: 0px;" src="data:image/png;base64,'+element.image+'" alt=""><h3>'+element.name+'</h3></div><div class="item-qty-price flex-display"><h3>'+element.price+'$</h3><button class="header-btn remove-fav"><i class="fa fa-trash" aria-hidden="true"> &nbsp Remove</i></button></div></div>')
       })
       document.querySelectorAll(".remove-fav").forEach(button => {
         let productid = button.parentElement.parentElement.id;
-        console.log(productid)
         button.addEventListener('click', function(){
+          document.getElementById(productid).remove();
           favwish(productid, 'unfavorite')
+          console.log(document.getElementById('favorites').innerHTML)
+          if(document.getElementById('favorites').childElementCount == 0){
+            document.getElementById('favorites').innerHTML = 'You dont have any Favorites.'
+          }
         });
       })
     }
@@ -387,7 +399,6 @@ function favorites(){
       document.getElementById('favorites').innerHTML = 'You dont have any Favorites.'
     }
   })
-  sendbtn.addEventListener('click', sendvoucher)
 }
 
 function wishlist(){
