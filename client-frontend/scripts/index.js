@@ -49,6 +49,9 @@ else if(pPath == "vouchers.html"){
 else if(pPath == "favorites.html"){
   favorites()
 }
+else if(pPath == "wishlist.html"){
+  wishlist()
+}
 
 function checksignin(){
   if(!localStorage.getItem('userid')){
@@ -388,7 +391,6 @@ function favorites(){
         button.addEventListener('click', function(){
           document.getElementById(productid).remove();
           favwish(productid, 'unfavorite')
-          console.log(document.getElementById('favorites').innerHTML)
           if(document.getElementById('favorites').childElementCount == 0){
             document.getElementById('favorites').innerHTML = 'You dont have any Favorites.'
           }
@@ -402,7 +404,12 @@ function favorites(){
 }
 
 function wishlist(){
+  displayname()
   displaycatg()
+  if(!checksignin()){
+    document.getElementById('wishlist').innerHTML = 'Sign in to view your favorites.'
+    return;
+  }
   axios.get('http://localhost/ecommerce-project/ecommerce-server/get_vouchers.php?id='+localStorage.getItem('userid'))
   .then((response) => {
     let data = response.data
@@ -422,7 +429,6 @@ function wishlist(){
       document.getElementById('favorites').innerHTML = 'You dont have any Favorites.'
     }
   })
-  sendbtn.addEventListener('click', sendvoucher)
 }
 
 function favwish(productid, op){
