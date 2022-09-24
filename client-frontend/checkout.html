@@ -16,7 +16,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
-    
+    <!--Start pop ups section-->
+    <div class="popups">
+        <!-- Start search pop up -->
+        <div id="popup1" class="overlay">
+            <div class="popup popup-editted"  >
+                <div  class="centerized">
+                    <h2 id="pop1h2">Search result</h2>
+                    <a class="close" id="closepopup1" href="#">&times;</a>
+                    <div class="content flex-display">
+                        <div class="search-img"><a href=""><img src="./assets/ads-2.jpg" ></a></div>
+                        <div class="search-content flex-display-column">
+                            <a href=""><h4>product name</h4></a>
+                            <h5>price</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End search pop up --> 
+    </div>
+    <!--End pop ups section-->
+
     <!--Start pre-hero section-->
     <section class="main-pre-hero flex-display-column">
         <div class="thick-green-div"></div>
@@ -29,7 +50,7 @@
                 </div>
                 <div class="mid-elements flex-display">
                     <input type="text" name="header-search" id="header-search" placeholder="search">
-                    <a href=""><button class="header-btn" id="search-btn"><i class="fa fa-search"></i></button></a>
+                    <a href="#popup1"><button class="header-btn" id="search-btn"><i class="fa fa-search"></i></button></a>
                 </div>
                 <div class="action-icon-btns flex-display">
                    <a href=""><button class="header-btn white-btn "><i class="fa fa-heart"></i></button></a>
