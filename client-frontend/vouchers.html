@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +26,7 @@
                     <div class="content flex-display">
                         <div class="search-img"><a href=""><img src="./assets/ads-2.jpg" ></a></div>
                         <div class="search-content flex-display-column">
-                            <a href=""><h4>product name</h4></a>
+                            <a href="#popup1"><h4>product name</h4></a>
                             <h5>price</h5>
                         </div>
                     </div>
@@ -35,6 +34,20 @@
             </div>
         </div>
         <!-- End search pop up --> 
+        <!-- Start voucher pop up -->
+        <div id="popup2" class="overlay">
+            <div class="popup popup-editted"  >
+                <div  class="centerized">
+                    <h2 id="pop1h2">Send voucher to:</h2>
+                    <a class="close" id="closepopup1" href="#">&times;</a>
+                    <div class="content flex-display">
+                        <input class="vouhcer-email" type="text" name="reciever-email" id="reciever-email" placeholder="enter email here">
+                        <button class="header-btn wider-btn wider-btn-editted">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End voucher pop up --> 
     </div>
     <!--End pop ups section-->
 
@@ -81,25 +94,43 @@
 
     <div class="black-line-div"></div>
 
-    <!--Start checkout section-->
-    <section class="checkout flex-display-column">
-        <h2>Checking Out</h2>
-        <div class="checkout-content flex-display-column">
-            <div class="promotion flex-display-column">
-                <h4>Enter promotion code</h4>
-                <input type="text" name="code" id="code" placeholder="place code here">
-                <button class="header-btn wider-btn">Apply</button>
-                <h5>Got a voucher?<span class="linking-voucher"><a href="vouchers.html"> Redeem here</a></span></h5>
+    <!--Start wishlist details section-->
+    <section class="cart-details flex-display-column">
+        <h2>Vouchers</h2>
+        <div class="items flex-display-column">
+            <div class="item flex-display">
+                <div class="item-img-name flex-display">
+                    <h3>Voucher code</h3>
+                </div>
+                <div class="item-qty-price flex-display">
+                    <h3>amount</h3>
+                    <button class="header-btn wider-btn wider-btn-editted">Redeem</button>
+                    <a href="#popup2"><button class="header-btn wider-btn wider-btn-editted">Send voucher</button></a>
+                </div>
             </div>
-            <div class="reciept-info flex-display-column">
-                <p>Total price: <span>$price</span></p>
-                <p>Discount: <span class="discount">-$0</span></p>
-                <p>Total: <span>$t</span></p>
+            <div class="item flex-display">
+                <div class="item-img-name flex-display">
+                    <h3>Voucher code</h3>
+                </div>
+                <div class="item-qty-price flex-display">
+                    <h3>amount</h3>
+                    <button class="header-btn wider-btn wider-btn-editted">Redeem</button>
+                    <a href="#popup2"><button class="header-btn wider-btn wider-btn-editted">Send voucher</button></a>
+                </div>
             </div>
-        </div>            
-        <button class="header-btn white-btn wider-btn">Buy Now</button>
+            <div class="item flex-display">
+                <div class="item-img-name flex-display">
+                    <h3>Voucher code</h3>
+                </div>
+                <div class="item-qty-price flex-display">
+                    <h3>amount</h3>
+                    <button class="header-btn wider-btn wider-btn-editted">Redeem</button>
+                    <a href="#popup2"><button class="header-btn wider-btn wider-btn-editted">Send voucher</button></a>
+                </div>
+            </div>
+        </div>
     </section>
-    <!--End checkout section-->
+    <!--Start whilshlist section-->
 
     <div class="black-line-div"></div>
 
