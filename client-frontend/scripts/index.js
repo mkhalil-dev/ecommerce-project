@@ -159,7 +159,6 @@ function login(){
     loginbody.set('password', password);
     axios.post('http://localhost/ecommerce-project/ecommerce-server/signin.php', loginbody)
     .then((response) => {
-      console.log(response)
       if(response.data.success){
         textbox.innerText = "Logged In!"
         this.removeEventListener('click', arguments.callee);
@@ -247,7 +246,6 @@ function resetreq(){
     resetpassbody.set('email', email)
     axios.post('http://localhost/ecommerce-project/ecommerce-server/reset_request.php', resetpassbody)
     .then((response) => {
-      console.log(response)
       if(response.data.success){
         textbox.innerText = "Signed up!"
         this.removeEventListener('click', arguments.callee);
@@ -381,7 +379,6 @@ function favorites(){
   axios.get('http://localhost/ecommerce-project/ecommerce-server/list_favorites.php?users_id='+localStorage.getItem('userid'))
   .then((response) => {
     let data = response.data
-    console.log(data)
     if(data[0]){
       data.forEach((element) => {
         document.getElementById('favorites').insertAdjacentHTML('beforeend', '<div id="'+element.id+'" class="item flex-display"><div class="item-img-name flex-display"><img style="border: 0px;" src="data:image/png;base64,'+element.image+'" alt=""><h3>'+element.name+'</h3></div><div class="item-qty-price flex-display"><h3>'+element.price+'$</h3><button class="header-btn remove-fav"><i class="fa fa-trash" aria-hidden="true"> &nbsp Remove</i></button></div></div>')
@@ -404,29 +401,32 @@ function favorites(){
 }
 
 function wishlist(){
-  displayname()
   displaycatg()
+  displayname()
   if(!checksignin()){
-    document.getElementById('wishlist').innerHTML = 'Sign in to view your favorites.'
+    document.getElementById('wishlist').innerHTML = 'Sign in to view your Wishlist.'
     return;
   }
-  axios.get('http://localhost/ecommerce-project/ecommerce-server/get_vouchers.php?id='+localStorage.getItem('userid'))
+  axios.get('http://localhost/ecommerce-project/ecommerce-server/list_wish.php?users_id='+localStorage.getItem('userid'))
   .then((response) => {
     let data = response.data
     if(data[0]){
       data.forEach((element) => {
-        document.getElementById('favorites').insertAdjacentHTML('beforeend', '<div id="'+element.id+'" class="item flex-display"><div class="item-img-name flex-display"><img src="data:image/png;base64,'+element.image+'" alt=""><h3>'+element.name+'</h3></div><div class="item-qty-price flex-display"><h3>'+element.price+'$</h3><button class="header-btn remove-fav"><i class="fa fa-trash" aria-hidden="true"> &nbsp Remove</i></button></div></div>')
+        document.getElementById('wishlist').insertAdjacentHTML('beforeend', '<div id="'+element.id+'" class="item flex-display"><div class="item-img-name flex-display"><img style="border: 0px;" src="data:image/png;base64,'+element.image+'" alt=""><h3>'+element.name+'</h3></div><div class="item-qty-price flex-display"><h3>'+element.price+'$</h3><button><i class="fa fa-trash remove-wish" aria-hidden="true"></i></button><button class="header-btn wider-btn wider-btn-editted">Proceed to Checkout</button></div></div>')
       })
-      document.querySelectorAll(".remove-fav").forEach(button => {
-        let productid = button.parentElement.parentElement.id;
-        console.log(productid)
-        // button.addEventListener('click', function(){
-        //   favwish(productid, 'unfavorite')
-        // });
+      document.querySelectorAll(".remove-wish").forEach(button => {
+        let productid = button.parentElement.parentElement.parentElement.id;
+        button.addEventListener('click', function(){
+          document.getElementById(productid).remove();
+          favwish(productid, 'unwish')
+          if(document.getElementById('wishlist').childElementCount == 0){
+            document.getElementById('wishlist').innerHTML = 'You dont have any items in the wishlist.'
+          }
+        });
       })
     }
     else{
-      document.getElementById('favorites').innerHTML = 'You dont have any Favorites.'
+      document.getElementById('wishlist').innerHTML = 'You dont have any items in the wishlist.'
     }
   })
 }
