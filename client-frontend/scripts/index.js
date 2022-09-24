@@ -57,6 +57,7 @@ function checksignin(){
 
 function mainpage(){
   showDivs(slideIndex);
+  displayname()
   displaycatg()
   let seen;
   let count = 0;
@@ -125,6 +126,11 @@ function mainpage(){
   }
 }
 
+function signout(){
+  localStorage.clear()
+  window.location.reload();
+}
+
 function login(){
   displaycatg();
   document.getElementById("signin").addEventListener('click', function (){
@@ -152,10 +158,12 @@ function login(){
       if(response.data.success){
         textbox.innerText = "Logged In!"
         this.removeEventListener('click', arguments.callee);
-        localStorage.setItem('userid', response.data.userid)
-        // setTimeout(()=>{
-        //   window.location.href = "./index.html";
-        // },500)
+        localStorage.setItem('userid', response.data.userid);
+        localStorage.setItem('fname', response.data.fname);
+        localStorage.setItem('lname', response.data.lname);
+        setTimeout(()=>{
+          window.location.href = "./index.html";
+        },500)
       }
       else{
         textbox.innerText = "User and password combination are incorrect"
@@ -256,6 +264,13 @@ function resetpass(){
         console.log(response)
     })
   })
+}
+
+function displayname(){
+  if(localStorage.getItem('fname')){
+    document.getElementById('signout').addEventListener('click', signout)
+    document.querySelector(".user-name").innerText = localStorage.getItem('fname') + " " + localStorage.getItem('lname')
+  }
 }
 
 function displaycatg(){
