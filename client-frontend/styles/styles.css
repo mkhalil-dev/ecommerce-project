@@ -508,7 +508,7 @@ form{
     background: #fff;
     border-radius: 5px;
     width: 35%;
-    height: 70vh;
+    height: auto;
     overflow-y: auto;
     position: relative;
     transition: all 5s ease-in-out;
@@ -519,6 +519,9 @@ form{
 }
 .popup .content .search-img > a >img{
     width: 100%
+}
+.popup .content .search-img > a >h4{
+    margin: 0;
 }
 .popup h2 {
     text-align: center;
@@ -551,8 +554,7 @@ form{
 
 .popup-editted{
     width: 25%;
-    height: 25%;
-    overflow: hidden;
+    height: 40%;
 }
 .vouhcer-email {
     width: 100%;
