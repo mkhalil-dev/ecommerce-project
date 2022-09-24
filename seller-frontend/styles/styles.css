@@ -60,17 +60,12 @@ table {
   table-layout:fixed;
   color: #67acb4;
   background: white;
-  border: 2px solid #67acb4;
-
-
-  
-    border-collapse: collapse;
-    border-spacing: 0;
-    width: 100%;
-    border: 1px solid #ddd;
+  /* border: 2px solid #67acb4; */
+  border-collapse: collapse;
+  /* border-spacing: 0; */
+  width: 100%;
   
   
-tr:nth-child(even){background-color: #eee}
 
 
 
@@ -637,6 +632,27 @@ color: white;
   color: #67acb4;
   background: white;
 }
+
+.btn-table {
+  color: #67acb4;
+  border: 2px solid #67acb4;
+  background: #67acb4;
+  color: white;
+  /* padding: 10px 1px; */
+  /* margin: 25px 0px; */
+  text-align: center;
+  /* font-size:11px; */
+  min-width: 62px;
+  border-radius: 3px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  .btn-table:hover {
+  color: #67acb4;
+  background: white;
+  border: 2px solid #67acb4;
+  }
+
 }
 @media screen and (min-width: 941px) {
   .navbtn{
@@ -647,6 +663,7 @@ color: white;
 }
 
 #create-pro {
+  overflow-x:auto;
 
 }
 
@@ -710,22 +727,7 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
  }
 
 
- .btn-table {
-  color: #67acb4;
-  border: 2px solid #67acb4;
-  background: #67acb4;
-  color: white;
-  /* padding: 10px 1px; */
-  /* margin: 25px 0px; */
-  text-align: center;
-  /* font-size:11px; */
-  min-width: 32px;
-  border-radius: 3px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-  
-  .btn-table:hover {
-  color: #67acb4;
-  background: white;
-  border: 2px solid #67acb4;
-  }
+
+
+  tr:nth-child(even){background-color: #eee}
+
