@@ -57,6 +57,7 @@ function checksignin(){
 
 function mainpage(){
   showDivs(slideIndex);
+  displayname()
   displaycatg()
   let seen;
   let count = 0;
@@ -64,7 +65,13 @@ function mainpage(){
   const getproducts = () => {
     const productsbox = document.getElementById("products-box");
     let productsbody = new FormData();
-    productsbody.set('seen', seen);
+    let catid = window.location.search.substring(1).split("=")[1];
+    if(seen){
+      productsbody.set('seen', seen);
+    }
+    if(catid){
+      productsbody.set('catid', catid);
+    }
     let newdata = (response) => {
       const data = response.data;
       count += data.length;
@@ -99,35 +106,15 @@ function mainpage(){
         });
       });
     }
-    if(!seen){
-      axios.post('http://localhost/ecommerce-project/ecommerce-server/get_products.php')
-      .then((response) => {
-        newdata(response)
-      }, (error) => {
-        console.log(error);
-      });
-    }
-    else{
       axios.post('http://localhost/ecommerce-project/ecommerce-server/get_products.php', productsbody)
       .then((response) => {
         newdata(response)
       }, (error) => {
         console.log(error);
       });
-    }
   }
   loadmore.addEventListener('click', getproducts)  
   getproducts();
-
-  function favwish(productid, op){
-    if(!checksignin()) return;
-    let user = localStorage.getItem('userid');
-    let favbody = new FormData();
-    favbody.set('user', user);
-    favbody.set('product', productid);
-    favbody.set('op', op);
-    axios.post('http://localhost/ecommerce-project/ecommerce-server/fav_wish_products.php', favbody)
-  }
 
   function atc(productid){
     if(!checksignin()) return;
@@ -139,7 +126,13 @@ function mainpage(){
   }
 }
 
+function signout(){
+  localStorage.clear()
+  window.location.reload();
+}
+
 function login(){
+  displaycatg();
   document.getElementById("signin").addEventListener('click', function (){
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
@@ -161,10 +154,13 @@ function login(){
     loginbody.set('password', password);
     axios.post('http://localhost/ecommerce-project/ecommerce-server/signin.php', loginbody)
     .then((response) => {
+      console.log(response)
       if(response.data.success){
         textbox.innerText = "Logged In!"
         this.removeEventListener('click', arguments.callee);
-        localStorage.setItem('userid', response.data.userid)
+        localStorage.setItem('userid', response.data.userid);
+        localStorage.setItem('fname', response.data.fname);
+        localStorage.setItem('lname', response.data.lname);
         setTimeout(()=>{
           window.location.href = "./index.html";
         },500)
@@ -270,12 +266,19 @@ function resetpass(){
   })
 }
 
+function displayname(){
+  if(localStorage.getItem('fname')){
+    document.getElementById('signout').addEventListener('click', signout)
+    document.querySelector(".user-name").innerText = localStorage.getItem('fname') + " " + localStorage.getItem('lname')
+  }
+}
+
 function displaycatg(){
   axios.post('http://localhost/ecommerce-project/ecommerce-server/get_categories.php')
   .then((response) => {
     let data = response.data
     data.forEach((element) => {
-      document.getElementById('catg').insertAdjacentHTML('beforeend', '<a href="#">'+element.name+'</a>')
+      document.getElementById('catg').insertAdjacentHTML('beforeend', '<a href="./index.html?='+element.id+'">'+element.name+'</a>')
     })
   })
 }
@@ -350,4 +353,62 @@ function sendvoucher(){
   .then((response) => {
     console.log(response)
   })
+}
+
+function favorites(){
+  displaycatg()
+  axios.get('http://localhost/ecommerce-project/ecommerce-server/get_vouchers.php?id='+localStorage.getItem('userid'))
+  .then((response) => {
+    let data = response.data
+    if(data[0]){
+      data.forEach((element) => {
+        document.getElementById('favorites').insertAdjacentHTML('beforeend', '<div id="'+element.id+'" class="item flex-display"><div class="item-img-name flex-display"><img src="data:image/png;base64,'+element.image+'" alt=""><h3>'+element.name+'</h3></div><div class="item-qty-price flex-display"><h3>'+element.price+'$</h3><button class="header-btn remove-fav"><i class="fa fa-trash" aria-hidden="true"> &nbsp Remove</i></button></div></div>')
+      })
+      document.querySelectorAll(".remove-fav").forEach(button => {
+        let productid = button.parentElement.parentElement.id;
+        console.log(productid)
+        // button.addEventListener('click', function(){
+        //   favwish(productid, 'unfavorite')
+        // });
+      })
+    }
+    else{
+      document.getElementById('favorites').innerHTML = 'You dont have any Favorites.'
+    }
+  })
+  sendbtn.addEventListener('click', sendvoucher)
+}
+
+function wishlist(){
+  displaycatg()
+  axios.get('http://localhost/ecommerce-project/ecommerce-server/get_vouchers.php?id='+localStorage.getItem('userid'))
+  .then((response) => {
+    let data = response.data
+    if(data[0]){
+      data.forEach((element) => {
+        document.getElementById('favorites').insertAdjacentHTML('beforeend', '<div id="'+element.id+'" class="item flex-display"><div class="item-img-name flex-display"><img src="data:image/png;base64,'+element.image+'" alt=""><h3>'+element.name+'</h3></div><div class="item-qty-price flex-display"><h3>'+element.price+'$</h3><button class="header-btn remove-fav"><i class="fa fa-trash" aria-hidden="true"> &nbsp Remove</i></button></div></div>')
+      })
+      document.querySelectorAll(".remove-fav").forEach(button => {
+        let productid = button.parentElement.parentElement.id;
+        console.log(productid)
+        // button.addEventListener('click', function(){
+        //   favwish(productid, 'unfavorite')
+        // });
+      })
+    }
+    else{
+      document.getElementById('favorites').innerHTML = 'You dont have any Favorites.'
+    }
+  })
+  sendbtn.addEventListener('click', sendvoucher)
+}
+
+function favwish(productid, op){
+  if(!checksignin()) return;
+  let user = localStorage.getItem('userid');
+  let favbody = new FormData();
+  favbody.set('user', user);
+  favbody.set('product', productid);
+  favbody.set('op', op);
+  axios.post('http://localhost/ecommerce-project/ecommerce-server/fav_wish_products.php', favbody)
 }
