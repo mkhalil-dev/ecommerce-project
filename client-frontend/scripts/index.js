@@ -126,6 +126,7 @@ function mainpage(){
 }
 
 function login(){
+  displaycatg();
   document.getElementById("signin").addEventListener('click', function (){
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
@@ -147,13 +148,14 @@ function login(){
     loginbody.set('password', password);
     axios.post('http://localhost/ecommerce-project/ecommerce-server/signin.php', loginbody)
     .then((response) => {
+      console.log(response)
       if(response.data.success){
         textbox.innerText = "Logged In!"
         this.removeEventListener('click', arguments.callee);
         localStorage.setItem('userid', response.data.userid)
-        setTimeout(()=>{
-          window.location.href = "./index.html";
-        },500)
+        // setTimeout(()=>{
+        //   window.location.href = "./index.html";
+        // },500)
       }
       else{
         textbox.innerText = "User and password combination are incorrect"
