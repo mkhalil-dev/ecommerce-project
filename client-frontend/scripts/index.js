@@ -385,9 +385,13 @@ function favorites(){
       })
       document.querySelectorAll(".remove-fav").forEach(button => {
         let productid = button.parentElement.parentElement.id;
-        console.log(productid)
         button.addEventListener('click', function(){
+          document.getElementById(productid).remove();
           favwish(productid, 'unfavorite')
+          console.log(document.getElementById('favorites').innerHTML)
+          if(document.getElementById('favorites').childElementCount == 0){
+            document.getElementById('favorites').innerHTML = 'You dont have any Favorites.'
+          }
         });
       })
     }
