@@ -193,13 +193,13 @@ th, td {
 .container .content .content-2 .recent-payments {
   min-height: 30vh;
   background: white; 
-  min-width: 90;
+  min-width: 90px;
   /* min-width:fit-content; */
   margin: 0 25px 25px 25px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   display: flex;
   flex-direction: column;
- 
+  border-radius: 3px;
 
    
 }
@@ -331,6 +331,24 @@ justify-content: space-around;
 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 border-radius: 3px;
 }
+
+
+.stat {
+  width: 20%;
+  font-size: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 35px 55px 35px;
+  min-height: 10%;    
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  background: white;
+  background-size: 95%;
+  justify-content: space-around;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  align-items: center;
+  }
 
 .container .content .cards-pr {
 margin: 15px 15px;
@@ -511,7 +529,9 @@ color: white;
   display: block;
   padding: .5rem .5rem;
   background-color: #67acb4;
-  border-radius: 5px;
+  border-radius: 3px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
   border:none;
   position: absolute;
   left: 30px
