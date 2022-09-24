@@ -2,17 +2,17 @@
 
 include('connection.php');
 
-if(isset($_POST['email']) && (isset($_POST['fname']) || isset($_POST['lname']) || isset($_POST['password']))){
+if(isset($_POST['userid']) && (isset($_POST['fname']) || isset($_POST['lname']) || isset($_POST['password']))){
     
-    $email = $_POST['email'];
+    $userid = $_POST['userid'];
 
     //Check sellers Email
-    $checkemail = $mysqli->prepare("SELECT email FROM users WHERE email=?");
-    $checkemail->bind_param('s', $email);
+    $checkemail = $mysqli->prepare("SELECT email FROM users WHERE id=?");
+    $checkemail->bind_param('s', $userid);
     $checkemail->execute();
-    $result = $checkemail->get_result()->fetch_assoc();
+    $email = $checkemail->get_result()->fetch_assoc()['email'];
 
-    if (!isset($result['email'])) {
+    if (!isset($email)) {
         $response = [];
         $response["success"] = false;
         $response["message"] = "user does not exist";
