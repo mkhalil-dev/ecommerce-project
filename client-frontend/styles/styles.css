@@ -688,17 +688,29 @@ form{
 	display:none;
 }
 @keyframes opac{from{opacity:0} to{opacity:1}}
+/*mymove {
+    from {left: 10%;}
+    to {left: 20%;}
+  }
+  .w3-animate-opacity{animation:opac 0.8s}@keyframes opac{from{opacity:0} to{opacity:1}}*/
 .status-success{
     background-color: rgb(181, 247, 186);
 }
 .status-failer{
     background-color: rgb(227, 88, 88);
 }
-/*mymove {
-    from {left: 10%;}
-    to {left: 20%;}
-  }
-  .w3-animate-opacity{animation:opac 0.8s}@keyframes opac{from{opacity:0} to{opacity:1}}*/
+/*discount popup*/
+.discount-popup-content input{
+    width: 90%;
+    height: 35px;
+    margin: 5px;
+    background-color: rgb(240, 236, 236);
+    border: 3px solid lightgray
+}
+.discount-popup-content button{
+    width: fit-content;
+}
+
 	
 /* utilities */
 button{
@@ -726,6 +738,10 @@ button{
     margin: 0;
     margin-left: 10px;
     width: auto;
+}
+.wider-btn-editted-plus{
+    margin-right: 20px;
+    margin-left: 0;
 }
 .wider-btn-plus{
     width: 90%;
