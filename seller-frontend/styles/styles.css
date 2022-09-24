@@ -61,7 +61,7 @@ table {
 
 th, td {
   text-align: left;
-  padding: 38px;
+  padding: 20px;
 }
 
 .side-menu {
@@ -681,3 +681,24 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   flex-direction: column;
   align-items: center;
  }
+
+
+ .btn-pr {
+  color: #67acb4;
+  border: 2px solid #67acb4;
+  background: #67acb4;
+  color: white;
+  padding: 10px 1px;
+  margin: 25px 0px;
+  text-align: center;
+  /* font-size:16px; */
+  width: 40%;
+  border-radius: 3px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  .btn-pr:hover {
+  color: #67acb4;
+  background: white;
+  border: 2px solid #67acb4;
+  }
