@@ -64,7 +64,13 @@ function mainpage(){
   const getproducts = () => {
     const productsbox = document.getElementById("products-box");
     let productsbody = new FormData();
-    productsbody.set('seen', seen);
+    let catid = window.location.search.substring(1).split("=")[1];
+    if(seen){
+      productsbody.set('seen', seen);
+    }
+    if(catid){
+      productsbody.set('catid', catid);
+    }
     let newdata = (response) => {
       const data = response.data;
       count += data.length;
@@ -99,22 +105,12 @@ function mainpage(){
         });
       });
     }
-    if(!seen){
-      axios.post('http://localhost/ecommerce-project/ecommerce-server/get_products.php')
-      .then((response) => {
-        newdata(response)
-      }, (error) => {
-        console.log(error);
-      });
-    }
-    else{
       axios.post('http://localhost/ecommerce-project/ecommerce-server/get_products.php', productsbody)
       .then((response) => {
         newdata(response)
       }, (error) => {
         console.log(error);
       });
-    }
   }
   loadmore.addEventListener('click', getproducts)  
   getproducts();
@@ -275,7 +271,7 @@ function displaycatg(){
   .then((response) => {
     let data = response.data
     data.forEach((element) => {
-      document.getElementById('catg').insertAdjacentHTML('beforeend', '<a href="#">'+element.name+'</a>')
+      document.getElementById('catg').insertAdjacentHTML('beforeend', '<a href="./index.html?='+element.id+'">'+element.name+'</a>')
     })
   })
 }

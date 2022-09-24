@@ -10,6 +10,10 @@ else{
     $seen = "('')";
 }
 
+if(!$seen){
+    $seen = "('')";
+}
+
 if (isset($_POST['catid'])){
     $catid = $_POST['catid'];
 }
@@ -19,7 +23,7 @@ if(!isset($catid)){
     $query = $mysqli->prepare("SELECT P.*,subquery.* FROM products P, (SELECT COUNT(C.id) as product_count FROM products C) AS subquery WHERE P.id NOT IN $seen LIMIT 8");
 }
 else{
-    $query = $mysqli->prepare("SELECT P.*,subquery.* FROM products P, (SELECT COUNT(C.id) as product_count FROM products C) AS subquery WHERE P.id NOT IN $seen AND P.categories_id = '$catid' LIMIT 8");
+    $query = $mysqli->prepare("SELECT P.*,subquery.* FROM products P, (SELECT COUNT(C.id) as product_count FROM products C WHERE C.categories_id='$catid') AS subquery WHERE P.id NOT IN $seen AND P.categories_id = '$catid' LIMIT 8");
 }
 $query->execute();
 $result = $query->get_result();
