@@ -26,6 +26,8 @@ if($truepass['password'] == $pass ){
     $response["success"] = true;
     $response["message"] = "login succesfull";
     $response["userid"] = $truepass['id'];
+    $response["fname"] = $truepass['fname'];
+    $response["lname"] = $truepass['lname'];
     echo json_encode($response);
 }
 
