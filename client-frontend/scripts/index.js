@@ -43,6 +43,9 @@ else if(pPath == "resetpass.html"){
 else if(pPath == "product.html"){
   productpage()
 }
+else if(pPath == "vouchers.html"){
+  vouchers()
+}
 
 function checksignin(){
   if(!localStorage.getItem('userid')){
@@ -318,3 +321,13 @@ function productpage(){
   })
 }
 
+function vouchers(){
+  displaycatg()
+  axios.post('http://localhost/ecommerce-project/ecommerce-server/get_vouchers.php?id='+localStorage.getItem('userid'))
+  .then((response) => {
+    let data = response.data
+    data.forEach((element) => {
+      document.getElementById('vouchers').insertAdjacentHTML('beforeend', '<div class="item flex-display"><div class="item-img-name flex-display"><img src="data:image/png;base64,'+element.image+'" alt="" style="border: 0px;"><h3>'+element.name+'</h3></div><div class="item-qty-price flex-display"><h3>'+element.price+'$</h3><button id="r-'+element.id+'" class="header-btn wider-btn wider-btn-editted">Redeem</button><a href="?id='+element.id+'#popup2"><button class="header-btn wider-btn wider-btn-editted">Send voucher</button></a></div></div>')
+    })
+  })
+}
