@@ -1,7 +1,6 @@
 <?php
 
 include('connection.php');
-ini_set('display_errors', 1);
 
 if (isset($_POST['name']) && (isset($_POST['price']) || isset($_POST['desc']) || isset($_POST['name']) || isset($_POST['categories_id']) || isset($_POST['image']))) {
 
