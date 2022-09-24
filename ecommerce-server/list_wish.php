@@ -13,7 +13,7 @@ if (isset($_GET['users_id'])) {
     exit();
 }
 
-$query = $mysqli->prepare("SELECT * FROM wish_list WHERE users_id=?");
+$query = $mysqli->prepare("SELECT W.*, P.* FROM wish_list W, products P WHERE users_id=? AND W.products_id = P.id");
 $query->bind_param('i', $users_id);
 $query->execute();
 $result = $query->get_result();
