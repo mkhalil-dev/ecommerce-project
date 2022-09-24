@@ -15,16 +15,19 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
 }
 
 //Checking if username exists and getting the password
-$query = $mysqli->prepare("SELECT password FROM users WHERE email=?");
+$query = $mysqli->prepare("SELECT * FROM users WHERE email=?");
 $query->bind_param('s', $email);
 $query->execute();
-$truepass = $query->get_result()->fetch_assoc()['password'];
+$truepass = $query->get_result()->fetch_assoc();
 
 //if user/pass combo matches
-if($truepass == $pass ){
+if($truepass['password'] == $pass ){
     $response = [];
     $response["success"] = true;
     $response["message"] = "login succesfull";
+    $response["userid"] = $truepass['id'];
+    $response["fname"] = $truepass['fname'];
+    $response["lname"] = $truepass['lname'];
     echo json_encode($response);
 }
 
