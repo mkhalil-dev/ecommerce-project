@@ -2,9 +2,9 @@
 
 include("connection.php");
 
-if (isset($_POST["users_id"]) && isset($_POST["products_id"])) {
-    $users_id = $_POST["users_id"];
-    $products_id = $_POST["products_id"];
+if (isset($_POST["id"]) && isset($_POST["pid"])) {
+    $users_id = $_POST["id"];
+    $products_id = $_POST["pid"];
 } else {
     $response = [];
     $response["success"] = false;
