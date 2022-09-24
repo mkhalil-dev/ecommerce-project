@@ -268,8 +268,13 @@ function resetpass(){
 
 function displayname(){
   if(localStorage.getItem('fname')){
+    document.getElementById('signout').parentElement.href = ""
     document.getElementById('signout').addEventListener('click', signout)
     document.querySelector(".user-name").innerText = localStorage.getItem('fname') + " " + localStorage.getItem('lname')
+  }
+  else{
+    document.getElementById('signout').innerHTML = '<i class="fa fa-sign-in" aria-hidden="true"></i>'
+    document.getElementById('signout').parentElement.href = "./signin.html"
   }
 }
 
@@ -284,6 +289,7 @@ function displaycatg(){
 }
 
 function productpage(){
+  displayname()
   displaycatg()
   let id = window.location.search.substring(1).split("=")[1];
   let productid = new FormData();
@@ -313,14 +319,19 @@ function productpage(){
       document.getElementById('productdiv').innerHTML = "PRODUCT NOT FOUND";
     }
   })
+
   document.getElementById("atc").addEventListener('click', function(){
-    let atc = new FormData();
-    atc.set('id', localStorage.getItem('userid'))
-    atc.set('product', id)
-    atc.set('amount', qty)
-    axios.post('http://localhost/ecommerce-project/ecommerce-server/add_to_cart.php', atc).then((response) => {
-      console.log(response)
-    })
+    if(checksignin()){
+      let atc = new FormData();
+      atc.set('id', localStorage.getItem('userid'))
+      atc.set('product', id)
+      atc.set('amount', qty)
+      axios.post('http://localhost/ecommerce-project/ecommerce-server/add_to_cart.php', atc).then((response) => {
+      })
+    }
+    else{
+      console.log("sign in first")
+    }
   })
 }
 
@@ -367,9 +378,9 @@ function favorites(){
       document.querySelectorAll(".remove-fav").forEach(button => {
         let productid = button.parentElement.parentElement.id;
         console.log(productid)
-        // button.addEventListener('click', function(){
-        //   favwish(productid, 'unfavorite')
-        // });
+        button.addEventListener('click', function(){
+          favwish(productid, 'unfavorite')
+        });
       })
     }
     else{

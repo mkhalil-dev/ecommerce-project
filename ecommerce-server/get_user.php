@@ -15,7 +15,7 @@ else{
 }
 
 $query = $mysqli->prepare("SELECT * FROM users WHERE id=?");
-$query->bind_param('s', $id);
+$query->bind_param('i', $id);
 $query->execute();
 $result = $query->get_result()->fetch_assoc();
 
@@ -29,5 +29,3 @@ else{
     ];
     echo json_encode($response); 
 }
-
-?>
