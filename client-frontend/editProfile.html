@@ -52,24 +52,21 @@
                     <a href="#popup1"><button class="header-btn" id="search-btn"><i class="fa fa-search"></i></button></a>
                 </div>
                 <div class="action-icon-btns flex-display">
-                   <a href=""><button class="header-btn white-btn "><i class="fa fa-heart"></i></button></a>
-                   <a href=""><button class="header-btn white-btn "><i class="fa fa-plus-square "></i></button></a>
-                   <a href=""><button class="header-btn white-btn "><i class="fa fa-cart-plus"></i></button></a>
-                   <a href=""><button class="header-btn white-btn "><i class="fa  fa-user"></i></button></a>
+                   <a href="./favorites.html"><button class="header-btn white-btn "><i class="fa fa-heart"></i></button></a>
+                   <a href="./wishlist.html"><button class="header-btn white-btn "><i class="fa fa-plus-square "></i></button></a>
+                   <a href="./addToCart.html"><button class="header-btn white-btn "><i class="fa fa-cart-plus"></i></button></a>
+                   <a href="./editprofile.html"><button class="header-btn white-btn "><i class="fa  fa-user"></i></button></a>
                 </div>
                 <div class="action-icon-btns flex-display">
-                    <h5>Welcome <span class="user-name">user name</span></h5>
-                    <a href=""><button class="header-btn white-btn "><i class="fa fa-sign-out" aria-hidden="true"></i></button></a>
+                    <h5>Welcome <span class="user-name"></span></h5>
+                    <a href=""><button id="signout" class="header-btn white-btn "><i class="fa fa-sign-out" aria-hidden="true"></i></button></a>
                  </div>
             </div>
             <div class="navbar flex-display">
-                <div class="nav-anchor"><a href="#home">Home</a></div>
+                <div class="nav-anchor"><a href="./index.html">Home</a></div>
                 <div class="dropdown">
                     <button class="dropbtn">Categories<i class="fa fa-caret-down"></i></button>
-                    <div class="dropdown-content">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
+                    <div id="catg" class="dropdown-content">
                     </div>
                 </div> 
                 <div class="nav-anchor"><a href="#home">Contact us</a></div>
@@ -103,7 +100,7 @@
                 <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm your password">
             </div>
             <div class="form-part flex-display-column">
-                <button id="signup" class="header-btn wider-btn wider-btn-plus">UPDATE</button>
+                <button id="edit" class="header-btn wider-btn wider-btn-plus">UPDATE</button>
             </div>
         </div>
     </section>

@@ -52,6 +52,9 @@ else if(pPath == "favorites.html"){
 else if(pPath == "wishlist.html"){
   wishlist()
 }
+else if(pPath == "editprofile.html"){
+  editprofile()
+}
 
 function checksignin(){
   if(!localStorage.getItem('userid')){
@@ -439,4 +442,38 @@ function favwish(productid, op){
   favbody.set('product', productid);
   favbody.set('op', op);
   axios.post('http://localhost/ecommerce-project/ecommerce-server/fav_wish_products.php', favbody)
+}
+
+function editprofile(){
+  displayname()
+  displaycatg()
+  if(!checksignin()){
+    window.location.href = "./index.html";
+  }
+  document.getElementById("edit").addEventListener('click', function (){
+    let editp = new FormData();
+    let fname = document.getElementById("fname").value;
+    let lname = document.getElementById("lname").value;
+    let password = document.getElementById("password").value;
+    let confirmpass = document.getElementById("confirm-password").value;
+    editp.set('userid', id);
+    if(fname){
+      editp.set('fname', fname);
+    }
+    if(lname){
+      editp.set('lname', lname)
+    }
+    if(password){
+      if(password != confirmpass){
+        console.log("pass dont match")
+        return;
+      }
+      editp.set('password', password)
+    }
+    if(!fname && !lname && !password){
+      console.log("nothing changed")
+      return;
+    }
+    axios.post('localhost/ecommerce-project/ecommerce-server/edit_profile.php', editp)
+  })
 }
