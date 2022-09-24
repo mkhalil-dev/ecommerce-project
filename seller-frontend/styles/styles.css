@@ -36,7 +36,7 @@ h3 {
   margin-bottom: 15px;
   text-align: center;
   font-size: 24px;
-  width: 130px;
+  width: 190px;
   border-radius: 3px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -63,7 +63,17 @@ table {
   width: 100%;
    }
 
-th, td {
+   th {
+    text-align: left;
+  padding: 5px;
+  height: 90px;
+  font-size: 18px;
+  background-color: #67acb4;
+  color: #fff;
+   }
+
+   td {
+    height:70px;
   text-align: left;
   padding: 5px;
 }
@@ -121,6 +131,7 @@ th, td {
   position: absolute;
   right: 0;
   width: 80vw;
+  min-width: 600px;
   height: 100vh;
   background: #f1f1f1;
   flex-direction: column;
@@ -227,6 +238,7 @@ th, td {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   display: flex;
   flex-direction: column;
+  border-radius: 3px;
 }
 
 .container .content .content-2 .new-products .title {
@@ -269,7 +281,7 @@ th, td {
     width: 40px;
     height: 40px;
   }
-  
+
 
 
   
@@ -485,7 +497,7 @@ background-size: 95%;
 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 border-radius: 3px;
 
-width: 87%;
+width: 90%;
 background: white;
 background-size: 95%;
 justify-content: space-around;
@@ -677,7 +689,6 @@ color: white;
 
 #create-pro {
   overflow-x:auto;
-  border-radius: 3px;
 
 }
 
