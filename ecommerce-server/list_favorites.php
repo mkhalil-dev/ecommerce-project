@@ -2,10 +2,9 @@
 
 include('connection.php');
 
-if(isset($_GET['id'])){
-    $id = $_GET['id'];
-}
-else{
+if (isset($_GET['users_id'])) {
+    $users_id = $_GET['users_id'];
+} else {
     $response = [
         "success" => false,
         "message" => "missing post elements"
@@ -14,18 +13,19 @@ else{
     exit();
 }
 
-$query = $mysqli->prepare("SELECT * FROM users WHERE id=?");
-$query->bind_param('i', $id);
+$query = $mysqli->prepare("SELECT * FROM favorites WHERE users_id=?");
+$query->bind_param('i', $users_id);
 $query->execute();
 $result = $query->get_result()->fetch_assoc();
 
-if(isset($result)){
+
+
+if (isset($result)) {
     echo json_encode($result);
-}
-else{
+} else {
     $response = [
         "success" => false,
         "message" => "user not found"
     ];
-    echo json_encode($response); 
+    echo json_encode($response);
 }
