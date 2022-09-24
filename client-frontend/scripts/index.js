@@ -452,6 +452,7 @@ function editprofile(){
   }
   document.getElementById("edit").addEventListener('click', function (){
     let editp = new FormData();
+    let id = localStorage.getItem('userid');
     let fname = document.getElementById("fname").value;
     let lname = document.getElementById("lname").value;
     let password = document.getElementById("password").value;
@@ -474,6 +475,8 @@ function editprofile(){
       console.log("nothing changed")
       return;
     }
-    axios.post('localhost/ecommerce-project/ecommerce-server/edit_profile.php', editp)
+    axios.post('http://localhost/ecommerce-project/ecommerce-server/edit_profile.php', editp).then((response) => {
+      console.log(response)
+    })
   })
 }
