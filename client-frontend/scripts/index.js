@@ -323,11 +323,31 @@ function productpage(){
 
 function vouchers(){
   displaycatg()
-  axios.post('http://localhost/ecommerce-project/ecommerce-server/get_vouchers.php?id='+localStorage.getItem('userid'))
+  axios.get('http://localhost/ecommerce-project/ecommerce-server/get_vouchers.php?id='+localStorage.getItem('userid'))
   .then((response) => {
     let data = response.data
-    data.forEach((element) => {
-      document.getElementById('vouchers').insertAdjacentHTML('beforeend', '<div class="item flex-display"><div class="item-img-name flex-display"><img src="data:image/png;base64,'+element.image+'" alt="" style="border: 0px;"><h3>'+element.name+'</h3></div><div class="item-qty-price flex-display"><h3>'+element.price+'$</h3><button id="r-'+element.id+'" class="header-btn wider-btn wider-btn-editted">Redeem</button><a href="?id='+element.id+'#popup2"><button class="header-btn wider-btn wider-btn-editted">Send voucher</button></a></div></div>')
-    })
+    if(data[0]){
+      data.forEach((element) => {
+        document.getElementById('vouchers').insertAdjacentHTML('beforeend', '<div class="item flex-display"><div class="item-img-name flex-display"><img src="data:image/png;base64,'+element.image+'" alt="" style="border: 0px;"><h3>'+element.name+'</h3></div><div class="item-qty-price flex-display"><h3>'+element.price+'$</h3><button id="r-'+element.id+'" class="header-btn wider-btn wider-btn-editted">Redeem</button><a href="?id='+element.id+'#popup2"><button class="header-btn wider-btn wider-btn-editted">Send voucher</button></a></div></div>')
+      })
+    }
+    else{
+      document.getElementById('vouchers').innerHTML = 'You dont have any Vouchers.'
+    }
+  })
+  let sendbtn = document.getElementById('send')
+  sendbtn.addEventListener('click', sendvoucher)
+}
+
+function sendvoucher(){
+  let sendv = new FormData();
+  let email = document.getElementById('email').value;
+  let vid = window.location.search.substring(1).split("=")[1]
+  sendv.set('id', localStorage.getItem('userid'))
+  sendv.set('vid', vid)
+  sendv.set('email', email)
+  axios.post('http://localhost/ecommerce-project/ecommerce-server/send_voucher.php', sendv)
+  .then((response) => {
+    console.log(response)
   })
 }
