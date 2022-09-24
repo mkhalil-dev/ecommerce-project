@@ -57,6 +57,8 @@ else if(pPath == "editprofile.html"){
 }
 else if(pPath == "cart.html"){
   cart()
+}else if(pPath == "checkout.html"){
+  checkout()
 }
 
 function checksignin(){
@@ -522,9 +524,11 @@ function cart(){
   displaycatg()
   displayname()
   let discount = {};
+  let pids = [];
   axios.get('http://localhost/ecommerce-project/ecommerce-server/list_cart.php?id='+localStorage.getItem('userid')).then((response) => {
     const data = response.data;
     let total = 0;
+    let discounted = 0;
     if(!checksignin()){
       document.getElementById("shopcart").insertAdjacentHTML('beforeend', '<h3>Sign in to use cart</h3>');
       return; 
@@ -535,10 +539,12 @@ function cart(){
     }
     data.forEach((element) => {
       discount[element.id] = [element.code, element.discount_amount, false]
+      pids.push(element.id)
       let totalprice = element.price * element.amount;
       total += totalprice;
       document.getElementById("shopcart").insertAdjacentHTML('beforeend', '<div class="item flex-display"><div class="item-img-name flex-display"><img style="border: 0px;" src="data:image/png;base64,'+element.image+'" alt=""><h3>'+element.name+'</h3></div><div class="item-qty-price flex-display"><a href="?id='+element.id+'#discount-popup"><button class="header-btn wider-btn wider-btn-editted wider-btn-editted-plus">Apply discount</button></a><h3 style = "padding: 0 10px;">QTY: '+element.amount+'</h3><h3>'+element.price+'$/Item</h3><h3>Total: <span id="total-'+element.id+'">'+totalprice+'</span>$</h3><button id="r-'+element.id+'"><i class="fa fa-trash" aria-hidden="true"></i></button></div></div>')
       document.getElementById("r-"+element.id).addEventListener('click', function(){
+        pids.pop(element.id)
         total -= element.price * element.amount
         document.getElementById("totalprice").innerText= 'TOTAL: '+total+' $'
         document.getElementById("r-"+element.id).parentElement.parentElement.remove()
@@ -551,6 +557,7 @@ function cart(){
       if(discount[pid][0] == code && !discount[pid][2]){
         let oprice = document.getElementById("total-"+pid).innerText;
         let nprice = Math.floor(oprice*(100-discount[pid][1])/100)
+        discounted += oprice-nprice;
         document.getElementById("total-"+pid).innerText = nprice
         total -= (oprice-nprice);
         document.getElementById("totalprice").innerText= 'TOTAL: '+total+' $'
@@ -558,5 +565,25 @@ function cart(){
       }
     })
     document.getElementById("shopcart").insertAdjacentHTML('beforeend', '<h3 id="totalprice" style="text-align: center;">TOTAL: '+total+' $</h3>')
+    document.getElementById("checkout").addEventListener('click', function(){
+      window.location.href = "./checkout.html?pids="+pids+"&discount="+discounted+"&total="+total;
+    })
+  })
+}
+
+function checkout(){
+  displaycatg()
+  displayname()
+  let url = window.location.search.substring(1)
+  let params = url.split("&")
+  let finalprice = params[2].split("=")[1]
+  let discount = params[1].split("=")[1]
+  let pids = params[0].split("=")[1].split(",")
+  let total = parseInt(discount) + parseInt(finalprice)
+  document.getElementById('final').innerText = finalprice
+  document.getElementById('discount').innerText = discount
+  document.getElementById('total').innerText = total
+  document.getElementById('buy').addEventListener('click', function(){
+    
   })
 }

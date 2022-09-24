@@ -61,24 +61,21 @@
                     <a href="#popup1"><button class="header-btn" id="search-btn"><i class="fa fa-search"></i></button></a>
                 </div>
                 <div class="action-icon-btns flex-display">
-                   <a href=""><button class="header-btn white-btn "><i class="fa fa-heart"></i></button></a>
-                   <a href=""><button class="header-btn white-btn "><i class="fa fa-plus-square "></i></button></a>
-                   <a href=""><button class="header-btn white-btn "><i class="fa fa-cart-plus"></i></button></a>
-                   <a href=""><button class="header-btn white-btn "><i class="fa  fa-user"></i></button></a>
+                   <a href="./favorites.html"><button class="header-btn white-btn "><i class="fa fa-heart"></i></button></a>
+                   <a href="./wishlist.html"><button class="header-btn white-btn "><i class="fa fa-plus-square "></i></button></a>
+                   <a href="./cart.html"><button class="header-btn white-btn "><i class="fa fa-cart-plus"></i></button></a>
+                   <a href="./editProfile.html"><button class="header-btn white-btn "><i class="fa  fa-user"></i></button></a>
                 </div>
                 <div class="action-icon-btns flex-display">
-                    <h5>Welcome <span class="user-name">user name</span></h5>
-                    <a href=""><button class="header-btn white-btn "><i class="fa fa-sign-out" aria-hidden="true"></i></button></a>
+                    <h5>Welcome <span class="user-name"></span></h5>
+                    <a href=""><button id="signout" class="header-btn white-btn "><i class="fa fa-sign-out" aria-hidden="true"></i></button></a>
                  </div>
             </div>
             <div class="navbar flex-display">
-                <div class="nav-anchor"><a href="#home">Home</a></div>
+                <div class="nav-anchor"><a href="./index.html">Home</a></div>
                 <div class="dropdown">
                     <button class="dropbtn">Categories<i class="fa fa-caret-down"></i></button>
-                    <div class="dropdown-content">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
+                    <div id="catg" class="dropdown-content">
                     </div>
                 </div> 
                 <div class="nav-anchor"><a href="#home">Contact us</a></div>
@@ -97,12 +94,12 @@
                 <h5>Got a voucher?<span class="linking-voucher"><a href="vouchers.html"> Redeem here</a></span></h5>
             </div>
             <div class="reciept-info flex-display-column">
-                <p>Total price: <span>$price</span></p>
-                <p>Discount: <span class="discount">-$0</span></p>
-                <p>Total: <span>$t</span></p>
+                <p>Total price: <span id="total"></span>$</p>
+                <p>Discount: -<span id="discount"></span>$</p>
+                <p>Total: <span id="final"></span>$</p>
             </div>
         </div>            
-        <button class="header-btn white-btn wider-btn">Buy Now</button>
+        <button id="buy" class="header-btn white-btn wider-btn">Buy Now</button>
     </section>
     <!--End checkout section-->
 
