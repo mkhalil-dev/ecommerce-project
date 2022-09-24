@@ -1,6 +1,5 @@
 <?php
 include('connection.php');
-ini_set('display_errors', 1);
 
 //Get Email and Product
 if(isset($_POST['id']) && isset($_POST['product'])){
