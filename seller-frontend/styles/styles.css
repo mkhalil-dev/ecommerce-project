@@ -58,12 +58,29 @@ h3 {
 table {
   padding: 20px;
   table-layout:fixed;
-  width:100%;
+  color: #67acb4;
+  background: white;
+  border: 2px solid #67acb4;
+
+
+  
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+  
+  
+tr:nth-child(even){background-color: #eee}
+
+
+
 }
 
 th, td {
   text-align: left;
-  padding: 20px;
+  padding: 40px;
+  text-align: left;
+  padding: 8px;
 }
 
 .side-menu {
@@ -196,7 +213,6 @@ th, td {
   min-height: 30vh;
   background: white; 
   min-width: 90px;
-  /* min-width:fit-content; */
   margin: 0 25px 25px 25px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   display: flex;
@@ -267,6 +283,9 @@ th, td {
     width: 40px;
     height: 40px;
   }
+
+
+  
 }
 
 @media screen and (max-width: 536px) {
@@ -626,6 +645,12 @@ color: white;
   .side-menu{
   display: block!important;
 }
+
+#create-pro {
+
+}
+
+
 }
 
 .btn-form {
