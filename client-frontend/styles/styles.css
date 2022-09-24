@@ -665,10 +665,41 @@ form{
     color: #999;
   }
 
+/*status popup*/
+#status-popup{
+	Width: auto;
+	Height: auto;
+    border-radius: 5px;
+    opacity: 0.8;
 
+	Box-sizing: border-box; /* for inside padding */
+	Padding: 10px;
+    animation:opac 1s;
+    /*animation: mymove 5s infinite;
+    animation-timing-function: ease;*/
+    
+	/* for center */
+	Position:fixed;
+	top:5%;
+	left:50%;
+	Transform: translate(-50%,-50%);
 
-
-
+	/* for hider */
+	display:none;
+}
+@keyframes opac{from{opacity:0} to{opacity:1}}
+.status-success{
+    background-color: rgb(181, 247, 186);
+}
+.status-failer{
+    background-color: rgb(227, 88, 88);
+}
+/*mymove {
+    from {left: 10%;}
+    to {left: 20%;}
+  }
+  .w3-animate-opacity{animation:opac 0.8s}@keyframes opac{from{opacity:0} to{opacity:1}}*/
+	
 /* utilities */
 button{
     transition-duration: 0.4s;
