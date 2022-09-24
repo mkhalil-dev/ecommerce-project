@@ -14,13 +14,17 @@ else{
     exit();
 }
 
-$query = $mysqli->prepare("SELECT * FROM vouchers WHERE users_id=?");
+$query = $mysqli->prepare("SELECT V.*, P.name, P.image FROM vouchers V, products P WHERE P.id = V.products_id AND V.users_id = ?");
 $query->bind_param('s', $id);
 $query->execute();
-$result = $query->get_result()->fetch_assoc();
+$result = $query->get_result();
 
-if(isset($result)){
-    echo json_encode($result);
+while($a = $result->fetch_assoc()){
+    $response[] = $a;
+}
+
+if(isset($response)){
+    echo json_encode($response);
 }
 else{
     $response = [
