@@ -335,7 +335,6 @@ form{
     padding: 5%;
     height: auto;
     width: 80%;
-    border: 1px solid gray;
 }
 .product-details > div{
     width: 26%;
@@ -347,6 +346,9 @@ form{
 }
 .product-img img{
     width: 100%;
+}
+.thick-grey-div h3{
+    margin-left: 10%;
 }
 
 /* shopping cart page */
