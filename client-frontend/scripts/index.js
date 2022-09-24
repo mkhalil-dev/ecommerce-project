@@ -521,19 +521,41 @@ function editprofile(){
 function cart(){
   displaycatg()
   displayname()
+  let discount = {};
   axios.get('http://localhost/ecommerce-project/ecommerce-server/list_cart.php?id='+localStorage.getItem('userid')).then((response) => {
     const data = response.data;
     let total = 0;
+    if(!checksignin()){
+      document.getElementById("shopcart").insertAdjacentHTML('beforeend', '<h3>Sign in to use cart</h3>');
+      return; 
+    }
+    if(data.success == "false"){
+      document.getElementById("shopcart").insertAdjacentHTML('beforeend', '<h3>No items found in cart</h3>');
+      return;
+    }
     data.forEach((element) => {
-      console.log(element)
+      discount[element.id] = [element.code, element.discount_amount, false]
       let totalprice = element.price * element.amount;
       total += totalprice;
-      document.getElementById("shopcart").insertAdjacentHTML('beforeend', '<div class="item flex-display"><div class="item-img-name flex-display"><img style="border: 0px;" src="data:image/png;base64,'+element.image+'" alt=""><h3>'+element.name+'</h3></div><div class="item-qty-price flex-display"><a href="?id='+element.id+'#discount-popup"><button class="header-btn wider-btn wider-btn-editted wider-btn-editted-plus">Apply discount</button></a><h3 style = "padding: 0 10px;">QTY: '+element.amount+'</h3><h3>'+element.price+'$/Item</h3><h3>Total: '+totalprice+'$</h3><button id="r-'+element.id+'"><i class="fa fa-trash" aria-hidden="true"></i></button></div></div>')
+      document.getElementById("shopcart").insertAdjacentHTML('beforeend', '<div class="item flex-display"><div class="item-img-name flex-display"><img style="border: 0px;" src="data:image/png;base64,'+element.image+'" alt=""><h3>'+element.name+'</h3></div><div class="item-qty-price flex-display"><a href="?id='+element.id+'#discount-popup"><button class="header-btn wider-btn wider-btn-editted wider-btn-editted-plus">Apply discount</button></a><h3 style = "padding: 0 10px;">QTY: '+element.amount+'</h3><h3>'+element.price+'$/Item</h3><h3>Total: <span id="total-'+element.id+'">'+totalprice+'</span>$</h3><button id="r-'+element.id+'"><i class="fa fa-trash" aria-hidden="true"></i></button></div></div>')
       document.getElementById("r-"+element.id).addEventListener('click', function(){
         total -= element.price * element.amount
         document.getElementById("totalprice").innerText= 'TOTAL: '+total+' $'
         document.getElementById("r-"+element.id).parentElement.parentElement.remove()
+        axios.get('http://localhost/ecommerce-project/ecommerce-server/remove_atc.php?id='+localStorage.getItem('userid')+'&product='+element.id)
       })
+    })
+    document.getElementById("apply-disc").addEventListener('click', function(){
+      let pid = window.location.search.substring(1).split("=")[1];
+      let code = document.getElementById("code").value;
+      if(discount[pid][0] == code && !discount[pid][2]){
+        let oprice = document.getElementById("total-"+pid).innerText;
+        let nprice = Math.floor(oprice*(100-discount[pid][1])/100)
+        document.getElementById("total-"+pid).innerText = nprice
+        total -= (oprice-nprice);
+        document.getElementById("totalprice").innerText= 'TOTAL: '+total+' $'
+        discount[pid][2] = true;
+      }
     })
     document.getElementById("shopcart").insertAdjacentHTML('beforeend', '<h3 id="totalprice" style="text-align: center;">TOTAL: '+total+' $</h3>')
   })
