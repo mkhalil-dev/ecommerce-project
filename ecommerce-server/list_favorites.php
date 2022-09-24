@@ -13,7 +13,7 @@ if (isset($_GET['users_id'])) {
     exit();
 }
 
-$query = $mysqli->prepare("SELECT * FROM favorites WHERE users_id=?");
+$query = $mysqli->prepare("SELECT F.*,P.* FROM favorites F, products P WHERE F.users_id=? AND F.products_id = P.id");
 $query->bind_param('i', $users_id);
 $query->execute();
 $result = $query->get_result();
