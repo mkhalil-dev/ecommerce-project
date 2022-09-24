@@ -61,7 +61,7 @@ table {
 
 th, td {
   text-align: left;
-  padding: 8px;
+  padding: 38px;
 }
 
 .side-menu {
@@ -366,10 +366,31 @@ border-radius: 3px;
 }
 
 .ahmad {
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
-gap: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+  flex-wrap: wrap;
+  gap: 20px;
+  
+  margin: 35px auto;
+  padding: 30px;
+  min-height: 10%;    
+  align-items: center;
+  justify-content: center;
+  min-width: 100px;
+  background: white;
+  background-size: 95%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 3px;
+  
+  width: 87%;
+  background: white;
+  background-size: 95%;
+  justify-content: space-around;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 3px;
 }
 
 .btn-pr {
