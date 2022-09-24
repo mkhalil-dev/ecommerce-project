@@ -52,13 +52,15 @@ else if(pPath == "favorites.html"){
 else if(pPath == "wishlist.html"){
   wishlist()
 }
-else if(pPath == "editprofile.html"){
+else if(pPath == "editProfile.html"){
   editprofile()
 }
 else if(pPath == "cart.html"){
   cart()
 }else if(pPath == "checkout.html"){
   checkout()
+}else if(pPath == "thankyou.html"){
+  thankyou()
 }
 
 function checksignin(){
@@ -70,8 +72,8 @@ function checksignin(){
 
 function mainpage(){
   showDivs(slideIndex);
-  displayname()
   displaycatg()
+  searchname()
   let seen;
   let count = 0;
   const loadmore = document.getElementById("loadmore");
@@ -247,6 +249,7 @@ function signup(){
 }
 
 function resetreq(){
+  displaycatg();
   document.getElementById("submit").addEventListener('click', function (){
     let email = document.getElementById("email").value;
     let textbox = document.getElementById("req");
@@ -264,6 +267,7 @@ function resetreq(){
 }
 
 function resetpass(){
+  displaycatg();
   let token = window.location.search.substring(1);
   document.getElementById("submit").addEventListener('click', function (){
     let password = document.getElementById("password").value;
@@ -290,6 +294,7 @@ function displayname(){
 }
 
 function displaycatg(){
+  
   axios.post('http://localhost/ecommerce-project/ecommerce-server/get_categories.php')
   .then((response) => {
     let data = response.data
@@ -299,9 +304,26 @@ function displaycatg(){
   })
 }
 
-function productpage(){
+function searchname() {
   displayname()
+  document.getElementById("header-search").addEventListener('keypress', function(e){
+    axios.get('http://localhost/ecommerce-project/ecommerce-server/search_product.php?search='+e.target.value).then((response) => {
+      const data = response.data;
+      document.getElementById("results").innerHTML = "";
+        if(data){
+        data.forEach((item) => {
+          document.getElementById("results").insertAdjacentHTML('beforeend', '<a href="./product.html?='+item.id+'"><li>'+item.name+'</li></a>')
+        })
+        }else{
+          document.getElementById("results").innerHTML = "Nothing was found.";
+        }
+    })
+  })
+}
+
+function productpage(){
   displaycatg()
+  searchname()
   let id = window.location.search.substring(1).split("=")[1];
   let productid = new FormData();
   let qty = document.getElementById('qty').innerText;
@@ -382,6 +404,7 @@ function productpage(){
 
 function vouchers(){
   displaycatg()
+  searchname()
   axios.get('http://localhost/ecommerce-project/ecommerce-server/get_vouchers.php?id='+localStorage.getItem('userid'))
   .then((response) => {
     let data = response.data
@@ -413,7 +436,7 @@ function sendvoucher(){
 
 function favorites(){
   displaycatg()
-  displayname()
+  searchname()
   if(!checksignin()){
     document.getElementById('favorites').innerHTML = 'Sign in to view your favorites.'
     return;
@@ -444,7 +467,7 @@ function favorites(){
 
 function wishlist(){
   displaycatg()
-  displayname()
+  searchname()
   if(!checksignin()){
     document.getElementById('wishlist').innerHTML = 'Sign in to view your Wishlist.'
     return;
@@ -484,8 +507,8 @@ function favwish(productid, op){
 }
 
 function editprofile(){
-  displayname()
   displaycatg()
+  searchname()
   if(!checksignin()){
     window.location.href = "./index.html";
   }
@@ -522,7 +545,7 @@ function editprofile(){
 
 function cart(){
   displaycatg()
-  displayname()
+  searchname()
   let discount = {};
   let pids = [];
   axios.get('http://localhost/ecommerce-project/ecommerce-server/list_cart.php?id='+localStorage.getItem('userid')).then((response) => {
@@ -539,7 +562,9 @@ function cart(){
     }
     data.forEach((element) => {
       discount[element.id] = [element.code, element.discount_amount, false]
-      pids.push(element.id)
+      for (let i = 0; i < element.amount; i++){
+        pids.push(element.id)
+      }
       let totalprice = element.price * element.amount;
       total += totalprice;
       document.getElementById("shopcart").insertAdjacentHTML('beforeend', '<div class="item flex-display"><div class="item-img-name flex-display"><img style="border: 0px;" src="data:image/png;base64,'+element.image+'" alt=""><h3>'+element.name+'</h3></div><div class="item-qty-price flex-display"><a href="?id='+element.id+'#discount-popup"><button class="header-btn wider-btn wider-btn-editted wider-btn-editted-plus">Apply discount</button></a><h3 style = "padding: 0 10px;">QTY: '+element.amount+'</h3><h3>'+element.price+'$/Item</h3><h3>Total: <span id="total-'+element.id+'">'+totalprice+'</span>$</h3><button id="r-'+element.id+'"><i class="fa fa-trash" aria-hidden="true"></i></button></div></div>')
@@ -573,7 +598,7 @@ function cart(){
 
 function checkout(){
   displaycatg()
-  displayname()
+  searchname()
   let url = window.location.search.substring(1)
   let params = url.split("&")
   let finalprice = params[2].split("=")[1]
@@ -584,6 +609,18 @@ function checkout(){
   document.getElementById('discount').innerText = discount
   document.getElementById('total').innerText = total
   document.getElementById('buy').addEventListener('click', function(){
-    
+    this.removeEventListener('click', arguments.callee);
+    pids.forEach((pid) => {
+      let checkoutform = new FormData()
+      checkoutform.set('id', localStorage.getItem('userid'))
+      checkoutform.set('pid', pid)
+      axios.post('http://localhost/ecommerce-project/ecommerce-server/insert_purchases.php', checkoutform)
+    })
+    window.location.href = "./thankyou.html";
   })
+}
+
+function thankyou(){
+  displaycatg()
+  searchname()
 }
