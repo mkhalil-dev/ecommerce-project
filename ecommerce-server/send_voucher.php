@@ -29,17 +29,18 @@ $voucherid = $query->get_result()->fetch_assoc()['id'];
 if(!isset($voucherid) || !isset($ruserid)){
     $response = [];
     $response["success"] = false;
-    $response["message"] = "sser not found";
+    $response["message"] = "user or voucher not found";
     echo json_encode($response);
     exit();
 }
 
-$query = $mysqli->prepare("SELECT * FROM vouchers WHERE users_id=? AND id=?");
-$query->bind_param('ss', $id, $vid);
+$query = $mysqli->prepare("UPDATE vouchers SET users_id=? WHERE users_id=? AND id=?");
+$query->bind_param('sss', $ruserid, $id, $vid);
 $query->execute();
-$voucherid = $query->get_result()->fetch_assoc()['id'];
 
-
-
+$response = [];
+$response["success"] = true;
+$response["message"] = "voucher sent succesfully";
+echo json_encode($response);
 
 ?>
