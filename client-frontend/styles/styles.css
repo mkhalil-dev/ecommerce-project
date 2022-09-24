@@ -114,6 +114,7 @@ form{
     font-family: inherit;
     margin: 0;
 }
+
 .navbar a:hover, .dropdown:hover .dropbtn  {
     color: #67ACB4;
     border-radius: 20px;
