@@ -10,12 +10,14 @@ let yValues = []
 document.getElementById("addproduct").style.display = 'none'
 const homeBtn = document.getElementById("Home")
 const productsBtn = document.getElementById("Products")
+const categoriesBtn = document.getElementById("categories")
 const couponsBtn = document.getElementById("Coupons")
 const adsBtn = document.getElementById("Ads")
 const chatBtn = document.getElementById("Chat")
 
 const homeDiv = document.getElementById("homeDiv")
 const productsDiv = document.getElementById("productsDiv")
+const categoriesDiv = document.getElementById("categoriesDiv")
 const couponsDiv = document.getElementById("couponsDiv")
 const adsDiv = document.getElementById("adsDiv")
 const chatDiv = document.getElementById("chatDiv")
@@ -25,7 +27,7 @@ let pid;
 
 homeBtn.addEventListener("click", () => {
     homeDiv.style.display = 'block'
-
+    categoriesDiv.style.display = 'none'
     editproduct.style.display = 'none'
     createproduct.style.display = 'none'
     productsDiv.style.display = 'none'
@@ -35,7 +37,7 @@ homeBtn.addEventListener("click", () => {
 })
 productsBtn.addEventListener("click", () => {
     productsDiv.style.display = 'block'
-
+    categoriesDiv.style.display = 'none'
     editproduct.style.display = 'none'
     createproduct.style.display = 'none'
     homeDiv.style.display = 'none'
@@ -43,9 +45,19 @@ productsBtn.addEventListener("click", () => {
     adsDiv.style.display = 'none'
     chatDiv.style.display = 'none'
 })
+categoriesBtn.addEventListener("click", () => {
+  productsDiv.style.display = 'none'
+  categoriesDiv.style.display = 'block'
+  editproduct.style.display = 'none'
+  createproduct.style.display = 'none'
+  homeDiv.style.display = 'none'
+  couponsDiv.style.display = 'none'
+  adsDiv.style.display = 'none'
+  chatDiv.style.display = 'none'
+})
 couponsBtn.addEventListener("click", () => {
     couponsDiv.style.display = 'block'
-
+    categoriesDiv.style.display = 'none'
     editproduct.style.display = 'none'
     createproduct.style.display = 'none'
     homeDiv.style.display = 'none'
@@ -55,7 +67,7 @@ couponsBtn.addEventListener("click", () => {
 })
 adsBtn.addEventListener("click", () => {
     adsDiv.style.display = 'block'
-
+    categoriesDiv.style.display = 'none'
     editproduct.style.display = 'none'
     createproduct.style.display = 'none'
     homeDiv.style.display = 'none'
@@ -65,7 +77,7 @@ adsBtn.addEventListener("click", () => {
 })
 chatBtn.addEventListener("click", () => {
     chatDiv.style.display = 'block'
-    
+    categoriesDiv.style.display = 'none'
     editproduct.style.display = 'none'
     createproduct.style.display = 'none'
     homeDiv.style.display = 'none'
@@ -76,7 +88,7 @@ chatBtn.addEventListener("click", () => {
 
 document.getElementById("create-new-product").addEventListener("click", () => {
   createproduct.style.display = 'block'
-
+  categoriesDiv.style.display = 'none'
   editproduct.style.display = 'none'
   productsDiv.style.display = 'none'
   homeDiv.style.display = 'none'

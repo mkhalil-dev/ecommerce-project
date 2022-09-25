@@ -20,9 +20,11 @@
         <ul>
             <li><button value="dashboard" name="dashboard" id="Home">Home</button></li>
             <li><button value="products" name="products" id="Products">Products</button></li>
+            <li><button value="categories" name="categories" id="categories">Categories</button></li>
             <li><button value="coupons" name="coupons" id="Coupons">Coupons</button></li>
             <li><button value="ads" name="ads" id="Ads">Ads</button></li>
             <li><button value="chat" name="chat" id="Chat">Chat</button></li>
+            
         </ul>
     </div>
     <div class="container">
@@ -135,6 +137,34 @@
                     </div>
                 </div>
             </div>
+            <!-----------------  categories  ---------------->
+            <div class="content" id="categoriesDiv">                           
+                <div class="content-2">
+                  <div class="new-categories">
+                      <div class="title">
+                          <h2>Your Categories</h2>
+                          <div href="#" id="create-new-category" class="btn create-cat-btn">Create new category</div>
+                      </div>
+                      <div id="create-cat">
+                      <table id="display-cat">
+                          <tr>
+                              <th>Name</th>
+                          </tr>
+                          <tr>
+                            <td>
+                            body products
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                            hair products
+                            </td>
+                          </tr>
+                      </table>
+                    </div>
+                </div>
+            </div>
+       
                 <!----------------- COUPONS  ---------------->
             <div class="content" id="couponsDiv">
             </div>
@@ -176,6 +206,7 @@
                     <button id="e-create" type="submit" class="btn">Update</button> 
                 </div>
             </div>
+        </div>
 <script src="./scripts/index.js"></script>
 </body>
 </html>
