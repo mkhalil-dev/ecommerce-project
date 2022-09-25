@@ -1,3 +1,5 @@
+// Chart settings
+
 var xValues = ["Total Sales", "Total Income", "Total Views"];
 var yValues = [29, 49, 17];
 var barColors = ["red", "green","orange",];
@@ -21,7 +23,7 @@ new Chart("myChart", {
 });
 
 
-// show hide 
+// show hide main content when clicking sidebar buttons
 
 const homeBtn = document.getElementById("Home")
 const productsBtn = document.getElementById("Products")
@@ -75,6 +77,8 @@ chatBtn.addEventListener("click", () => {
     adsDiv.style.display = 'none'
     productsDiv.style.display = 'none'
 })
+
+// Show hide drop down menu
 
 const nav = document.getElementById("myLinks");
 const navBtn = document.getElementById("openNav")
