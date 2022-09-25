@@ -324,6 +324,13 @@ function displayname(){
     document.getElementById('signout').innerHTML = '<i class="fa fa-sign-in" aria-hidden="true"></i>'
     document.getElementById('signout').parentElement.href = "./signin.html"
   }
+  axios.get('http://localhost/ecommerce-project/ecommerce-server/user_type.php?id='+localStorage.getItem('userid')).then((response)=>{
+    const data = response.data
+    console.log(data)
+    if(data[0]['type']=="seller"){
+      document.getElementById("seller-dashboard").style.display = "block";
+    }
+  })
 }
 
 function displaycatg(){
