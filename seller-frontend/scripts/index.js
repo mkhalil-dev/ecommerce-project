@@ -92,3 +92,11 @@ mainContainer.addEventListener("click", () => {
   }
 })
 
+let sid = new FormData()
+sid.set('id', "4")
+axios.post('http://localhost/ecommerce-project/ecommerce-server/top_products.php', sid).then((response) => {
+  const data = response.data
+  data.forEach(item => {
+    document.getElementById("top-5-v").insertAdjacentHTML('beforeend', '<tr><td>'+item.name+'</td><td>'+item.id+'</td><td>'+item.view+'</td></tr>')
+  });
+})
