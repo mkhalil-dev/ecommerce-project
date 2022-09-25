@@ -24,6 +24,23 @@ function showDivs(n) {
   dots[slideIndex-1].className += " hero-white";
 }
 
+let statuspopup = document.getElementById("status-popup");
+function showPopUp(content, status){
+  statuspopup.innerText = content;
+  statuspopup.classList.remove("status-failer");
+  statuspopup.classList.remove("status-success");
+  if(status){
+    statuspopup.classList.add("status-success");
+  }else{
+    statuspopup.classList.add("status-failer");
+  }
+	statuspopup.style.display="block";
+    setTimeout(ClosePopUp, 3000);
+}
+function ClosePopUp(){
+	statuspopup.style.display="none";
+}
+
 let pPath = window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1);
 if(pPath == "index.html"){
   mainpage()
@@ -52,7 +69,7 @@ else if(pPath == "favorites.html"){
 else if(pPath == "wishlist.html"){
   wishlist()
 }
-else if(pPath == "editProfile.html"){
+else if(pPath == "editProfile.html" || pPath== "editprofile.html"){
   editprofile()
 }
 else if(pPath == "cart.html"){
@@ -105,19 +122,34 @@ function mainpage(){
       document.querySelectorAll(".add-to-favorites").forEach(button => {
         let productid = button.parentElement.parentElement.id.split("-")[1];
         button.addEventListener('click', function(){
+          if(!checksignin()){
+            showPopUp("Sign in to favorite", false)
+            return;
+          }
           favwish(productid, 'favorite')
+          showPopUp("Item favorited", true)
         });
       });
       document.querySelectorAll(".add-to-wishlist").forEach(button => {
         let productid = button.parentElement.parentElement.id.split("-")[1];
         button.addEventListener('click', function(){
+          if(!checksignin()){
+            showPopUp("Sign in to add to wishlist", false)
+            return;
+          }
           favwish(productid, 'wish')
+          showPopUp("Item added to wishlist", true)
         });
       });
       document.querySelectorAll(".add-to-cart").forEach(button => {
         let productid = button.parentElement.parentElement.id.split("-")[1];
         button.addEventListener('click', function(){
+          if(!checksignin()){
+            showPopUp("Sign in to add to cart", false)
+            return;
+          }
           atc(productid)
+          showPopUp("Item added to cart", true)
         });
       });
     }
@@ -355,16 +387,18 @@ function productpage(){
       this.removeEventListener('click', arguments.callee);
       axios.post('http://localhost/ecommerce-project/ecommerce-server/get_messages.php', msgreq).then((response) => {
         const data = response.data;
-        data.forEach((element) => {
-          let time = element.created_at.split(" ")[1].split(":")
-          time.pop()
-          time = time.join(":")
-          if(element.users_sent == localStorage.getItem('userid')){
-            document.querySelector(".form-container").insertAdjacentHTML('beforebegin', '<div class="container client"><p>'+element.content+'</p><span class="time-right">'+time+'</span></div>')
-          }else{
-            document.querySelector(".form-container").insertAdjacentHTML('beforebegin', '<div class="container darker seller"><p>'+element.content+'</p><span class="time-left">'+time+'</span></div>')
-          }
-        })
+        if(data){
+          data.forEach((element) => {
+            let time = element.created_at.split(" ")[1].split(":")
+            time.pop()
+            time = time.join(":")
+            if(element.users_sent == localStorage.getItem('userid')){
+              document.querySelector(".form-container").insertAdjacentHTML('beforebegin', '<div class="container client"><p>'+element.content+'</p><span class="time-right">'+time+'</span></div>')
+            }else{
+              document.querySelector(".form-container").insertAdjacentHTML('beforebegin', '<div class="container darker seller"><p>'+element.content+'</p><span class="time-left">'+time+'</span></div>')
+            }
+          })
+        }
       })
       document.getElementById("schat").addEventListener('click', function(){
         let content = document.getElementById("content").value;
@@ -393,11 +427,11 @@ function productpage(){
       atc.set('id', localStorage.getItem('userid'))
       atc.set('product', id)
       atc.set('amount', qty)
-      axios.post('http://localhost/ecommerce-project/ecommerce-server/add_to_cart.php', atc).then((response) => {
-      })
+      axios.post('http://localhost/ecommerce-project/ecommerce-server/add_to_cart.php', atc)
+      showPopUp("Item added to cart", true)
     }
     else{
-      console.log("sign in first")
+      showPopUp("Sign in to add to cart!", false);
     }
   })
 }
@@ -405,18 +439,31 @@ function productpage(){
 function vouchers(){
   displaycatg()
   searchname()
+  if(!checksignin()){
+    document.getElementById('vouchers').innerHTML = 'Sign in to view your vouchers.'
+    return;
+  }
   axios.get('http://localhost/ecommerce-project/ecommerce-server/get_vouchers.php?id='+localStorage.getItem('userid'))
   .then((response) => {
     let data = response.data
     if(data[0]){
       console.log(data)
       data.forEach((element) => {
-        document.getElementById('vouchers').insertAdjacentHTML('beforeend', '<div class="item flex-display"><div class="item-img-name flex-display"><img src="data:image/png;base64,'+element.image+'" alt="" style="border: 0px;"><h3>'+element.name+'</h3></div><div class="item-qty-price flex-display"><h3>'+element.price+'$</h3><button id="'+element.id+'" class="redeem header-btn wider-btn wider-btn-editted">Redeem</button><a href="?id='+element.id+'#popup2"><button class="header-btn wider-btn wider-btn-editted">Send voucher</button></a></div></div>')
+        document.getElementById('vouchers').insertAdjacentHTML('beforeend', '<div class="item flex-display"><div class="item-img-name flex-display"><img src="data:image/png;base64,'+element.image+'" alt="" style="border: 0px;"><h3>'+element.name+'</h3></div><div id="'+element.products_id+'" class="item-qty-price flex-display"><h3>'+element.price+'$</h3><button id="'+element.id+'" class="redeem header-btn wider-btn wider-btn-editted">Redeem</button><a href="?id='+element.id+'#popup2"><button class="header-btn wider-btn wider-btn-editted">Send voucher</button></a></div></div>')
       })
     }
     else{
       document.getElementById('vouchers').innerHTML = 'You dont have any Vouchers.'
     }
+    document.querySelectorAll(".redeem").forEach((item) => {
+      item.addEventListener('click', function(){
+        let voucher = new FormData();
+        voucher.set('users_id', localStorage.getItem('userid'))
+        voucher.set('products_id', item.parentElement.id)
+        voucher.set('id', item.id)
+        axios.post('http://localhost/ecommerce-project/ecommerce-server/insert_vouchers_purchases.php', voucher).then(() => window.location.href = "./thankyou.html")
+      })
+    })
   })
 
   let sendbtn = document.getElementById('send')
@@ -512,7 +559,8 @@ function editprofile(){
   displaycatg()
   searchname()
   if(!checksignin()){
-    window.location.href = "./index.html";
+    document.getElementById('edit').innerHTML = 'Sign in to edit your profile.'
+    return;
   }
   document.getElementById("edit").addEventListener('click', function (){
     let editp = new FormData();
