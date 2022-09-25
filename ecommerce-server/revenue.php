@@ -16,13 +16,13 @@ else{
     echo json_encode($response);
     exit();
 }
-
+$results = [];
+$results["success"] = true;
 $date = date('Y-m-d h:i:s');
 $timeunix = strtotime($date);
 $timeunix -= 604800;
 $date = gmdate("Y-m-d", $timeunix);
-$query = $mysqli->prepare("SELECT P.seller_id, P.price, COUNT(Query.products_id) as product_sold FROM (SELECT * FROM purchases WHERE created_at > '$date') as Query, products P WHERE P.id = QUERY.products_id AND P.seller_id = ? GROUP BY Query.products_id ORDER BY product_sold");
-$query->bind_param('s', $id);
+$query = $mysqli->prepare("SELECT P.seller_id, P.price, COUNT(Query.products_id) as product_sold FROM (SELECT * FROM purchases WHERE created_at > '$date') as Query, products P WHERE P.id = QUERY.products_id AND P.seller_id = '$id' GROUP BY Query.products_id ORDER BY product_sold");
 $query->execute();
 $result = $query->get_result();
 while($a = $result->fetch_assoc()){
@@ -33,26 +33,15 @@ if(isset($response)){
     foreach ($response as $x){
         $total += $x['price'] * $x['product_sold'];
     };
-    $response = [
-        "success" => true,
-        "revenue" => $total,
-        "period" => "week"
-    ];
-    echo json_encode($response);
+    $results["week"] = $total;
 }else{
-    $response = [
-        "success" => true,
-        "revenue" => 0,
-        "period" => "week"
-    ];
-    echo json_encode($response);
+    $results["week"] = 0;
 }
 
 
 
 $date = date('Y:m:01');
-$query = $mysqli->prepare("SELECT P.seller_id, P.price, COUNT(Query.products_id) as product_sold FROM (SELECT * FROM purchases WHERE created_at > '$date') as Query, products P WHERE P.id = QUERY.products_id AND P.seller_id = ? GROUP BY Query.products_id ORDER BY product_sold");
-$query->bind_param('s', $id);
+$query = $mysqli->prepare("SELECT P.seller_id, P.price, COUNT(Query.products_id) as product_sold FROM (SELECT * FROM purchases WHERE created_at > '$date') as Query, products P WHERE P.id = QUERY.products_id AND P.seller_id = '$id' GROUP BY Query.products_id ORDER BY product_sold");
 $query->execute();
 $result = $query->get_result();
 while($a = $result->fetch_assoc()){
@@ -64,25 +53,14 @@ if(isset($response2)){
     foreach ($response2 as $x){
         $total += $x['price'] * $x['product_sold'];
     };
-    $response2 = [
-        "success" => true,
-        "revenue" => $total,
-        "period" => "month"
-    ];
-    echo json_encode($response2);
+    $results["month"] = $total;
 }else{
-    $response2 = [
-        "success" => true,
-        "revenue" => 0,
-        "period" => "month"
-    ];
-    echo json_encode($response2);
+    $results["month"] = 0;
 }
 
 
 $date = date('Y:01:01');
-$query = $mysqli->prepare("SELECT P.seller_id, P.price, COUNT(Query.products_id) as product_sold FROM (SELECT * FROM purchases WHERE created_at > '$date') as Query, products P WHERE P.id = QUERY.products_id AND P.seller_id = ? GROUP BY Query.products_id ORDER BY product_sold");
-$query->bind_param('s', $id);
+$query = $mysqli->prepare("SELECT P.seller_id, P.price, COUNT(Query.products_id) as product_sold FROM (SELECT * FROM purchases WHERE created_at > '$date') as Query, products P WHERE P.id = QUERY.products_id AND P.seller_id = '$id' GROUP BY Query.products_id ORDER BY product_sold");
 $query->execute();
 $result = $query->get_result();
 while($a = $result->fetch_assoc()){
@@ -94,19 +72,10 @@ $total = 0;
 foreach ($response3 as $x){
     $total += $x['price'] * $x['product_sold'];
 };
-$response3 = [
-    "success" => true,
-    "revenue" => $total,
-    "period" => "year"
-];
-echo json_encode($response3);
+$results["year"] = $total;
 }else{
-    $response3 = [
-        "success" => true,
-        "revenue" => 0,
-        "period" => "year"
-    ];
-    echo json_encode($response3);
+    $results["year"] = 0;
 }
+echo json_encode($results);
 
 ?>
