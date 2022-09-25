@@ -673,10 +673,7 @@ color: white;
   border: 2px solid #67acb4;
   background: #67acb4;
   color: white;
-  /* padding: 10px 1px; */
-  /* margin: 25px 0px; */
   text-align: center;
-  /* font-size:11px; */
   min-width: 62px;
   border-radius: 3px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -687,13 +684,7 @@ color: white;
   background: white;
   border: 2px solid #67acb4;
   }
-
-
-
 }
-
-
-
 
 .btn-form {
 color: #67acb4;
