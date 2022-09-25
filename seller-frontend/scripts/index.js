@@ -4,6 +4,12 @@ let xValues = ["Total Sales", "Total Income", "Total Views"];
 let barColors = ["red", "green","orange",];
 let yValues = []
 
+axios.post('http://localhost/ecommerce-project/ecommerce-server/user_type.php?id='+localStorage.getItem('userid')).then((response)=>{
+  const data = response.data
+  if(data[0]["type"] != "seller"){
+    document.querySelector(".container").innerHTML = "NOT A SELLER"
+  }
+})
 
 
 // show hide main content when clicking sidebar buttons
