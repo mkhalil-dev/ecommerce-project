@@ -2,10 +2,9 @@
 
 include('connection.php');
 
-if(isset($_POST['id'])){
+if (isset($_POST['id'])) {
     $id = $_POST['id'];
-}
-else{
+} else {
     $response = [
         "success" => false,
         "message" => "missing post elements"
@@ -14,12 +13,12 @@ else{
     exit();
 }
 
-$query = $mysqli->prepare("UPDATE `users` SET ban=TRUE where `id`=?;");
+$query = $mysqli->prepare("UPDATE `users` SET ban=NULL where `id`=?;");
 $query->bind_param("i", $id);
 $query->execute();
 
 $response = [];
 $response["success"] = true;
-$response["message"] = "client banned succesfully";
+$response["message"] = "client unbanned succesfully";
 
 echo json_encode($response);

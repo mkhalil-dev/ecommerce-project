@@ -42,5 +42,3 @@ $response["success"] = true;
 $response["message"] = "user created succesfully";
 
 echo json_encode($response);
-
-?>
