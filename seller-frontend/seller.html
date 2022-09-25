@@ -85,16 +85,16 @@
                                 <th>Revenue</th>
                             </tr>
                             <tr>
-                                <td>Week</td>
-                                <td id="week"></td>
+                                <td style="text-align: center;">Week</td>
+                                <td id="week" style="text-align: center;"></td>
                             </tr>
                             <tr>
-                                <td>Month</td>
-                                <td id="month"></td>
+                                <td style="text-align: center;">Month</td>
+                                <td id="month" style="text-align: center;"></td>
                             </tr>
                             <tr>
-                                <td>Year</td>
-                                <td id="year"></td>
+                                <td style="text-align: center;">Year</td>
+                                <td style="text-align: center;" id="year"></td>
                             </tr>
                         </table>
                     </div>
@@ -113,15 +113,7 @@
                 </div>
             </div>
             <!-----------------  products  ---------------->
-            <div class="content" id="productsDiv">                
-                <form class="form">
-                    <input type="file" name="photo" class="btn" required>
-                    <input type="text" name="name" placeholder="Enter name" class="txt-form" required>
-                    <input type="text" name="category" placeholder="Choose category" class="txt-form" required>
-                    <input type="text" name="description" class="txt-form" placeholder="Enter description">
-                    <input type="number" placeholder="Enter price" name="price" class="txt-form" required>
-                    <button type="submit" class="btn">submit</button>
-                </form>            
+            <div class="content" id="productsDiv">                           
                     <div class="content-2">
                       <div class="new-products">
                           <div class="title">
@@ -192,6 +184,15 @@
                         <button class="btn-pr" id="btn-chat">Send</button>
                     </div>
                 </div>
+            </div>
+            <!-- ADD PRODUCTS -->
+            <div class="content" id="addproduct">
+                    <input type="file" name="photo" class="btn" required>
+                    <input type="text" name="name" placeholder="Enter name" class="txt-form" required>
+                    <input type="text" name="category" placeholder="Choose category" class="txt-form" required>
+                    <input type="text" name="description" class="txt-form" placeholder="Enter description">
+                    <input type="number" placeholder="Enter price" name="price" class="txt-form" required>
+                    <button type="submit" class="btn">submit</button> 
             </div>
 <script src="./scripts/index.js"></script>
 </body>

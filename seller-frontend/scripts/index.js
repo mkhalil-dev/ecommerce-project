@@ -24,7 +24,7 @@ new Chart("myChart", {
 
 
 // show hide main content when clicking sidebar buttons
-
+document.getElementById("addproduct").style.display = 'none'
 const homeBtn = document.getElementById("Home")
 const productsBtn = document.getElementById("Products")
 const couponsBtn = document.getElementById("Coupons")
@@ -78,6 +78,15 @@ chatBtn.addEventListener("click", () => {
     productsDiv.style.display = 'none'
 })
 
+document.getElementById("btn-ad").addEventListener("click", () => {
+  document.getElementById("addproduct").style.display = 'block';
+  productsDiv.style.display = 'none'
+  homeDiv.style.display = 'none'
+  couponsDiv.style.display = 'none'
+  adsDiv.style.display = 'none'
+  chatDiv.style.display = 'none'
+})
+
 // Show hide drop down menu
 
 const nav = document.getElementById("myLinks");
@@ -101,7 +110,7 @@ sid.set('id', "4")
 axios.post('http://localhost/ecommerce-project/ecommerce-server/top_products.php', sid).then((response) => {
   const data = response.data
   data.forEach(item => {
-    document.getElementById("top-5-v").insertAdjacentHTML('beforeend', '<tr><td>'+item.name+'</td><td>'+item.id+'</td><td>'+item.view+'</td></tr>')
+    document.getElementById("top-5-v").insertAdjacentHTML('beforeend', '<tr><td style="text-align: center;">'+item.name+'</td><td style="text-align: center;">'+item.id+'</td><td style="text-align: center;">'+item.view+'</td></tr>')
   });
 })
 
