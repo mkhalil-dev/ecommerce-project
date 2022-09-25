@@ -1,8 +1,8 @@
 // Chart settings
 
-var xValues = ["Total Sales", "Total Income", "Total Views"];
-var barColors = ["red", "green","orange",];
-
+let xValues = ["Total Sales", "Total Income", "Total Views"];
+let barColors = ["red", "green","orange",];
+let yValues = []
 
 
 
@@ -114,7 +114,12 @@ axios.post('http://localhost/ecommerce-project/ecommerce-server/revenue.php', si
 axios.post('http://localhost/ecommerce-project/ecommerce-server/seller_views.php', sid).then((response) => {
   const data = response.data
   document.getElementById("view").innerText = data[0]
-  var yValues = [29, 49, data[0]];
+  yValues.push = [data[0]];
+  displaychart(yValues)
+})
+
+function displaychart(array){
+  if(array.length == "3"){
   new Chart("myChart", {
     type: "bar",
     data: {
@@ -131,8 +136,9 @@ axios.post('http://localhost/ecommerce-project/ecommerce-server/seller_views.php
             text: "Statistics"
         }
     }
-});
-})
+  });
+}
+}
 
 axios.post('http://localhost/ecommerce-project/ecommerce-server/get_seller_ads.php', sid).then((newresp) => {
   const newrespdata = newresp.data
@@ -164,17 +170,18 @@ axios.post('http://localhost/ecommerce-project/ecommerce-server/get_seller_produ
       reader.readAsDataURL(file);
     });
     document.getElementById("create-"+item.id).addEventListener('click', (e) => {
-      console.log(e.target.id.split("-")[1])
       const perc = document.getElementById('coup-percent-'+e.target.id.split("-")[1]).value
       const code = document.getElementById('code-discount-'+e.target.id.split("-")[1]).value
       let discountform = new FormData()
       discountform.set('amount', perc)
       discountform.set('code', code)
+      console.log(perc, code)
       if(perc > 100 || perc < 1){
         return;
       } else if(!perc || !code){
         return;
       }
+      console.log("hi")
       axios.post('http://localhost/ecommerce-project/ecommerce-server/create_discounts.php', discountform)
     });
   })
@@ -182,15 +189,14 @@ axios.post('http://localhost/ecommerce-project/ecommerce-server/get_seller_produ
 
 
 
-axios.post('http://localhost/ecommerce-project/ecommerce-server/get_seller_ads.php', sid).then((newresp) => {
+axios.post('http://localhost/ecommerce-project/ecommerce-server/seller_discounts.php', sid).then((newresp) => {
   const newrespdata = newresp.data
   if(newrespdata){
     newrespdata.forEach((ad)=> {
-      adsDiv.insertAdjacentHTML('beforeend', '<div class="cards-pr"><h1>'+ad.name+'</h1><div><img src="data:image/png;base64,'+ad.ad+'" style="max-width: 100%; max-height: 100%;" alt=""></div><button class="btn-pr" id="btn-'+ad.id+'">Delete Ad</button></div>')
-      document.getElementById("btn-"+ad.id).addEventListener('click', function(){
-        axios.post('http://localhost/ecommerce-project/ecommerce-server/remove_ads.php?id='+ad.id).then((response) => {
-          console.log(response)
-        })
+      console.log(ad)
+      couponsDiv.insertAdjacentHTML('beforeend', '<div class="cards-pr"><h1>'+ad.name+'</h1><h3>'+ad.code+'</h3><h5>'+ad.amount+'%</h5><div><img src="data:image/png;base64,'+ad.image+'" style="max-width: 100%; max-height: 100%;" alt=""></div><button class="btn-pr" id="coupon-delete-'+ad.id+'">Delete Coupon</button></div>')
+      document.getElementById("coupon-delete-"+ad.id).addEventListener('click', function(){
+        console.log("TBD")
       })
     })
   }
