@@ -21,7 +21,7 @@ new Chart("myChart", {
 });
 
 
-// show hide
+// show hide 
 
 const homeBtn = document.getElementById("Home")
 const productsBtn = document.getElementById("Products")
