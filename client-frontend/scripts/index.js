@@ -91,6 +91,7 @@ function mainpage(){
   showDivs(slideIndex);
   displaycatg()
   searchname()
+  showads()
   let seen;
   let count = 0;
   const loadmore = document.getElementById("loadmore");
@@ -351,6 +352,14 @@ function searchname() {
         }
     })
   })
+}
+
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
 }
 
 function productpage(){
@@ -687,4 +696,14 @@ function checkout(){
 function thankyou(){
   displaycatg()
   searchname()
+}
+
+function showads(){
+  axios.get('http://localhost/ecommerce-project/ecommerce-server/get_ads.php').then((response) => {
+    const data = response.data;
+    data.forEach((ad, i) => {
+      document.getElementById("ad").insertAdjacentHTML('beforebegin', '<img class="mySlides" src="data:image/png;base64,'+ad.image+'" ></img>')
+      document.getElementById("ad").insertAdjacentHTML('beforeend', '<span class="hero-badge demo hero-border hero-transparent hero-hover-white" onclick="currentDiv('+(i+2)+')"></span>')
+    })
+  })
 }
