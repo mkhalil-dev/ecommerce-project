@@ -2,8 +2,8 @@
 
 include('connection.php');
 
-if (isset($_POST['seller_id'])) {
-    $seller_id = $_POST['seller_id'];
+if (isset($_POST['id'])) {
+    $seller_id = $_POST['id'];
 } else {
     $response = [
         "success" => false,

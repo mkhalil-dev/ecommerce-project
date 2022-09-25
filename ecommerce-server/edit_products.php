@@ -2,7 +2,7 @@
 
 include('connection.php');
 
-if (isset($_POST['name']) && (isset($_POST['price']) || isset($_POST['desc']) || isset($_POST['name']) || isset($_POST['categories_id']) || isset($_POST['image']))) {
+if (isset($_POST['id']) && (isset($_POST['price']) || isset($_POST['desc']) || isset($_POST['name']) || isset($_POST['categories_id']) || isset($_POST['image']))) {
 
     $id = $_POST['id'];
 
@@ -20,38 +20,38 @@ if (isset($_POST['name']) && (isset($_POST['price']) || isset($_POST['desc']) ||
         exit();
     }
 
-    if (isset($_POST['price'])) {
+    if ($_POST['price']) {
         $price = $_POST['price'];
-        $query = $mysqli->prepare("UPDATE products SET price=? WHERE name=?");
+        $query = $mysqli->prepare("UPDATE products SET price=? WHERE id=?");
         $query->bind_param("ii", $price, $id);
         $query->execute();
     }
 
-    if (isset($_POST['desc'])) {
+    if ($_POST['desc']) {
         $desc = $_POST['desc'];
-        $query = $mysqli->prepare("UPDATE products SET `desc`=? WHERE name=?");
+        $query = $mysqli->prepare("UPDATE products SET `desc`=? WHERE id=?");
         $query->bind_param("si", $desc, $id);
         $query->execute();
     }
 
-    if (isset($_POST['categories_id'])) {
+    if ($_POST['categories_id']) {
         $categories_id = $_POST["categories_id"];
-        $query = $mysqli->prepare("UPDATE products SET categories_id=? WHERE name=?");
+        $query = $mysqli->prepare("UPDATE products SET categories_id=? WHERE id=?");
         $query->bind_param("ii", $categories_id, $id);
         $query->execute();
     }
 
-    if (isset($_POST['image'])) {
+    if ($_POST['image'] != "undefined") {
         $image = $_POST["image"];
-        $query = $mysqli->prepare("UPDATE products SET image=? WHERE name=?");
+        $query = $mysqli->prepare("UPDATE products SET image=? WHERE id=?");
         $query->bind_param("si", $image, $id);
         $query->execute();
     }
 
-    if (isset($_POST['name'])) {
+    if ($_POST['name']) {
         $newname = $_POST['name'];
-        $query = $mysqli->prepare("UPDATE products SET name=? WHERE name=?");
-        $query->bind_param("si", $name, $id);
+        $query = $mysqli->prepare("UPDATE products SET name=? WHERE id=?");
+        $query->bind_param("si", $newname, $id);
         $query->execute();
     }
 } else {
