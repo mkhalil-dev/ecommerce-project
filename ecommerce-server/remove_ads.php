@@ -3,9 +3,9 @@
 include('connection.php');
 ini_set('display_errors', 1);
 
-if (isset($_POST['id'])) {
+if (isset($_GET['id'])) {
 
-    $id = $_POST['id'];
+    $id = $_GET['id'];
 
     //Check Product id
     $checkid = $mysqli->prepare("SELECT id FROM products WHERE id=?");
@@ -16,21 +16,18 @@ if (isset($_POST['id'])) {
     if (!isset($result['id'])) {
         $response = [];
         $response["success"] = false;
-        $response["message"] = "product does not exist";
+        $response["message"] = "ad does not exist";
         echo json_encode($response);
         exit();
     }
+    $query = $mysqli->prepare("UPDATE products SET ad=null WHERE id=?");
+    $query->bind_param("i", $id);
+    $query->execute();
 
-    if (isset($_POST['id'])) {
-        $id = $_POST['id'];
-        $query = $mysqli->prepare("UPDATE products SET ad=null WHERE id=?");
-        $query->bind_param("i", $id);
-        $query->execute();
-    }
 } else {
     $response = [];
     $response["success"] = false;
-    $response["message"] = "missing elements";
+    $response["message"] = "missing get elements";
     echo json_encode($response);
     exit();
 }
