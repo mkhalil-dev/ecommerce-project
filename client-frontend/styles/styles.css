@@ -148,7 +148,10 @@ form{
     margin-right: 100px;
     margin-left: 100px;
 }
-
+#seller-dashboard{
+    width: fit-content;
+    /*display: none;*/
+}
 /* hero section */
 
 .mySlides {display:none}
