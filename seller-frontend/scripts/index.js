@@ -100,3 +100,7 @@ axios.post('http://localhost/ecommerce-project/ecommerce-server/top_products.php
     document.getElementById("top-5-v").insertAdjacentHTML('beforeend', '<tr><td>'+item.name+'</td><td>'+item.id+'</td><td>'+item.view+'</td></tr>')
   });
 })
+
+axios.post('http://localhost/ecommerce-project/ecommerce-server/revenue.php', sid).then((response) => {
+  const data = response.data
+})
