@@ -150,7 +150,7 @@ form{
 }
 #seller-dashboard{
     width: fit-content;
-    /*display: none;*/
+    display: none;
 }
 /* hero section */
 
@@ -164,7 +164,7 @@ form{
     padding:0
 }
 .hero-content{
-    height: auto;
+    height: 65vh;
     width: 100%;
 }
 .hero-display-container{
