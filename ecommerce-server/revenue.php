@@ -16,7 +16,8 @@ else{
     echo json_encode($response);
     exit();
 }
-
+$results = [];
+$results["success"] = true;
 $date = date('Y-m-d h:i:s');
 $timeunix = strtotime($date);
 $timeunix -= 604800;
@@ -32,19 +33,9 @@ if(isset($response)){
     foreach ($response as $x){
         $total += $x['price'] * $x['product_sold'];
     };
-    $response = [
-        "success" => true,
-        "revenue" => $total,
-        "period" => "week"
-    ];
-    echo json_encode($response);
+    $results["week"] = $total;
 }else{
-    $response = [
-        "success" => true,
-        "revenue" => 0,
-        "period" => "week"
-    ];
-    echo json_encode($response);
+    $results["week"] = 0;
 }
 
 
@@ -62,19 +53,9 @@ if(isset($response2)){
     foreach ($response2 as $x){
         $total += $x['price'] * $x['product_sold'];
     };
-    $response2 = [
-        "success" => true,
-        "revenue" => $total,
-        "period" => "month"
-    ];
-    echo json_encode($response2);
+    $results["month"] = $total;
 }else{
-    $response2 = [
-        "success" => true,
-        "revenue" => 0,
-        "period" => "month"
-    ];
-    echo json_encode($response2);
+    $results["month"] = 0;
 }
 
 
@@ -91,19 +72,10 @@ $total = 0;
 foreach ($response3 as $x){
     $total += $x['price'] * $x['product_sold'];
 };
-$response3 = [
-    "success" => true,
-    "revenue" => $total,
-    "period" => "year"
-];
-echo json_encode($response3);
+$results["year"] = $total;
 }else{
-    $response3 = [
-        "success" => true,
-        "revenue" => 0,
-        "period" => "year"
-    ];
-    echo json_encode($response3);
+    $results["year"] = 0;
 }
+echo json_encode($results);
 
 ?>
