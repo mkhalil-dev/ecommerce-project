@@ -2,7 +2,20 @@
 
 include("connection.php");
 
-$query = $mysqli->prepare("SELECT * FROM products order by view desc limit 5");
+if(isset($_POST['id'])){
+    $id = $_POST['id'];
+}
+else{
+    $response = [
+        "success" => false,
+        "message" => "missing post elements"
+    ];
+    echo json_encode($response);
+    exit();
+}
+
+$query = $mysqli->prepare("SELECT P.name, P.id, P.view FROM products P WHERE seller_id = ? order by view desc limit 5");
+$query->bind_param('s', $id);
 $query->execute();
 $array = $query->get_result();
 
