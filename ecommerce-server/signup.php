@@ -50,5 +50,3 @@ $response["message"] = "user created succesfully";
 $response["userid"] = $userid;
 
 echo json_encode($response);
-
-?>
