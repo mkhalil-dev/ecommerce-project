@@ -13,7 +13,7 @@ else{
     exit();
 }
 
-$query = $mysqli->prepare('SELECT * FROM products WHERE name like "%'.$search.'%" ORDER BY name ASC');
+$query = $mysqli->prepare('SELECT subquery.* FROM (SELECT * FROM products WHERE name like "%'.$search.'%" ORDER BY name ASC) as subquery LIMIT 4;');
 $query->execute();
 $result = $query->get_result();
 

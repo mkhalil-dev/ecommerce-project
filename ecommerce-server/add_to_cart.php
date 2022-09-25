@@ -2,10 +2,11 @@
 include('connection.php');
 
 //Get Email and Product
-if (isset($_POST['id']) && isset($_POST['product'])) {
+if(isset($_POST['id']) && isset($_POST['product'])){
     $id = $_POST['id'];
     $product = $_POST['product'];
-} else {
+}
+else{
     $response = [];
     $response["success"] = false;
     $response["message"] = "missing elements";
@@ -26,7 +27,7 @@ $getproduct->execute();
 $productid = $getproduct->get_result()->fetch_assoc()['id'];
 
 //Checking if user and product exists
-if (!$productid) {
+if(!$productid){
     $response = [
         "success" => false,
         "message" => "product not found"
@@ -42,11 +43,11 @@ $userverf->execute();
 $result = $userverf->get_result()->fetch_assoc();
 
 //IF ALREADY added to cart only increase the amount by 1
-if (isset($result['amount'])) {
+if(isset($result['amount'])){
     $amount = $result['amount'];
-    if (!isset($_POST['amount'])) {
+    if(!isset($_POST['amount'])){
         $amount += 1;
-    } else {
+    }else{
         $amount += $_POST['amount'];
     }
     $query = $mysqli->prepare("UPDATE add_to_cart SET amount=? WHERE users_id=? AND products_id=?");
@@ -57,11 +58,12 @@ if (isset($result['amount'])) {
         "message" => "item added to cart"
     ];
     echo json_encode($response);
-} else {
-    if (!isset($_POST['amount'])) {
+}
+else{
+    if(!isset($_POST['amount'])){
         $query = $mysqli->prepare("INSERT INTO `add_to_cart`(`users_id`, `products_id`) VALUES (?, ?);");
         $query->bind_param("ss", $userid, $productid);
-    } else {
+    }else{
         $query = $mysqli->prepare("INSERT INTO `add_to_cart`(`users_id`, `products_id`, `amount`) VALUES (?, ?, ?);");
         $query->bind_param("ssi", $userid, $productid, $_POST['amount']);
     }
@@ -72,3 +74,5 @@ if (isset($result['amount'])) {
     ];
     echo json_encode($response);
 }
+
+?>

@@ -2,9 +2,9 @@
 include('connection.php');
 
 //Get Email and Product
-if(isset($_POST['email']) && isset($_POST['product'])){
-    $email = $_POST['email'];
-    $product = $_POST['product'];
+if(isset($_GET['id']) && isset($_GET['product'])){
+    $id = $_GET['id'];
+    $product = $_GET['product'];
 }
 else{
     $response = [];
@@ -15,8 +15,8 @@ else{
 }
 
 //Getting user ID
-$getuser = $mysqli->prepare("SELECT id FROM users WHERE email=?");
-$getuser->bind_param('s', $email);
+$getuser = $mysqli->prepare("SELECT id FROM users WHERE id=?");
+$getuser->bind_param('s', $id);
 $getuser->execute();
 $userid = $getuser->get_result()->fetch_assoc()['id'];
 

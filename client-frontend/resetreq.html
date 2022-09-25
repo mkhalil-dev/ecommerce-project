@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SE e-commerce</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="icon" href="./assets/logo.png.crdownload"type="image/icon type">
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!--Start header section-->
+    <section class="only-nav-header">
+        <div class="pre-hero-elements flex-display-column">
+            <div class="header-content flex-display">
+                <div class="logo flex-display">
+                    <img src="./assets/logo.png.crdownload">
+                    <h3>SE e-commerce</h3>
+                </div>
+                <div class="navbar flex-display">
+                    <div class="nav-anchor"><a href="#home">Home</a></div>
+                    <div class="dropdown">
+                        <button class="dropbtn">Categories<i class="fa fa-caret-down"></i></button>
+                        <div id="catg" class="dropdown-content">
+                        </div>
+                    </div> 
+                    <div class="nav-anchor"><a href="#home">Contact us</a></div>
+                    <div class="nav-anchor"><a href="./signin.html"><button class="header-btn wider-btn only-nav-header-btn">Sign in</button></a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--End header section-->
+
+    <div class="black-line-div  black-line-div-editted"></div>
+
+    <!--Start reset form section -->
+    <section class="form-container flex-display-column">
+        <h1>password reset</h1>
+        <div class="form-borders">
+            <div id="req"></div>
+            <div class="form-part flex-display-column">
+                <label for="email-address">Reset password</label>
+                <input type="text" name="email-address" id="email" placeholder="Your Email Address">
+            </div>
+            <div class="form-part flex-display-column">
+                <button id="submit" class="header-btn wider-btn wider-btn-plus"><a href="">Submit</a></button>
+            </div>
+        </div>
+    </section>
+    <!--End reset form section-->
+
+    <div class="black-line-div  black-line-div-editted"></div>
+
+    <!--Start footer section-->
+    <section class="footer flex-display">
+        <div class="logo flex-display">
+            <img src="./assets/logo.png.crdownload">
+            <h3>SE e-commerce</h3>
+        </div>
+        <div class="footer-ul-socialmedia flex-display">
+            Social media:
+            <ul>
+                <li><a href=""><i class="fa fa-facebook-square" aria-hidden="true"></i></a></li>
+                <li><a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                <li><a href=""><i class="fa fa-twitter-square" aria-hidden="true"></i></a></li>
+            </ul>
+        </div>
+    </section>
+    <!--End footer section-->
+
+    <script src="scripts/index.js"></script>
+</body>
+</html>

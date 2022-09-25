@@ -14,7 +14,7 @@ else{
     exit();
 }
 
-$query = $mysqli->prepare("SELECT V.*, P.name, P.image FROM vouchers V, products P WHERE P.id = V.products_id AND V.users_id = ?");
+$query = $mysqli->prepare("SELECT V.*, P.name, P.image, P.price FROM vouchers V, products P WHERE P.id = V.products_id AND V.users_id = ?");
 $query->bind_param('s', $id);
 $query->execute();
 $result = $query->get_result();

@@ -2,14 +2,15 @@
 
 include('connection.php');
 
-if(isset($_GET['token']) && isset($_POST['password'])){
-    $token = $_GET['token'];
+if(isset($_POST['token']) && isset($_POST['password'])){
+    $token = $_POST['token'];
     $password = hash("sha256", $_POST["password"]);
 }
 else{
     $response = [];
     $response["success"] = false;
     $response["message"] = "missing elements";
+    $response["token"] = $token;
     echo json_encode($response);
     exit();
 }
@@ -22,6 +23,7 @@ if(!$userid){
     $response = [];
     $response["success"] = false;
     $response["message"] = "Invalid Token";
+    $response["token"] = $token;
     echo json_encode($response);
     exit();
 }
