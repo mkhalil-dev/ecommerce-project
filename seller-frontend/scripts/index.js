@@ -114,7 +114,21 @@ axios.post('http://localhost/ecommerce-project/ecommerce-server/revenue.php', si
 axios.post('http://localhost/ecommerce-project/ecommerce-server/seller_views.php', sid).then((response) => {
   const data = response.data
   document.getElementById("view").innerText = data[0]
-  yValues.push = [data[0]];
+  yValues[2] = data[0];
+  displaychart(yValues)
+})
+
+axios.post('http://localhost/ecommerce-project/ecommerce-server/sellers_sold.php', sid).then((response) => {
+  const data = response.data
+  document.getElementById("total-sales").innerText = data[0]['count(pr.name)']
+  yValues[0] = data[0]['count(pr.name)'];
+  displaychart(yValues)
+})
+
+axios.post('http://localhost/ecommerce-project/ecommerce-server/sellers_income.php', sid).then((response) => {
+  const data = response.data
+  document.getElementById("total-income").innerText = data[0]['SUM(pr.price)']
+  yValues[1] = data[0]['SUM(pr.price)'];
   displaychart(yValues)
 })
 
