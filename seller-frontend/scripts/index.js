@@ -19,12 +19,15 @@ const productsDiv = document.getElementById("productsDiv")
 const couponsDiv = document.getElementById("couponsDiv")
 const adsDiv = document.getElementById("adsDiv")
 const chatDiv = document.getElementById("chatDiv")
-const editproduct = document.getElementById("addproduct")
+const createproduct = document.getElementById("addproduct")
+const editproduct = document.getElementById("editproduct")
+let pid;
 
 homeBtn.addEventListener("click", () => {
     homeDiv.style.display = 'block'
 
     editproduct.style.display = 'none'
+    createproduct.style.display = 'none'
     productsDiv.style.display = 'none'
     couponsDiv.style.display = 'none'
     adsDiv.style.display = 'none'
@@ -34,6 +37,7 @@ productsBtn.addEventListener("click", () => {
     productsDiv.style.display = 'block'
 
     editproduct.style.display = 'none'
+    createproduct.style.display = 'none'
     homeDiv.style.display = 'none'
     couponsDiv.style.display = 'none'
     adsDiv.style.display = 'none'
@@ -43,6 +47,7 @@ couponsBtn.addEventListener("click", () => {
     couponsDiv.style.display = 'block'
 
     editproduct.style.display = 'none'
+    createproduct.style.display = 'none'
     homeDiv.style.display = 'none'
     adsDiv.style.display = 'none'
     productsDiv.style.display = 'none'
@@ -52,6 +57,7 @@ adsBtn.addEventListener("click", () => {
     adsDiv.style.display = 'block'
 
     editproduct.style.display = 'none'
+    createproduct.style.display = 'none'
     homeDiv.style.display = 'none'
     couponsDiv.style.display = 'none'
     productsDiv.style.display = 'none'
@@ -59,23 +65,25 @@ adsBtn.addEventListener("click", () => {
 })
 chatBtn.addEventListener("click", () => {
     chatDiv.style.display = 'block'
-
+    
     editproduct.style.display = 'none'
+    createproduct.style.display = 'none'
     homeDiv.style.display = 'none'
     couponsDiv.style.display = 'none'
     adsDiv.style.display = 'none'
     productsDiv.style.display = 'none'
 })
 
-// document.getElementById("edit-prod").addEventListener("click", () => {
-//   editproduct.style.display = 'block'
+document.getElementById("create-new-product").addEventListener("click", () => {
+  createproduct.style.display = 'block'
 
-//   productsDiv.style.display = 'none'
-//   homeDiv.style.display = 'none'
-//   couponsDiv.style.display = 'none'
-//   adsDiv.style.display = 'none'
-//   chatDiv.style.display = 'none'
-// })
+  editproduct.style.display = 'none'
+  productsDiv.style.display = 'none'
+  homeDiv.style.display = 'none'
+  couponsDiv.style.display = 'none'
+  adsDiv.style.display = 'none'
+  chatDiv.style.display = 'none'
+})
 
 // Show hide drop down menu
 
@@ -171,7 +179,7 @@ axios.post('http://localhost/ecommerce-project/ecommerce-server/get_seller_ads.p
 axios.post('http://localhost/ecommerce-project/ecommerce-server/get_seller_products.php', sid).then((response) => {
   const data = response.data
   data.forEach((item) => {
-    document.getElementById("display-pro").insertAdjacentHTML('beforeend', '<tr><td>'+item.name+'</td><td>'+item.desc+'</td><td>'+item.price+'</td><td id="activead"><input type="file" name="createad" id="createad-'+item.id+'" style="display:none;" accept="image/png, image/jpeg"><label for="createad-'+item.id+'" class="btn-table" size="12" id="btn-ad">Create Ad</label></td><td><input type="number" id="coup-percent-'+item.id+'" min="1" max="100" size="10.5%" placeholder="enter %" style="border:1px solid #67acb4; border-radius: 3px; margin: 2px;"><input type="text" placeholder="Code" id="code-discount-'+item.id+'" size="10.5%" style=" border:1px solid #67acb4; border-radius: 3px; margin: 2px;"><button id="create-'+item.id+'" class="btn-table" width="12" id="btn-coupon">Create Coupon</button></td><td><button id="edit-'+item.id+'" class="btn-table" size="12">Edit Product</button></td></tr>')
+    document.getElementById("display-pro").insertAdjacentHTML('beforeend', '<tr><td>'+item.name+'</td><td>'+item.desc+'</td><td>'+item.price+'</td><td id="activead"><input type="file" name="createad" id="createad-'+item.id+'" style="display:none;" accept="image/png, image/jpeg"><label for="createad-'+item.id+'" class="btn-table" size="12" id="btn-ad">Create Ad</label></td><td><input type="number" id="coup-percent-'+item.id+'" min="1" max="100" size="10.5%" placeholder="enter %" style="border:1px solid #67acb4; border-radius: 3px; margin: 2px;"><input type="text" placeholder="Code" id="code-discount-'+item.id+'" size="10.5%" style=" border:1px solid #67acb4; border-radius: 3px; margin: 2px;"><button id="create-'+item.id+'" class="btn-table" width="12" id="btn-coupon">Create Coupon</button></td><td><button id="edit-'+item.id+'" class="editp btn-table" size="12">Edit Product</button></td></tr>')
     document.getElementById("createad-"+item.id).addEventListener('change', (e) => {
       const file = e.target.files[0];
       const reader = new FileReader();
@@ -189,15 +197,26 @@ axios.post('http://localhost/ecommerce-project/ecommerce-server/get_seller_produ
       let discountform = new FormData()
       discountform.set('amount', perc)
       discountform.set('code', code)
-      console.log(perc, code)
       if(perc > 100 || perc < 1){
         return;
       } else if(!perc || !code){
         return;
       }
-      console.log("hi")
       axios.post('http://localhost/ecommerce-project/ecommerce-server/create_discounts.php', discountform)
     });
+  })
+  document.querySelectorAll(".editp").forEach((item)=>{
+    item.addEventListener("click", (e) => {
+      pid = e.target.id.split("-")[1]
+      editproduct.style.display = 'block'
+  
+      createproduct.style.display = 'none'
+      productsDiv.style.display = 'none'
+      homeDiv.style.display = 'none'
+      couponsDiv.style.display = 'none'
+      adsDiv.style.display = 'none'
+      chatDiv.style.display = 'none'
+    })
   })
 })
 
@@ -207,11 +226,73 @@ axios.post('http://localhost/ecommerce-project/ecommerce-server/seller_discounts
   const newrespdata = newresp.data
   if(newrespdata){
     newrespdata.forEach((ad)=> {
-      console.log(ad)
       couponsDiv.insertAdjacentHTML('beforeend', '<div class="cards-pr"><h1>'+ad.name+'</h1><h3>'+ad.code+'</h3><h5>'+ad.amount+'%</h5><div><img src="data:image/png;base64,'+ad.image+'" style="max-width: 100%; max-height: 100%;" alt=""></div><button class="btn-pr" id="coupon-delete-'+ad.id+'">Delete Coupon</button></div>')
       document.getElementById("coupon-delete-"+ad.id).addEventListener('click', function(){
         console.log("TBD")
       })
     })
+  }
+})
+
+let image;
+document.getElementById("np-image").addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  const reader = new FileReader();
+  reader.onloadend = () => {
+    image = reader.result.split(",")[1]
+    console.log(reader.result)
+  };
+  reader.readAsDataURL(file);
+});
+
+document.getElementById("np-create").addEventListener('click', function(){
+  let name = document.getElementById("np-name").value
+  let desc = document.getElementById("np-desc").value
+  let price = document.getElementById("np-price").value
+  let catg = document.getElementById("np-catg").value
+  if(name && desc && price && catg && image){
+    let createproduct = new FormData()
+    createproduct.set('seller_id', localStorage.getItem('userid'))
+    createproduct.set('name', name)
+    createproduct.set('price', price)
+    createproduct.set('desc', desc)
+    createproduct.set('categories_id', catg)
+    createproduct.set('image', image)
+    axios.post('http://localhost/ecommerce-project/ecommerce-server/create_products.php', createproduct).then((response) => {
+      console.log(response)
+    })
+  }
+  else{
+    console.log("missing info")
+  }
+})
+
+let imageupdate;
+document.getElementById("e-image").addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  const reader = new FileReader();
+  reader.onloadend = () => {
+    imageupdate = reader.result.split(",")[1]
+  };
+  reader.readAsDataURL(file);
+});
+document.getElementById("e-create").addEventListener('click', function(){
+  let name = document.getElementById("e-name").value
+  let desc = document.getElementById("e-desc").value
+  let price = document.getElementById("e-price").value
+  console.log(name, desc, price, imageupdate)
+  if(name || desc || price || imageupdate){
+    let editproducts = new FormData()
+    editproducts.set('id', pid)
+    editproducts.set('name', name)
+    editproducts.set('price', price)
+    editproducts.set('desc', desc)
+    editproducts.set('image', imageupdate)
+    axios.post('http://localhost/ecommerce-project/ecommerce-server/edit_products.php', editproducts).then((response) => {
+      console.log(response)
+    })
+  }
+  else{
+    console.log("missing info")
   }
 })

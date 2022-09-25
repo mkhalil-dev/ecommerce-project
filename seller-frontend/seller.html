@@ -118,7 +118,7 @@
                       <div class="new-products">
                           <div class="title">
                               <h2>Your Products</h2>
-                              <div href="#" class="btn">Create new product</div>
+                              <div hred="#" id="create-new-product" class="btn">Create new product</div>
                           </div>
                           <div id="create-pro">
                           <table id="display-pro">
@@ -157,12 +157,24 @@
             </div>
             <!-- ADD PRODUCTS -->
             <div class="content" id="addproduct">
-                    <input type="file" name="photo" class="btn" required>
-                    <input type="text" name="name" placeholder="Enter name" class="txt-form" required>
-                    <input type="text" name="category" placeholder="Choose category" class="txt-form" required>
-                    <input type="text" name="description" class="txt-form" placeholder="Enter description">
-                    <input type="number" placeholder="Enter price" name="price" class="txt-form" required>
-                    <button type="submit" class="btn">submit</button> 
+                <div id="create-pro" style="display:flex; flex-direction: column; align-items: center; justify-content: center;">
+                    <input id="np-name" type="text" name="name" placeholder="Enter name" class="txt-form" required>
+                    <input id="np-catg" type="text" name="category" placeholder="Choose category" class="txt-form" required>
+                    <input id="np-desc" type="text" name="description" class="txt-form" placeholder="Enter description">
+                    <input id="np-price" type="number" placeholder="Enter price" name="price" class="txt-form" required>
+                    <input id="np-image" type="file" name="photo" class="btn" required>
+                    <button id="np-create" type="submit" class="btn">Create</button> 
+                </div>
+            </div>
+                        <!-- Edit PRODUCTS -->
+            <div class="content" id="editproduct">
+                <div id="create-pro" style="display:flex; flex-direction: column; align-items: center; justify-content: center;">
+                    <input id="e-name" type="text" name="name" placeholder="Enter new name" class="txt-form" required>
+                    <input id="e-desc" type="text" name="description" class="txt-form" placeholder="Enter new description">
+                    <input id="e-price" type="number" placeholder="Enter new price" name="price" class="txt-form" required>
+                    <input id="e-image" type="file" name="photo" class="btn" required>
+                    <button id="e-create" type="submit" class="btn">Update</button> 
+                </div>
             </div>
 <script src="./scripts/index.js"></script>
 </body>
