@@ -21,13 +21,22 @@ $query->execute();
 $truepass = $query->get_result()->fetch_assoc();
 
 //if user/pass combo matches
-if($truepass['password'] == $pass ){
+if($truepass['password'] == $pass){
+    if($truepass['ban']){
+        $response = [];
+        $response["success"] = false;
+        $response["message"] = "banned";
+        echo json_encode($response);
+        exit();
+    }
     $response = [];
     $response["success"] = true;
     $response["message"] = "login succesfull";
     $response["userid"] = $truepass['id'];
     $response["fname"] = $truepass['fname'];
     $response["lname"] = $truepass['lname'];
+    $response["lname"] = $truepass['lname'];
+    $response["type"] = $truepass['users_types_id'];
     echo json_encode($response);
 }
 
