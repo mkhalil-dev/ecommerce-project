@@ -151,7 +151,7 @@ axios.post('http://localhost/ecommerce-project/ecommerce-server/get_seller_ads.p
 axios.post('http://localhost/ecommerce-project/ecommerce-server/get_seller_products.php', sid).then((response) => {
   const data = response.data
   data.forEach((item) => {
-    document.getElementById("display-pro").insertAdjacentHTML('beforeend', '<tr><td>'+item.name+'</td><td>'+item.desc+'</td><td>'+item.price+'</td><td id="activead"><input type="file" name="createad" id="createad-'+item.id+'" style="display:none;" accept="image/png, image/jpeg"><label for="createad-'+item.id+'" class="btn-table" size="12" id="btn-ad">Create Ad</label></td><td id="activedisc"><input type="number" id="coup-percent-'+item.id+'" min="1" max="100" size="10.5%" placeholder="enter %" style="border:1px solid #67acb4; border-radius: 3px; margin: 2px;"><input type="text" placeholder="Code" id="code-discount-'+item.id+'" size="10.5%" style=" border:1px solid #67acb4; border-radius: 3px; margin: 2px;"><button id="create-'+item.id+'" class="btn-table" width="12" id="btn-coupon">Create Coupon</button></td><td><button id="edit-'+item.id+'" class="btn-table" size="12">Edit Product</button></td></tr>')
+    document.getElementById("display-pro").insertAdjacentHTML('beforeend', '<tr><td>'+item.name+'</td><td>'+item.desc+'</td><td>'+item.price+'</td><td id="activead"><input type="file" name="createad" id="createad-'+item.id+'" style="display:none;" accept="image/png, image/jpeg"><label for="createad-'+item.id+'" class="btn-table" size="12" id="btn-ad">Create Ad</label></td><td><input type="number" id="coup-percent-'+item.id+'" min="1" max="100" size="10.5%" placeholder="enter %" style="border:1px solid #67acb4; border-radius: 3px; margin: 2px;"><input type="text" placeholder="Code" id="code-discount-'+item.id+'" size="10.5%" style=" border:1px solid #67acb4; border-radius: 3px; margin: 2px;"><button id="create-'+item.id+'" class="btn-table" width="12" id="btn-coupon">Create Coupon</button></td><td><button id="edit-'+item.id+'" class="btn-table" size="12">Edit Product</button></td></tr>')
     document.getElementById("createad-"+item.id).addEventListener('change', (e) => {
       const file = e.target.files[0];
       const reader = new FileReader();
@@ -162,6 +162,20 @@ axios.post('http://localhost/ecommerce-project/ecommerce-server/get_seller_produ
         axios.post('http://localhost/ecommerce-project/ecommerce-server/create_ads.php', createadform)
       };
       reader.readAsDataURL(file);
+    });
+    document.getElementById("create-"+item.id).addEventListener('click', (e) => {
+      console.log(e.target.id.split("-")[1])
+      const perc = document.getElementById('coup-percent-'+e.target.id.split("-")[1]).value
+      const code = document.getElementById('code-discount-'+e.target.id.split("-")[1]).value
+      let discountform = new FormData()
+      discountform.set('amount', perc)
+      discountform.set('code', code)
+      if(perc > 100 || perc < 1){
+        return;
+      } else if(!perc || !code){
+        return;
+      }
+      axios.post('http://localhost/ecommerce-project/ecommerce-server/create_discounts.php', discountform)
     });
   })
 })
