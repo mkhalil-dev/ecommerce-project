@@ -675,7 +675,7 @@ function checkout(){
       })
     }else if(params.length==4){
       console.log("hi")
-      favwish(pids[0], 'favorite')
+      favwish(pids[0], 'unwish')
     } 
     window.location.href = "./thankyou.html";
   })
