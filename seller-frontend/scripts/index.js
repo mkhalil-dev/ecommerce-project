@@ -1,6 +1,6 @@
 var xValues = ["Total Sales", "Total Income", "Total Views"];
-var yValues = [29, 49, 17, 0];
-var barColors = ["red", "green","orange","blue"];
+var yValues = [29, 49, 17];
+var barColors = ["red", "green","orange",];
 
 new Chart("myChart", {
     type: "bar",
@@ -91,3 +91,4 @@ mainContainer.addEventListener("click", () => {
     nav.style.display = "none";
   }
 })
+
