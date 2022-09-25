@@ -21,7 +21,8 @@ $date = date('Y-m-d h:i:s');
 $timeunix = strtotime($date);
 $timeunix -= 604800;
 $date = gmdate("Y-m-d", $timeunix);
-$query = $mysqli->prepare("SELECT P.seller_id, P.price, COUNT(Query.products_id) as product_sold FROM (SELECT * FROM purchases WHERE created_at > '$date') as Query, products P WHERE P.id = QUERY.products_id AND P.seller_id = '$id' GROUP BY Query.products_id ORDER BY product_sold");
+$query = $mysqli->prepare("SELECT P.seller_id, P.price, COUNT(Query.products_id) as product_sold FROM (SELECT * FROM purchases WHERE created_at > '$date') as Query, products P WHERE P.id = QUERY.products_id AND P.seller_id = ? GROUP BY Query.products_id ORDER BY product_sold");
+$query->bind_param('s', $id);
 $query->execute();
 $result = $query->get_result();
 while($a = $result->fetch_assoc()){
@@ -50,7 +51,8 @@ if(isset($response)){
 
 
 $date = date('Y:m:01');
-$query = $mysqli->prepare("SELECT P.seller_id, P.price, COUNT(Query.products_id) as product_sold FROM (SELECT * FROM purchases WHERE created_at > '$date') as Query, products P WHERE P.id = QUERY.products_id AND P.seller_id = '$id' GROUP BY Query.products_id ORDER BY product_sold");
+$query = $mysqli->prepare("SELECT P.seller_id, P.price, COUNT(Query.products_id) as product_sold FROM (SELECT * FROM purchases WHERE created_at > '$date') as Query, products P WHERE P.id = QUERY.products_id AND P.seller_id = ? GROUP BY Query.products_id ORDER BY product_sold");
+$query->bind_param('s', $id);
 $query->execute();
 $result = $query->get_result();
 while($a = $result->fetch_assoc()){
@@ -79,7 +81,8 @@ if(isset($response2)){
 
 
 $date = date('Y:01:01');
-$query = $mysqli->prepare("SELECT P.seller_id, P.price, COUNT(Query.products_id) as product_sold FROM (SELECT * FROM purchases WHERE created_at > '$date') as Query, products P WHERE P.id = QUERY.products_id AND P.seller_id = '$id' GROUP BY Query.products_id ORDER BY product_sold");
+$query = $mysqli->prepare("SELECT P.seller_id, P.price, COUNT(Query.products_id) as product_sold FROM (SELECT * FROM purchases WHERE created_at > '$date') as Query, products P WHERE P.id = QUERY.products_id AND P.seller_id = ? GROUP BY Query.products_id ORDER BY product_sold");
+$query->bind_param('s', $id);
 $query->execute();
 $result = $query->get_result();
 while($a = $result->fetch_assoc()){
