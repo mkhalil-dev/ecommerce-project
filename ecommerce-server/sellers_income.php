@@ -1,6 +1,7 @@
 <?php
 
 include('connection.php');
+ini_set('display_errors', 1);
 
 if (isset($_POST['id'])) {
     $seller_id = $_POST['id'];
@@ -13,7 +14,7 @@ if (isset($_POST['id'])) {
     exit();
 }
 
-$query = $mysqli->prepare("SELECT SUM(paid) FROM products as pr, purchases as pu WHERE pr.id=pu.products_id and pr.seller_id=?");
+$query = $mysqli->prepare("SELECT SUM(pr.price) FROM products as pr, purchases as pu WHERE pr.id=pu.products_id and pr.seller_id=?");
 $query->bind_param('s', $seller_id);
 $query->execute();
 $result = $query->get_result();
