@@ -24,6 +24,8 @@ const chatDiv = document.getElementById("chatDiv")
 const createproduct = document.getElementById("addproduct")
 const editproduct = document.getElementById("editproduct")
 let pid;
+categoriesDiv.style.display = 'none'
+editproduct.style.display = 'none'
 
 homeBtn.addEventListener("click", () => {
     homeDiv.style.display = 'block'
@@ -116,7 +118,7 @@ mainContainer.addEventListener("click", () => {
 })
 
 let sid = new FormData()
-sid.set('id', "4")
+sid.set('id', localStorage.getItem('userid'))
 axios.post('http://localhost/ecommerce-project/ecommerce-server/top_products.php', sid).then((response) => {
   const data = response.data
   data.forEach(item => {
@@ -246,6 +248,13 @@ axios.post('http://localhost/ecommerce-project/ecommerce-server/seller_discounts
   }
 })
 
+axios.post('http://localhost/ecommerce-project/ecommerce-server/get_categories.php').then((response) => {
+  const data = response.data
+  data.forEach((element) => {
+    document.getElementById("display-cat").insertAdjacentHTML('beforeend', '<tr><td>'+element.name+'</td></tr>')
+  })
+})
+
 let image;
 document.getElementById("np-image").addEventListener('change', (e) => {
   const file = e.target.files[0];
@@ -307,4 +316,18 @@ document.getElementById("e-create").addEventListener('click', function(){
   else{
     console.log("missing info")
   }
+})
+
+document.getElementById("create-new-category").addEventListener('click', function(){
+  let newcat = document.getElementById("new-cat").value
+  if(!newcat){return;}
+  axios.post('http://localhost/ecommerce-project/ecommerce-server/create_categories.php?name='+newcat).then((response) => {
+    const data = response.data
+    console.log(data)
+    if(!data.success){
+      alert("Category already exists!")
+    }else{
+      document.getElementById("display-cat").insertAdjacentHTML('beforeend', '<tr><td>'+newcat+'</td></tr>')
+    }
+  })
 })

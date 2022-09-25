@@ -2,8 +2,8 @@
 
 include("connection.php");
 
-if (isset($_POST["name"])) {
-    $name = $_POST["name"];
+if (isset($_GET["name"])) {
+    $name = $_GET["name"];
 } else {
     $response = [];
     $response["success"] = false;
