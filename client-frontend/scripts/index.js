@@ -526,7 +526,8 @@ function wishlist(){
     let data = response.data
     if(data[0]){
       data.forEach((element) => {
-        document.getElementById('wishlist').insertAdjacentHTML('beforeend', '<div id="'+element.id+'" class="item flex-display"><div class="item-img-name flex-display"><img style="border: 0px;" src="data:image/png;base64,'+element.image+'" alt=""><h3>'+element.name+'</h3></div><div class="item-qty-price flex-display"><h3>'+element.price+'$</h3><button><i class="fa fa-trash remove-wish" aria-hidden="true"></i></button><button class="header-btn wider-btn wider-btn-editted">Proceed to Checkout</button></div></div>')
+        console.log(element)
+        document.getElementById('wishlist').insertAdjacentHTML('beforeend', '<div id="'+element.id+'" class="item flex-display"><div class="item-img-name flex-display"><img style="border: 0px;" src="data:image/png;base64,'+element.image+'" alt=""><h3>'+element.name+'</h3></div><div class="item-qty-price flex-display"><h3>'+element.price+'$</h3><button><i class="fa fa-trash remove-wish" aria-hidden="true"></i></button><a href="checkout.html?pids='+element.id+'&discount=0&total='+element.price+'&wishlist"><button class="checkout header-btn wider-btn wider-btn-editted">Proceed to Checkout</button></a></div></div>')
       })
       document.querySelectorAll(".remove-wish").forEach(button => {
         let productid = button.parentElement.parentElement.parentElement.id;
@@ -536,6 +537,11 @@ function wishlist(){
           if(document.getElementById('wishlist').childElementCount == 0){
             document.getElementById('wishlist').innerHTML = 'You dont have any items in the wishlist.'
           }
+        });
+      })
+      document.querySelectorAll(".checkout").forEach(button => {
+        let productid = button.parentElement.parentElement.parentElement.id;
+        button.addEventListener('click', function(){
         });
       })
     }
@@ -660,12 +666,17 @@ function checkout(){
   document.getElementById('total').innerText = total
   document.getElementById('buy').addEventListener('click', function(){
     this.removeEventListener('click', arguments.callee);
-    pids.forEach((pid) => {
-      let checkoutform = new FormData()
-      checkoutform.set('id', localStorage.getItem('userid'))
-      checkoutform.set('pid', pid)
-      axios.post('http://localhost/ecommerce-project/ecommerce-server/insert_purchases.php', checkoutform)
-    })
+    let checkoutform = new FormData()
+    if(params.length==3){
+      pids.forEach((pid) => {
+        checkoutform.set('id', localStorage.getItem('userid'))
+        checkoutform.set('pid', pid)
+        axios.post('http://localhost/ecommerce-project/ecommerce-server/insert_purchases.php', checkoutform)
+      })
+    }else if(params.length==4){
+      console.log("hi")
+      favwish(pids[0], 'favorite')
+    } 
     window.location.href = "./thankyou.html";
   })
 }
