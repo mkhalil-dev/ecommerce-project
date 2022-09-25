@@ -103,14 +103,7 @@ axios.post('http://localhost/ecommerce-project/ecommerce-server/top_products.php
 
 axios.post('http://localhost/ecommerce-project/ecommerce-server/revenue.php', sid).then((response) => {
   const data = response.data
-  console.log(data)
-  // data.forEach((element) => {
-  //   if(element.period == "week"){
-  //     document.getElementById("week").innerText = element.revenue+"$"
-  //   }else if(element.period == "month"){
-  //     document.getElementById("month").innerText = element.revenue+"$"
-  //   }else{
-  //     document.getElementById("year").innerText = element.revenue+"$"
-  //   }
-  // })
+  document.getElementById("week").innerText = data.week+"$"
+  document.getElementById("month").innerText = data.month+"$"
+  document.getElementById("year").innerText = data.year+"$"
 })
