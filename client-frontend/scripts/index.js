@@ -676,6 +676,9 @@ function checkout(){
     }else if(params.length==4){
       console.log("hi")
       favwish(pids[0], 'unwish')
+      checkoutform.set('id', localStorage.getItem('userid'))
+      checkoutform.set('pid', pids[0])
+      axios.post('http://localhost/ecommerce-project/ecommerce-server/insert_purchases.php', checkoutform)
     } 
     window.location.href = "./thankyou.html";
   })
