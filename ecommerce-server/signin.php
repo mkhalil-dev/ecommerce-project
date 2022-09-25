@@ -28,6 +28,8 @@ if($truepass['password'] == $pass ){
     $response["userid"] = $truepass['id'];
     $response["fname"] = $truepass['fname'];
     $response["lname"] = $truepass['lname'];
+    $response["lname"] = $truepass['lname'];
+    $response["type"] = $truepass['users_types_id'];
     echo json_encode($response);
 }
 
