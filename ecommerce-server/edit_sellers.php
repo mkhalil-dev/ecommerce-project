@@ -23,7 +23,6 @@ if(isset($_POST['id']) && (isset($_POST['fname']) || isset($_POST['lname']) || i
     
     if(isset($_POST['fname'])){
         $fname = $_POST['fname'];
-        echo $fname;
         $query = $mysqli->prepare("UPDATE users SET fname=? WHERE id=?");
         $query->bind_param("ss", $fname, $id);
         $query->execute();
